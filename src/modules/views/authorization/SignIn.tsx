@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactDOM from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -10,19 +10,17 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import Copyright from "./Copyright";
+import signIn from "../../logic/authorization/signIn";
+import TextInput from "../../components/TextInput";
+
 
 const defaultTheme = createTheme();
 
-interface IFormInput {
-  email: string;
-  password: string;
-}
 
 export default function SignIn() {
-  const { register, handleSubmit } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
-
+  const { handleSubmit, register, onSubmit, control } = signIn();
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container
@@ -53,26 +51,26 @@ export default function SignIn() {
             noValidate
             sx={{ mt: 1 }}
           >
-            <TextField
-              margin="normal"
+            <TextInput
+              control={control} type={""}
+              // margin="normal"
               required
-              fullWidth
-              id="email"
+              // fullWidth
+              // id="email"
               label="Email"
-              autoComplete="email"
-              autoFocus
-              {...register("email", {required: true})}
-            />
-            <TextField
-              margin="normal"
+              // autoComplete="email"
+              // autoFocus
+              {...register("email", { required: true })}            />
+            <TextInput
+              control={control}
+              // margin="normal"
               required
-              fullWidth
+              // fullWidth
               label="Hasło"
               type="password"
-              id="password"
-              autoComplete="current-password"
-              {...register("password", {required: true})}
-            />
+              // id="password"
+              // autoComplete="current-password"
+              {...register("password", { required: true })}            />
             <Button
               type="submit"
               fullWidth
