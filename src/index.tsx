@@ -4,11 +4,21 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import SingUp from './modules/views/authorization/SingUp';
+import Password from './modules/views/authorization/Password';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />
+  },
+  {
+    path: "/singup",
+    element: <SingUp />
+  },
+  {
+    path: "/password",
+    element: <Password />
   }
 ])
 
