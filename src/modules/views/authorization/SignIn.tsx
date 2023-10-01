@@ -1,66 +1,77 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Copyright from './Copyright';
+import * as React from "react";
+import ReactDOM from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Copyright from "./Copyright";
 
 const defaultTheme = createTheme();
 
+interface IFormInput {
+  email: string;
+  password: string;
+}
+
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const { register, handleSubmit } = useForm<IFormInput>();
+  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs" sx={{
-        display: "flex",
-        flexDirection: 'column',
-        justifyContent:"center",
-        alignItems: "center",
-        minHeight:"100vh"}}>
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography component="h1" variant="h5">
             Zaloguj się
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
               fullWidth
               id="email"
               label="Email"
-              name="email"
               autoComplete="email"
               autoFocus
+              {...register("email", {required: true})}
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="password"
               label="Hasło"
               type="password"
               id="password"
               autoComplete="current-password"
+              {...register("password", {required: true})}
             />
             <Button
               type="submit"
