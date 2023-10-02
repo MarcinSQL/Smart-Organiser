@@ -1,20 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
 import SignIn from "./modules/views/authorization/SignIn";
-import SingUp from "./modules/views/authorization/SingUp";
+import SignUp from "./modules/views/authorization/SignUp";
+import { SignInLink, PasswordLink, SignUpLink } from "./links";
 import Password from "./modules/views/authorization/Password";
 
 export default function router() {
   const routing = createBrowserRouter([
     {
-      path: "/",
+      path: SignInLink,
       element: <SignIn />,
     },
     {
-      path: "/singup",
-      element: <SingUp />,
+      path: SignUpLink,
+      element: <SignUp />,
     },
     {
-      path: "/password",
+      path: PasswordLink,
       element: <Password />,
     },
   ]);

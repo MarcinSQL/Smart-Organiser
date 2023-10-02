@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
 interface IFormInput {
   email: string;
@@ -8,9 +9,17 @@ interface IFormInput {
 }
 
 export default function signIn() {
+  const navigate = useNavigate();
+
   let userSchema = yup.object().shape({
-    email: yup.string().email("Niepoprawny typ maila").required("Email jest wymagany"),
-    password: yup.string().min(6, "Wymagane min 6 znaków").required("Hasło jest wymagane"),
+    email: yup
+      .string()
+      .email("Niepoprawny typ maila")
+      .required("Email jest wymagany"),
+    password: yup
+      .string()
+      .min(6, "Wymagane min 6 znaków")
+      .required("Hasło jest wymagane"),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
@@ -18,5 +27,5 @@ export default function signIn() {
   });
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
 
-  return { register, handleSubmit, onSubmit, control };
+  return { register, handleSubmit, onSubmit, control, navigate };
 }
