@@ -1,10 +1,13 @@
 import React from "react";
-import SignIn from "./modules/views/authorization/SignIn";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 
 function App() {
+  const { routing } = router();
+
   return (
     <React.Fragment>
-      <SignIn />
+      <RouterProvider router={routing} />
     </React.Fragment>
   );
 }
