@@ -2,6 +2,7 @@ import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import { ResetPasswordLink, SignInLink } from "links";
 
 interface IFormInput {
   email: string;
@@ -10,6 +11,13 @@ interface IFormInput {
 
 export default function signIn() {
   const navigate = useNavigate();
+
+  const goToSignUp = () => {
+    navigate(SignInLink);
+  }
+  const goToResetPassword = () => {
+    navigate(ResetPasswordLink);
+  }
 
   let userSchema = yup.object().shape({
     email: yup
@@ -27,5 +35,5 @@ export default function signIn() {
   });
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
 
-  return { register, handleSubmit, onSubmit, control, navigate };
+  return { register, handleSubmit, onSubmit, control, goToSignUp, goToResetPassword };
 }

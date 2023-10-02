@@ -9,13 +9,12 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import Copyright from "./Copyright";
-import signIn from "../../logic/authorization/signIn";
-import TextInput from "../../components/TextInput";
-import { PasswordLink, SignUpLink } from "../../../links";
+import Copyright from "../../../components/Copyright";
+import signIn from "modules/logic/authorization/signIn";
+import TextInput from "components/TextInput";
 
 export default function SignIn() {
-  const { handleSubmit, register, onSubmit, control, navigate } = signIn();
+  const { handleSubmit, register, onSubmit, control, goToSignUp , goToResetPassword } = signIn();
 
   return (
     <Container
@@ -43,7 +42,7 @@ export default function SignIn() {
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           <TextInput
             control={control}
-            type={""}
+            type="text"
             required
             label="Email"
             {...register("email", { required: true })}
@@ -65,12 +64,12 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link onClick={() => navigate(PasswordLink)} variant="body2">
+              <Link onClick={goToSignUp} variant="body2">
                 Zapomniałeś hasła?
               </Link>
             </Grid>
             <Grid item>
-              <Link onClick={() => navigate(SignUpLink)} variant="body2">
+              <Link onClick={goToResetPassword} variant="body2">
                 {"Nie masz konta? Zarejestruj się"}
               </Link>
             </Grid>

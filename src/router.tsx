@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import SignIn from "./modules/views/authorization/SignIn";
 import SignUp from "./modules/views/authorization/SignUp";
-import { SignInLink, PasswordLink, SignUpLink } from "./links";
-import Password from "./modules/views/authorization/Password";
+import { SignInLink, ResetPasswordLink, SignUpLink } from "./links";
+import Password from "./modules/views/authorization/ResetPassword";
 
 export default function router() {
   const routing = createBrowserRouter([
@@ -15,7 +15,7 @@ export default function router() {
       element: <SignUp />,
     },
     {
-      path: PasswordLink,
+      path: ResetPasswordLink,
       element: <Password />,
     },
   ]);
