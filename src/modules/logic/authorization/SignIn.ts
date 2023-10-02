@@ -9,8 +9,8 @@ interface IFormInput {
 
 export default function signIn() {
   let userSchema = yup.object().shape({
-    email: yup.string().email("Niepoprawny typ maila").required("Pole jest wymagane"),
-    password: yup.string().min(6, "Wymagane min 6 znaków").required("Pole jest wymagane"),
+    email: yup.string().email("Niepoprawny typ maila").required("Email jest wymagany"),
+    password: yup.string().min(6, "Wymagane min 6 znaków").required("Hasło jest wymagane"),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({

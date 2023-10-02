@@ -1,5 +1,5 @@
 import { Controller } from "react-hook-form";
-import { Typography, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 
 interface ITextInput {
   control: any;
@@ -20,18 +20,15 @@ export default function TextInput(props: ITextInput) {
       render={({ field, fieldState }) => (
         <>
           <TextField
+            margin="normal"
+            fullWidth
             disabled={disabled}
             {...field}
             type={type}
-            placeholder={label}
             size="medium"
+            label={fieldState.error ? fieldState.error.message : label}
             error={!!fieldState.error}
           />
-          {!!fieldState.error && (
-            <Typography color="error" fontWeight="light" variant="caption">
-              {fieldState.error.message}
-            </Typography>
-          )}
         </>
       )}
     />
