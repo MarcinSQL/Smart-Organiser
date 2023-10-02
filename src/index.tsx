@@ -9,11 +9,11 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const { routering } = router();
+const { routing } = router();
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={routering} />
+    <RouterProvider router={routing} />
   </React.StrictMode>
 );
 

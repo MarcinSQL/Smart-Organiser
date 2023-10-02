@@ -4,7 +4,7 @@ import SingUp from "./modules/views/authorization/SingUp";
 import Password from "./modules/views/authorization/Password";
 
 export default function router() {
-  const routering = createBrowserRouter([
+  const routing = createBrowserRouter([
     {
       path: "/",
       element: <SignIn />,
@@ -19,5 +19,5 @@ export default function router() {
     },
   ]);
 
-  return { routering };
+  return { routing };
 }
