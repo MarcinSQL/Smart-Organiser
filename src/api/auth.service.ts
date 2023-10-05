@@ -17,7 +17,7 @@ interface IRegistration {
 //   password: string;
 // }
 
-const baseURL = process.env.REACT_APP_API_URL + "/auth/";
+const baseURL = "/auth/";
 
 export const authLogin = (loginData: ILoginData) => {
   return service
