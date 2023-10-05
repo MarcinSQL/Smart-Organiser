@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import Copyright from "../../../components/Copyright";
-import signIn from "modules/logic/authorization/signIn";
+import signIn from "modules/logic/authorization/SignIn";
 import TextInput from "components/TextInput";
 
 export default function SignIn() {
