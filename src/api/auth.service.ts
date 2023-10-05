@@ -17,9 +17,11 @@ interface IRegistration {
 //   password: string;
 // }
 
+const baseURL = process.env.REACT_APP_API_URL + "/auth/";
+
 export const authLogin = (loginData: ILoginData) => {
   return service
-    .post("http://test.internal-blackbox-studio.pl/v1/auth/login", loginData)
+    .post(`${baseURL}login`, loginData)
     .then((response) => {
       console.log(response);
     })
@@ -30,10 +32,7 @@ export const authLogin = (loginData: ILoginData) => {
 
 export const authRegistration = (registration: IRegistration) => {
   return service
-    .post(
-      "http://test.internal-blackbox-studio.pl/v1/auth/registration",
-      registration
-    )
+    .post(`${baseURL}registration`, registration)
     .then((response) => {
       console.log(response);
     })
@@ -44,8 +43,9 @@ export const authRegistration = (registration: IRegistration) => {
 
 export const authConfirmAccount = () => {
   return service
-    .get("http://test.internal-blackbox-studio.pl/v1/auth/account-confirmation", 
-    //tutaj bedzie przyjmowany token ale przez to ze nigdzie go jeszcze nie setujemy to jest to niemozliwe
+    .get(
+      `${baseURL}account-confirmation`
+      //tutaj bedzie przyjmowany token ale przez to ze nigdzie go jeszcze nie setujemy to jest to niemozliwe
     )
     .then((response) => {
       console.log(response);
