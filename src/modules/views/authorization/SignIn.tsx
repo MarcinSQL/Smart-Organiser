@@ -48,7 +48,8 @@ export default function SignIn() {
         <Avatar
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
-          sx={{ width: 56, height: 56, m: 1, bgcolor: "secondary.main" }}
+          variant="rounded"
+          sx={{ width: 56, height: 56, m: 4, bgcolor: "secondary.main" }}
         />
         <Typography component="h1" variant="h5">
           Zaloguj się
