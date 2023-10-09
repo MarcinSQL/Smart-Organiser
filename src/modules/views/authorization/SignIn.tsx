@@ -12,9 +12,18 @@ import Container from "@mui/material/Container";
 import Copyright from "../../../components/Copyright";
 import signIn from "modules/logic/authorization/SignIn";
 import TextInput from "components/TextInput";
+import { Avatar } from "@mui/material";
+import BlackboxStudioLogo from "../../../assets/images/Blackbox_Studio_1.png";
 
 export default function SignIn() {
-  const { handleSubmit, register, onSubmit, control, goToSignUp , goToResetPassword } = signIn();
+  const {
+    handleSubmit,
+    register,
+    onSubmit,
+    control,
+    goToSignUp,
+    goToResetPassword,
+  } = signIn();
 
   return (
     <Container
@@ -36,6 +45,11 @@ export default function SignIn() {
           alignItems: "center",
         }}
       >
+        <Avatar
+          src={BlackboxStudioLogo}
+          alt="Blackbox Studio logo"
+          sx={{ width: 56, height: 56, m: 1, bgcolor: "secondary.main" }}
+        />
         <Typography component="h1" variant="h5">
           Zaloguj się
         </Typography>
