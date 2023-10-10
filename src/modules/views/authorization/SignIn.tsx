@@ -16,6 +16,7 @@ import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "../../../assets/images/Blackbox_Studio_1.png";
 import { ErrorMessage } from "./ErrorMessage";
 import AuthContext from "store/auth-context";
+import Toast from "./Toast";
 
 export default function SignIn() {
   const ctx = useContext(AuthContext);
@@ -96,6 +97,7 @@ export default function SignIn() {
         </Box>
       </Box>
       <Copyright />
+      {ctx.isError && <Toast message={ctx.message} />}
     </Container>
   );
 }
