@@ -10,7 +10,16 @@ export interface IRegistration {
 }
 
 export interface IConfirmAccount {
-   userId: number;
-   token: string;
-   password: string;
- }
+  userId: number;
+  token: string;
+  password: string;
+}
+
+export interface IAuthContext{
+  message: string,
+  isError: boolean,
+  children: any
+}
+export interface IErrorMessage {
+  message: string;
+}

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react";
 
 import Button from "@mui/material/Button";
@@ -14,8 +14,11 @@ import signIn from "modules/logic/authorization/SignIn";
 import TextInput from "components/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "../../../assets/images/Blackbox_Studio_1.png";
+import { ErrorMessage } from "./ErrorMessage";
+import AuthContext from "store/auth-context";
 
 export default function SignIn() {
+  const ctx = useContext(AuthContext);
   const {
     handleSubmit,
     register,
@@ -69,6 +72,7 @@ export default function SignIn() {
             type="password"
             {...register("password", { required: true })}
           />
+          {ctx.isError && <ErrorMessage message={ctx.message} />}
           <Button
             type="submit"
             fullWidth

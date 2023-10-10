@@ -2,8 +2,11 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { ILoginData } from "modules/types/authorization/authorization.types";
 import { authLogin } from "api/auth.service";
+import { useContext } from "react";
+import AuthContext from "store/auth-context";
 
 export function useLoginMutation() {
+  const ctx = useContext(AuthContext);
   const navigate = useNavigate();
 
   return useMutation<unknown, unknown, ILoginData>(
@@ -15,7 +18,8 @@ export function useLoginMutation() {
         //localhost/panel
       },
       onError: (response: any) => {
-        console.log(response);
+        ctx.message = response.response.data.errorMessage;
+        ctx.isError = response.response.data.isError;
       },
     }
   );
