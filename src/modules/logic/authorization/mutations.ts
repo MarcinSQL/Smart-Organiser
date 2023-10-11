@@ -18,12 +18,25 @@ export function useLoginMutation() {
         //localhost/panel
       },
       onError: (response: any) => {
+        ctx.isError = response.response.data.isError;   
         const errorMessage = response.response.data.errorMessage;
-        if(errorMessage === "USER_NOT_FOUND") ctx.message = "Użytkownik nie został znaleziony.";
-        if(errorMessage === "USER_NOT_ACTIVE") ctx.message = "Email nie został potwierdzony.";
-        if(errorMessage === "USER_DELETED") ctx.message = "Użytkownik został już usunięty.";
-        if(errorMessage === "LOGIN_ERROR") ctx.message = "Niepoprawne dane logowania.";
-        ctx.isError = response.response.data.isError;      
+        switch(errorMessage){
+          case "USER_NOT_FOUND":
+            ctx.message = "Użytkownik nie został znaleziony.";
+            break;
+          case "USER_NOT_ACTIVE":
+            ctx.message = "Email nie został potwierdzony.";
+            break;
+          case "USER_DELETED":
+            ctx.message = "Użytkownik został już usunięty.";
+            break;
+          case "LOGIN_ERROR":
+            ctx.message = "Niepoprawne dane logowania.";
+            break;
+          default:
+            ctx.message = "Błąd nie został rozpoznany";
+            break;
+        }   
       },
     }
   );
