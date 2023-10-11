@@ -15,11 +15,6 @@ export interface IConfirmAccount {
   password: string;
 }
 
-export interface IAuthContext{
-  message: string,
-  isError: boolean,
-  children: any
-}
 export interface IErrorMessage {
   message: string;
 }
