@@ -25,7 +25,7 @@ export default function signUp() {
   };
 
   let userSchema = yup.object().shape({
-    name: yup.string().required("Imię jest wymagany"),
+    name: yup.string().required("Imię jest wymagane"),
     surname: yup.string().required("Nazwisko jest wymagane"),
     email: yup
       .string()
