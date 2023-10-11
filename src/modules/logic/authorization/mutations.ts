@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { ILoginData } from "modules/types/authorization/authorization.types";
-import { authLogin } from "api/auth.service";
+import { ILoginData, IRegistration } from "modules/types/authorization/authorization.types";
+import { authLogin, authRegistration } from "api/auth.service";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
 
@@ -32,6 +32,34 @@ export function useLoginMutation() {
             break;
           case "LOGIN_ERROR":
             ctx.message = "Niepoprawne dane logowania.";
+            break;
+          default:
+            ctx.message = "Błąd nie został rozpoznany";
+            break;
+        }   
+      },
+    }
+  );
+}
+
+export function useSignUpMutation() {
+  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  return useMutation<unknown, unknown, IRegistration>(
+    (data) => {
+      return authRegistration(data);
+    },
+    {
+      onSuccess: (response: any) => {
+        //localhost/panel
+      },
+      onError: (response: any) => {
+        ctx.isError = response.response.data.isError;   
+        const errorMessage = response.response.data.errorMessage;
+        switch(errorMessage){
+          case "ACCOUNT_EXISTS":
+            ctx.message = "Użytkownik już istnieje.";
             break;
           default:
             ctx.message = "Błąd nie został rozpoznany";
