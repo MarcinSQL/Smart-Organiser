@@ -20,6 +20,7 @@ export function useLoginMutation() {
       onError: (response: any) => {
         ctx.message = response.response.data.errorMessage;
         ctx.isError = response.response.data.isError;
+        ctx.status = response.response.data.errorCode;        
       },
     }
   );

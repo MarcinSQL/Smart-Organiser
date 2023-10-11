@@ -17,4 +17,5 @@ export interface IConfirmAccount {
 
 export interface IErrorMessage {
   message: string;
+  status: string;
 }

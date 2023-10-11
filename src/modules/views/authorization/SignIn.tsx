@@ -73,7 +73,7 @@ export default function SignIn() {
             type="password"
             {...register("password", { required: true })}
           />
-          {ctx.isError && <ErrorMessage message={ctx.message} />}
+          {ctx.isError && <ErrorMessage message={ctx.message} status={ctx.status} />}
           <Button
             type="submit"
             fullWidth
@@ -97,7 +97,7 @@ export default function SignIn() {
         </Box>
       </Box>
       <Copyright />
-      {ctx.isError && <Toast message={ctx.message} />}
+      {ctx.isError && <Toast message={ctx.message} status={ctx.status} />}
     </Container>
   );
 }
