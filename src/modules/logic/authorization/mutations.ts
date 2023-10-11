@@ -61,6 +61,12 @@ export function useSignUpMutation() {
           case "ACCOUNT_EXISTS":
             ctx.message = "Użytkownik już istnieje.";
             break;
+          case "REGISTRATION_ERROR":
+            ctx.message = "Błędna rejestracja.";
+            break;
+          case "MESSAGE_NOT_SENT":
+            ctx.message = "Żądanie nie zostało wysłane.";
+            break;
           default:
             ctx.message = "Błąd nie został rozpoznany";
             break;
