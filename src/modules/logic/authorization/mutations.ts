@@ -1,7 +1,10 @@
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { ILoginData } from "modules/types/authorization/authorization.types";
-import { authLogin } from "api/auth.service";
+import {
+  ILoginData,
+  IRegistration,
+} from "modules/types/authorization/authorization.types";
+import { authLogin, authRegistration } from "api/auth.service";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
 
@@ -18,9 +21,9 @@ export function useLoginMutation() {
         //localhost/panel
       },
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;   
+        ctx.isError = response.response.data.isError;
         const errorMessage = response.response.data.errorMessage;
-        switch(errorMessage){
+        switch (errorMessage) {
           case "USER_NOT_FOUND":
             ctx.message = "Użytkownik nie został znaleziony.";
             break;
@@ -36,7 +39,34 @@ export function useLoginMutation() {
           default:
             ctx.message = "Błąd nie został rozpoznany";
             break;
-        }   
+        }
+      },
+    }
+  );
+}
+
+export function useSignUpMutation() {
+  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  return useMutation<unknown, unknown, IRegistration>(
+    (data) => {
+      return authRegistration(data);
+    },
+    {
+      onSuccess: (response: any) => {
+        //localhost/potwierdzenie
+      },
+      onError: (response: any) => {
+        ctx.isError = response.response.data.isError;
+        const errorMessage = response.response.data.errorMessage;
+        if (errorMessage === "ACCOUNT_EXISTS")
+          ctx.message = "Użytkownik już istnieje.";
+        else if (errorMessage === "REGISTRATION_ERROR")
+          ctx.message = "Błędna rejestracja.";
+        else if (errorMessage === "MESSAGE_NOT_SENT")
+          ctx.message = "Żądanie nie zostało wysłane.";
+        else ctx.message = "Błąd nie został rozpoznany";
       },
     }
   );

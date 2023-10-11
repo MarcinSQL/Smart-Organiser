@@ -3,47 +3,42 @@ import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { ResetPasswordLink, SignUpLink } from "links";
-import { useLoginMutation } from "./mutations";
+import { SignInLink } from "links";
+import { useSignUpMutation } from "./mutations";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
 
 interface IFormInput {
+  name: string;
+  surname: string;
   email: string;
-  password: string;
 }
 
-export default function signIn() {
-  const mutation = useLoginMutation();
+export default function signUp() {
+  const mutation = useSignUpMutation();
   const navigate = useNavigate();
   const ctx = useContext(AuthContext);
 
-  const goToSignUp = () => {
-    navigate(SignUpLink);
-    ctx.isError = false;
-  };
-  const goToResetPassword = () => {
-    navigate(ResetPasswordLink);
+  const goToSignIn = () => {
+    navigate(SignInLink);
     ctx.isError = false;
   };
 
   let userSchema = yup.object().shape({
+    name: yup.string().required("Imię jest wymagane"),
+    surname: yup.string().required("Nazwisko jest wymagane"),
     email: yup
       .string()
       .email("Niepoprawny typ maila")
       .required("Email jest wymagany"),
-    password: yup
-      .string()
-      .min(6, "Wymagane min 6 znaków")
-      .required("Hasło jest wymagane"),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
     resolver: yupResolver(userSchema),
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (loginData) => {
-    mutation.mutate(loginData);
+  const onSubmit: SubmitHandler<IFormInput> = (signUpData) => {
+    mutation.mutate(signUpData);
   };
 
   return {
@@ -51,7 +46,6 @@ export default function signIn() {
     handleSubmit,
     onSubmit,
     control,
-    goToSignUp,
-    goToResetPassword,
+    goToSignIn,
   };
 }
