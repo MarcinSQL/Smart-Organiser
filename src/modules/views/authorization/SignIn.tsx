@@ -9,11 +9,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import Copyright from "../../../components/Copyright";
+import Copyright from "components/Copyright";
 import signIn from "modules/logic/authorization/SignIn";
 import TextInput from "components/TextInput";
 import { Avatar } from "@mui/material";
-import BlackboxStudioLogo from "../../../assets/images/Blackbox_Studio_1.png";
+import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import { ErrorMessage } from "./ErrorMessage";
 import AuthContext from "store/auth-context";
 import Toast from "./Toast";
