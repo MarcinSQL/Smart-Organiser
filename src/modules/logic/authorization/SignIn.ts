@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { ResetPasswordLink, SignInLink } from "links";
-import { authLogin } from "api/auth.service";
+import { useLoginMutation } from "./mutations";
 
 interface IFormInput {
   email: string;
@@ -12,6 +12,7 @@ interface IFormInput {
 }
 
 export default function signIn() {
+  const mutation = useLoginMutation();
   const navigate = useNavigate();
 
   const goToSignUp = () => {
@@ -35,8 +36,9 @@ export default function signIn() {
   const { register, handleSubmit, control } = useForm<IFormInput>({
     resolver: yupResolver(userSchema),
   });
+
   const onSubmit: SubmitHandler<IFormInput> = (loginData) => {
-    authLogin(loginData);
+    mutation.mutate(loginData);
   };
 
   return {

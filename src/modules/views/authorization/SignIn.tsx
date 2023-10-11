@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react";
 
 import Button from "@mui/material/Button";
@@ -9,12 +9,24 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import Copyright from "../../../components/Copyright";
-import signIn from "modules/logic/authorization/signIn";
+import Copyright from "components/Copyright";
+import signIn from "modules/logic/authorization/SignIn";
 import TextInput from "components/TextInput";
+import { Avatar } from "@mui/material";
+import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
+import AuthContext from "store/auth-context";
+import Toast from "./Toast";
 
 export default function SignIn() {
-  const { handleSubmit, register, onSubmit, control, goToSignUp , goToResetPassword } = signIn();
+  const ctx = useContext(AuthContext);
+  const {
+    handleSubmit,
+    register,
+    onSubmit,
+    control,
+    goToSignUp,
+    goToResetPassword,
+  } = signIn();
 
   return (
     <Container
@@ -36,6 +48,12 @@ export default function SignIn() {
           alignItems: "center",
         }}
       >
+        <Avatar
+          src={BlackboxStudioLogo}
+          alt="Blackbox Studio logo"
+          variant="rounded"
+          sx={{ width: 56, height: 56, m: 4, bgcolor: "secondary.main" }}
+        />
         <Typography component="h1" variant="h5">
           Zaloguj się
         </Typography>
@@ -77,6 +95,7 @@ export default function SignIn() {
         </Box>
       </Box>
       <Copyright />
+      {ctx.isError && <Toast message={ctx.message} />}
     </Container>
   );
 }

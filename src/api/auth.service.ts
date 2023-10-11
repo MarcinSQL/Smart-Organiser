@@ -1,21 +1,5 @@
 import service from "utils/axios";
-
-interface ILoginData {
-  email: string;
-  password: string;
-}
-
-interface IRegistration {
-  name: string;
-  surname: string;
-  email: string;
-}
-
-// interface IConfirmAccount {
-//   userId: number;
-//   token: string;
-//   password: string;
-// }
+import { ILoginData, IRegistration } from "modules/types/authorization/authorization.types";
 
 const baseURL = "/auth/";
 
@@ -23,11 +7,11 @@ export const authLogin = (loginData: ILoginData) => {
   return service
     .post(`${baseURL}login`, loginData)
     .then((response) => {
-      console.log(response);
+      return Promise.resolve(response);
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    // .catch((error) => {
+    //   console.log(error);
+    // });
 };
 
 export const authRegistration = (registration: IRegistration) => {
