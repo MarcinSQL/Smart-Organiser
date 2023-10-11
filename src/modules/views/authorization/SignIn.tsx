@@ -14,7 +14,6 @@ import signIn from "modules/logic/authorization/SignIn";
 import TextInput from "components/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
-import { ErrorMessage } from "./ErrorMessage";
 import AuthContext from "store/auth-context";
 import Toast from "./Toast";
 
@@ -73,7 +72,6 @@ export default function SignIn() {
             type="password"
             {...register("password", { required: true })}
           />
-          {ctx.isError && <ErrorMessage message={ctx.message} status={ctx.status} />}
           <Button
             type="submit"
             fullWidth
@@ -97,7 +95,7 @@ export default function SignIn() {
         </Box>
       </Box>
       <Copyright />
-      {ctx.isError && <Toast message={ctx.message} status={ctx.status} />}
+      {ctx.isError && <Toast message={ctx.message} />}
     </Container>
   );
 }
