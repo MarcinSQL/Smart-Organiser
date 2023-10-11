@@ -44,10 +44,6 @@ export default function signIn() {
     mutation.mutate(loginData);
   };
 
-  if(ctx.isError){
-    userSchema.fields.email
-  }
-
   return {
     register,
     handleSubmit,
