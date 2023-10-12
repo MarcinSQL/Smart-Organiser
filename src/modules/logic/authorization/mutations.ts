@@ -43,7 +43,7 @@ export function useLoginMutation() {
             ctx.message = "Niepoprawne dane logowania.";
             break;
           default:
-            ctx.message = "Błąd nie został rozpoznany";
+            ctx.message = "Błąd nie został rozpoznany.";
             break;
         }
       },
@@ -72,7 +72,7 @@ export function useSignUpMutation() {
           ctx.message = "Błędna rejestracja.";
         else if (errorMessage === "MESSAGE_NOT_SENT")
           ctx.message = "Żądanie nie zostało wysłane.";
-        else ctx.message = "Błąd nie został rozpoznany";
+        else ctx.message = "Błąd nie został rozpoznany.";
       },
     }
   );
@@ -93,9 +93,9 @@ export function useConfirmAccountMutation() {
         const ctx = useContext(AuthContext);
         ctx.isError = response.response.data.isError;
         const errorMessage = response.response.data.errorMessage;
-        if (errorMessage === "MESSAGE_NOT_SENT")
-          ctx.message = "Żądanie nie zostało wysłane.";
-        else ctx.message = "Błąd nie został rozpoznany";
+        if (errorMessage === "USER_NOT_FOUND")
+          ctx.message = "Użytkownik nie został odnaleziony.";
+        else ctx.message = "Błąd nie został rozpoznany.";
       },
     }
   );
