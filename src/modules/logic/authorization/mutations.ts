@@ -1,12 +1,18 @@
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import {
+  IConfirmAccount,
   ILoginData,
   IRegistration,
 } from "modules/types/authorization/authorization.types";
-import { authLogin, authRegistration } from "api/auth.service";
+import {
+  authConfirmAccount,
+  authLogin,
+  authRegistration,
+} from "api/auth.service";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
+import { SignInLink } from "links";
 
 export function useLoginMutation() {
   const ctx = useContext(AuthContext);
@@ -55,7 +61,7 @@ export function useSignUpMutation() {
     },
     {
       onSuccess: (response: any) => {
-        //localhost/potwierdzenie
+        //localhost/komunikat-potwierdzajacy
       },
       onError: (response: any) => {
         ctx.isError = response.response.data.isError;
@@ -65,6 +71,29 @@ export function useSignUpMutation() {
         else if (errorMessage === "REGISTRATION_ERROR")
           ctx.message = "Błędna rejestracja.";
         else if (errorMessage === "MESSAGE_NOT_SENT")
+          ctx.message = "Żądanie nie zostało wysłane.";
+        else ctx.message = "Błąd nie został rozpoznany";
+      },
+    }
+  );
+}
+
+export function useConfirmAccountMutation() {
+  const navigate = useNavigate();
+
+  return useMutation<unknown, unknown, IConfirmAccount>(
+    (data) => {
+      return authConfirmAccount(data);
+    },
+    {
+      onSuccess: (response: any) => {
+        navigate(SignInLink);
+      },
+      onError: (response: any) => {
+        const ctx = useContext(AuthContext);
+        ctx.isError = response.response.data.isError;
+        const errorMessage = response.response.data.errorMessage;
+        if (errorMessage === "MESSAGE_NOT_SENT")
           ctx.message = "Żądanie nie zostało wysłane.";
         else ctx.message = "Błąd nie został rozpoznany";
       },
