@@ -2,3 +2,4 @@
 export const SignInLink = "/";
 export const SignUpLink = "/sign-up";
 export const ResetPasswordLink = "/reset-password";
+export const ConfirmAccountLink = "/account-confirmation";

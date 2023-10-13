@@ -10,7 +10,7 @@ export interface IRegistration {
 }
 
 export interface IConfirmAccount {
-  userId: number;
+  userId: string;
   token: string;
   password: string;
 }
