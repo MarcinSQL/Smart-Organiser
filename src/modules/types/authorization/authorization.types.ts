@@ -18,3 +18,7 @@ export interface IConfirmAccount {
 export interface IErrorMessage {
   message: string;
 }
+
+export interface IForgotPassword {
+  email: string;
+}

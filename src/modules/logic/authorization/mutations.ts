@@ -2,11 +2,13 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import {
   IConfirmAccount,
+  IForgotPassword,
   ILoginData,
   IRegistration,
 } from "modules/types/authorization/authorization.types";
 import {
   authConfirmAccount,
+  authForgotPassword,
   authLogin,
   authRegistration,
 } from "api/auth.service";
@@ -34,7 +36,7 @@ export function useLoginMutation() {
             ctx.message = "Użytkownik nie został znaleziony.";
             break;
           case "USER_NOT_ACTIVE":
-            ctx.message = "Email nie został potwierdzony.";
+            ctx.message = "Email nie został potwierdzony. (Sprawdź swoją skrzynkę pocztową)";
             break;
           case "USER_DELETED":
             ctx.message = "Użytkownik został już usunięty.";
@@ -88,6 +90,29 @@ export function useConfirmAccountMutation() {
     {
       onSuccess: (response: any) => {
         navigate(SignInLink);
+      },
+      onError: (response: any) => {
+        const ctx = useContext(AuthContext);
+        ctx.isError = response.response.data.isError;
+        const errorMessage = response.response.data.errorMessage;
+        if (errorMessage === "USER_NOT_FOUND")
+          ctx.message = "Użytkownik nie został odnaleziony.";
+        else ctx.message = "Błąd nie został rozpoznany.";
+      },
+    }
+  );
+}
+
+export function useForgotPasswordMutation() {
+  const navigate = useNavigate();
+
+  return useMutation<unknown, unknown, IForgotPassword>(
+    (data) => {
+      return authForgotPassword(data);
+    },
+    {
+      onSuccess: (response: any) => {
+        //Potwierdzajacy wyslanie mail
       },
       onError: (response: any) => {
         const ctx = useContext(AuthContext);

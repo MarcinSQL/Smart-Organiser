@@ -10,14 +10,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import Copyright from "components/Copyright";
-import signIn from "modules/logic/authorization/SignIn";
 import TextInput from "components/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import AuthContext from "store/auth-context";
 import Toast from "./Toast";
+import forgotPassword from "modules/logic/authorization/ForgotPassword";
 
-export default function SignIn() {
+export default function ForgotPassword() {
   const ctx = useContext(AuthContext);
   const {
     handleSubmit,
@@ -25,8 +25,8 @@ export default function SignIn() {
     onSubmit,
     control,
     goToSignUp,
-    goToForgotPassword,
-  } = signIn();
+    goToSignIn,
+  } = forgotPassword();
 
   return (
     <Container
@@ -55,7 +55,7 @@ export default function SignIn() {
           sx={{ width: 56, height: 56, m: 4, bgcolor: "secondary.main" }}
         />
         <Typography component="h1" variant="h5">
-          Zaloguj się
+          Zmiana hasła
         </Typography>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           <TextInput
@@ -65,25 +65,18 @@ export default function SignIn() {
             label="Email"
             {...register("email", { required: true })}
           />
-          <TextInput
-            control={control}
-            required
-            label="Hasło"
-            type="password"
-            {...register("password", { required: true })}
-          />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Zaloguj się
+            Wyślij
           </Button>
-          <Grid container>
+          <Grid container gap={2}>
             <Grid item xs>
-              <Link onClick={goToForgotPassword} variant="body2">
-                Zapomniałeś hasła?
+              <Link onClick={goToSignIn} variant="body2">
+                Posiadasz konto? Zaloguj się
               </Link>
             </Grid>
             <Grid item>
