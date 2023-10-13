@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { SignInLink, SignUpLink } from "links";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
-import { useForgotPasswordMutation } from "./mutations";
+import { useResetPasswordMutation } from "./mutations";
 
 interface IFormInput {
-    email: string;
-  }
+  email: string;
+}
 
-export default function forgotPassword() {
-    const mutation = useForgotPasswordMutation();
+export default function resetPassword() {
+  const mutation = useResetPasswordMutation();
   const navigate = useNavigate();
   const ctx = useContext(AuthContext);
 
@@ -21,7 +21,7 @@ export default function forgotPassword() {
     navigate(SignUpLink);
     ctx.isError = false;
   };
-  const goToSignIn= () => {
+  const goToSignIn = () => {
     navigate(SignInLink);
     ctx.isError = false;
   };
@@ -30,7 +30,7 @@ export default function forgotPassword() {
     email: yup
       .string()
       .email("Niepoprawny typ maila")
-      .required("Email jest wymagany")
+      .required("Email jest wymagany"),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({

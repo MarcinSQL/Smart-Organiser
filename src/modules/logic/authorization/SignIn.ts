@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { ForgotPasswordLink, SignUpLink } from "links";
+import { ResetPasswordLink, SignUpLink } from "links";
 import { useLoginMutation } from "./mutations";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
@@ -22,8 +22,8 @@ export default function signIn() {
     navigate(SignUpLink);
     ctx.isError = false;
   };
-  const goToForgotPassword= () => {
-    navigate(ForgotPasswordLink);
+  const goToResetPassword = () => {
+    navigate(ResetPasswordLink);
     ctx.isError = false;
   };
 
@@ -52,6 +52,6 @@ export default function signIn() {
     onSubmit,
     control,
     goToSignUp,
-    goToForgotPassword,
+    goToResetPassword,
   };
 }

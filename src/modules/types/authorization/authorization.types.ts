@@ -19,6 +19,6 @@ export interface IErrorMessage {
   message: string;
 }
 
-export interface IForgotPassword {
+export interface IResetPassword {
   email: string;
 }

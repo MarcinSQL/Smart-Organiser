@@ -25,7 +25,7 @@ export default function SignIn() {
     onSubmit,
     control,
     goToSignUp,
-    goToForgotPassword,
+    goToResetPassword,
   } = signIn();
 
   return (
@@ -82,7 +82,7 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link onClick={goToForgotPassword} variant="body2">
+              <Link onClick={goToResetPassword} variant="body2">
                 Zapomniałeś hasła?
               </Link>
             </Grid>
