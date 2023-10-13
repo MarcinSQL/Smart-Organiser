@@ -14,7 +14,7 @@ import {
 } from "api/auth.service";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
-import { SignInLink } from "links";
+import { ApprovedEmailLink, SignInLink } from "links";
 
 export function useLoginMutation() {
   const ctx = useContext(AuthContext);
@@ -112,7 +112,7 @@ export function useForgotPasswordMutation() {
     },
     {
       onSuccess: (response: any) => {
-        //Potwierdzajacy wyslanie mail
+        navigate(ApprovedEmailLink);
       },
       onError: (response: any) => {
         const ctx = useContext(AuthContext);
