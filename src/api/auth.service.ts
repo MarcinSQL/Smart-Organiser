@@ -1,6 +1,7 @@
 import service from "utils/axios";
 import {
   IConfirmAccount,
+  IResetPassword,
   ILoginData,
   IRegistration,
 } from "modules/types/authorization/authorization.types";
@@ -24,6 +25,14 @@ export const authRegistration = (registration: IRegistration) => {
 export const authConfirmAccount = (accountData: IConfirmAccount) => {
   return service
     .post(`${baseURL}account-confirmation`, accountData)
+    .then((response) => {
+      return Promise.resolve(response);
+    });
+};
+
+export const authResetPassword = (email: IResetPassword) => {
+  return service
+    .post(`${baseURL}reset-password`, email)
     .then((response) => {
       return Promise.resolve(response);
     });

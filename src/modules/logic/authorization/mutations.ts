@@ -2,17 +2,19 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import {
   IConfirmAccount,
+  IResetPassword,
   ILoginData,
   IRegistration,
 } from "modules/types/authorization/authorization.types";
 import {
   authConfirmAccount,
+  authResetPassword,
   authLogin,
   authRegistration,
 } from "api/auth.service";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
-import { SignInLink } from "links";
+import { ApprovedEmailLink, SignInLink } from "links";
 
 export function useLoginMutation() {
   const ctx = useContext(AuthContext);
@@ -34,7 +36,8 @@ export function useLoginMutation() {
             ctx.message = "Użytkownik nie został znaleziony.";
             break;
           case "USER_NOT_ACTIVE":
-            ctx.message = "Email nie został potwierdzony.";
+            ctx.message =
+              "Email nie został potwierdzony. (Sprawdź swoją skrzynkę pocztową)";
             break;
           case "USER_DELETED":
             ctx.message = "Użytkownik został już usunięty.";
@@ -91,6 +94,29 @@ export function useConfirmAccountMutation() {
       },
       onError: (response: any) => {
         const ctx = useContext(AuthContext);
+        ctx.isError = response.response.data.isError;
+        const errorMessage = response.response.data.errorMessage;
+        if (errorMessage === "USER_NOT_FOUND")
+          ctx.message = "Użytkownik nie został odnaleziony.";
+        else ctx.message = "Błąd nie został rozpoznany.";
+      },
+    }
+  );
+}
+
+export function useResetPasswordMutation() {
+  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  return useMutation<unknown, unknown, IResetPassword>(
+    (data) => {
+      return authResetPassword(data);
+    },
+    {
+      onSuccess: (response: any) => {
+        navigate(ApprovedEmailLink);
+      },
+      onError: (response: any) => {
         ctx.isError = response.response.data.isError;
         const errorMessage = response.response.data.errorMessage;
         if (errorMessage === "USER_NOT_FOUND")
