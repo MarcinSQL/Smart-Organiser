@@ -39,9 +39,9 @@ export const authResetPassword = (email: IResetPassword) => {
     });
 };
 
-export const authResetPasswordConfirm = (password: IResetPasswordConfirm) => {
+export const authResetPasswordConfirm = (data: IResetPasswordConfirm) => {
   return service
-    .post(`${baseURL}reset-password-confirmation`, password)
+    .post(`${baseURL}reset-password-confirmation`, data)
     .then((response) => {
       return Promise.resolve(response);
     });
