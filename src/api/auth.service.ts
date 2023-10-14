@@ -4,6 +4,7 @@ import {
   IResetPassword,
   ILoginData,
   IRegistration,
+  IResetPasswordConfirm,
 } from "modules/types/authorization/authorization.types";
 
 const baseURL = "/auth/";
@@ -33,6 +34,14 @@ export const authConfirmAccount = (accountData: IConfirmAccount) => {
 export const authResetPassword = (email: IResetPassword) => {
   return service
     .post(`${baseURL}reset-password`, email)
+    .then((response) => {
+      return Promise.resolve(response);
+    });
+};
+
+export const authResetPasswordConfirm = (data: IResetPasswordConfirm) => {
+  return service
+    .post(`${baseURL}reset-password-confirmation`, data)
     .then((response) => {
       return Promise.resolve(response);
     });

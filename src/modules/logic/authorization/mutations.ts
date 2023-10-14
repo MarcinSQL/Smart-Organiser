@@ -5,12 +5,14 @@ import {
   IResetPassword,
   ILoginData,
   IRegistration,
+  IResetPasswordConfirm,
 } from "modules/types/authorization/authorization.types";
 import {
   authConfirmAccount,
   authResetPassword,
   authLogin,
   authRegistration,
+  authResetPasswordConfirm,
 } from "api/auth.service";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
@@ -117,6 +119,29 @@ export function useResetPasswordMutation() {
         navigate(ApprovedEmailLink);
       },
       onError: (response: any) => {
+        ctx.isError = response.response.data.isError;
+        const errorMessage = response.response.data.errorMessage;
+        if (errorMessage === "USER_NOT_FOUND")
+          ctx.message = "Użytkownik nie został odnaleziony.";
+        else ctx.message = "Błąd nie został rozpoznany.";
+      },
+    }
+  );
+}
+
+export function useResetPasswordConfirmMutation() {
+  const navigate = useNavigate();
+
+  return useMutation<unknown, unknown, IResetPasswordConfirm>(
+    (data) => {
+      return authResetPasswordConfirm(data);
+    },
+    {
+      onSuccess: (response: any) => {
+        navigate(SignInLink);
+      },
+      onError: (response: any) => {
+        const ctx = useContext(AuthContext);
         ctx.isError = response.response.data.isError;
         const errorMessage = response.response.data.errorMessage;
         if (errorMessage === "USER_NOT_FOUND")

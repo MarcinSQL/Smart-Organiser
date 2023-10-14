@@ -22,3 +22,9 @@ export interface IErrorMessage {
 export interface IResetPassword {
   email: string;
 }
+
+export interface IResetPasswordConfirm {
+  userId: string;
+  token: string;
+  password: string;
+}
