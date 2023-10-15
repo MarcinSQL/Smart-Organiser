@@ -16,7 +16,7 @@ import {
 } from "api/auth.service";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
-import { ApprovedEmailLink, ApprovedResetPasswordLink, SignInLink } from "links";
+import { ApprovedAccountLink, ApprovedEmailLink, ApprovedResetPasswordLink, SignInLink } from "links";
 
 export function useLoginMutation() {
   const ctx = useContext(AuthContext);
@@ -92,7 +92,7 @@ export function useConfirmAccountMutation() {
     },
     {
       onSuccess: (response: any) => {
-        navigate(SignInLink);
+        navigate(ApprovedAccountLink);
       },
       onError: (response: any) => {
         const ctx = useContext(AuthContext);
