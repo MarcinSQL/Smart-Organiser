@@ -8,11 +8,13 @@ import {
   ConfirmAccountLink,
   ResetPasswordLink,
   ApprovedEmailLink,
+  ApprovedResetPasswordLink,
 } from "./links";
 import ResetPassword from "./modules/views/authorization/ResetPassword";
 import ConfirmAccount from "modules/views/authorization/ConfirmAccount";
 import ApprovedEmail from "modules/views/authorization/ApprovedEmail";
 import ResetPasswordConfirmation from "modules/views/authorization/ResetPasswordConfirmation";
+import ApprovedResetPassword from "modules/views/authorization/ApprovedResetPassword";
 
 export default function router() {
   const routing = createBrowserRouter([
@@ -39,6 +41,10 @@ export default function router() {
     {
       path: ApprovedEmailLink,
       element: <ApprovedEmail />,
+    },
+    {
+      path: ApprovedResetPasswordLink,
+      element: <ApprovedResetPassword />,
     }
   ]);
 
