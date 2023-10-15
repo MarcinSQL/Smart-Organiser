@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import ReactDOM from "react";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -7,10 +7,16 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import Copyright from "components/Copyright";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
+import { useNavigate } from "react-router-dom";
+import { SignInLink } from "links";
 
-export default function ApprovedEmail() {
+export default function ApprovedResetPassword() {
+  const navigate = useNavigate();
+  const goToSignIn = () => {
+    navigate(SignInLink);
+  };
   return (
     <Container
       component="main"
@@ -38,11 +44,16 @@ export default function ApprovedEmail() {
           sx={{ width: 56, height: 56, m: 4, bgcolor: "secondary.main" }}
         />
         <Typography component="h1" variant="h5" textAlign={"center"}>
-          Sprawdź swoją skrzynkę pocztową!
+          Twoje hasło zostało pomyślnie zmienione
         </Typography>
-        <Typography component="p" textAlign={"center"}>
-          Wysłaliśmy na twojego e-maila linka ze zmianą hasła.
-        </Typography>
+        <Button
+          fullWidth
+          onClick={goToSignIn}
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Powróć na ekran logowania
+        </Button>
       </Box>
       <Copyright />
     </Container>

@@ -10,7 +10,7 @@ import Copyright from "components/Copyright";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 
-export default function ApprovedEmail() {
+export default function SignUpInfo() {
   return (
     <Container
       component="main"
@@ -37,11 +37,11 @@ export default function ApprovedEmail() {
           variant="rounded"
           sx={{ width: 56, height: 56, m: 4, bgcolor: "secondary.main" }}
         />
-        <Typography component="h1" variant="h5" textAlign={"center"}>
+        <Typography component="h1" variant="h5">
           Sprawdź swoją skrzynkę pocztową!
         </Typography>
         <Typography component="p" textAlign={"center"}>
-          Wysłaliśmy na twojego e-maila linka ze zmianą hasła.
+          Wysłaliśmy na twojego e-maila linka z dokończeniem rejestracji konta.
         </Typography>
       </Box>
       <Copyright />
