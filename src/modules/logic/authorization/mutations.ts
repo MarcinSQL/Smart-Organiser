@@ -16,7 +16,12 @@ import {
 } from "api/auth.service";
 import { useContext } from "react";
 import AuthContext from "store/auth-context";
-import { ApprovedAccountLink, ApprovedEmailLink, ApprovedResetPasswordLink, SignInLink } from "links";
+import {
+  ApprovedAccountLink,
+  ApprovedEmailLink,
+  ApprovedResetPasswordLink,
+  SignUpInfoLink,
+} from "links";
 
 export function useLoginMutation() {
   const ctx = useContext(AuthContext);
@@ -66,7 +71,7 @@ export function useSignUpMutation() {
     },
     {
       onSuccess: (response: any) => {
-        //localhost/komunikat-potwierdzajacy
+        navigate(SignUpInfoLink);
       },
       onError: (response: any) => {
         ctx.isError = response.response.data.isError;
