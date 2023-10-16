@@ -90,6 +90,7 @@ export function useSignUpMutation() {
 
 export function useConfirmAccountMutation() {
   const navigate = useNavigate();
+  const ctx = useContext(AuthContext);
 
   return useMutation<unknown, unknown, IConfirmAccount>(
     (data) => {
@@ -100,7 +101,6 @@ export function useConfirmAccountMutation() {
         navigate(ApprovedAccountLink);
       },
       onError: (response: any) => {
-        const ctx = useContext(AuthContext);
         ctx.isError = response.response.data.isError;
         const errorMessage = response.response.data.errorMessage;
         if (errorMessage === "USER_NOT_FOUND")
@@ -136,6 +136,7 @@ export function useResetPasswordMutation() {
 
 export function useResetPasswordConfirmMutation() {
   const navigate = useNavigate();
+  const ctx = useContext(AuthContext);
 
   return useMutation<unknown, unknown, IResetPasswordConfirm>(
     (data) => {
@@ -146,7 +147,6 @@ export function useResetPasswordConfirmMutation() {
         navigate(ApprovedResetPasswordLink);
       },
       onError: (response: any) => {
-        const ctx = useContext(AuthContext);
         ctx.isError = response.response.data.isError;
         const errorMessage = response.response.data.errorMessage;
         if (errorMessage === "USER_NOT_FOUND")

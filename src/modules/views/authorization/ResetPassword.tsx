@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import ReactDOM from "react";
+import { useContext } from "react";
 
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,12 +14,12 @@ import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import AuthContext from "store/auth-context";
 import Toast from "./Toast";
-import resetPassword from "modules/logic/authorization/ResetPassword";
+import useResetPassword from "modules/logic/authorization/useResetPassword";
 
 export default function ResetPassword() {
   const ctx = useContext(AuthContext);
   const { handleSubmit, register, onSubmit, control, goToSignUp, goToSignIn } =
-    resetPassword();
+    useResetPassword();
 
   return (
     <Container

@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import ReactDOM from "react";
+import { useContext } from "react";
 
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,15 +10,15 @@ import Container from "@mui/material/Container";
 
 import Copyright from "components/Copyright";
 import TextInput from "components/TextInput";
-import signUp from "modules/logic/authorization/SignUp";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import Toast from "./Toast";
 import AuthContext from "store/auth-context";
+import useSignUp from "modules/logic/authorization/useSignUp";
 
 export default function SignUp() {
   const ctx = useContext(AuthContext);
-  const { handleSubmit, register, onSubmit, control, goToSignIn } = signUp();
+  const { handleSubmit, register, onSubmit, control, goToSignIn } = useSignUp();
 
   return (
     <Container
