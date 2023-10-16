@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import ReactDOM from "react";
+import { useContext } from "react";
 
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,12 +11,12 @@ import TextInput from "components/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import Toast from "./Toast";
-import confirmAccount from "modules/logic/authorization/ConfirmAccount";
 import AuthContext from "store/auth-context";
+import useConfirmAccount from "modules/logic/authorization/useConfirmAccount";
 
 export default function ConfirmAccount() {
   const ctx = useContext(AuthContext);
-  const { handleSubmit, register, onSubmit, control } = confirmAccount();
+  const { handleSubmit, register, onSubmit, control } = useConfirmAccount();
   return (
     <Container
       component="main"
