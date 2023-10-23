@@ -8,3 +8,5 @@ export const ApprovedEmailLink = "/approved-email";
 export const ApprovedResetPasswordLink = "/approved-reset-password";
 export const ApprovedAccountLink = "/approved-account";
 export const SignUpInfoLink = "/registration-info";
+
+export const MainPageLink = "/main-page";
