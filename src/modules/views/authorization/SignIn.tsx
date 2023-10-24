@@ -14,6 +14,7 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import AuthContext from "store/auth-context";
 import Toast from "./Toast";
 import useSignIn from "modules/logic/authorization/useSignIn";
+import { logoHeight, logoWidth } from "sizes";
 
 export default function SignIn() {
   const ctx = useContext(AuthContext);
@@ -44,13 +45,14 @@ export default function SignIn() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          mb: 6
         }}
       >
         <Avatar
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: 56, height: 56, m: 4, bgcolor: "secondary.main" }}
+          sx={{ width: logoWidth, height: logoHeight, m: 4}}
         />
         <Typography component="h1" variant="h5">
           Zaloguj się

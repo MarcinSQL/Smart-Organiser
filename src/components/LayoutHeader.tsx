@@ -1,6 +1,6 @@
 import { AppBar, Avatar, IconButton, Typography } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { navigationWidth } from "widths";
+import { navigationWidth } from "sizes";
 import { ILayoutHeader } from "modules/types/dashboard/layout.types";
 
 export default function LayoutHeader(props: ILayoutHeader) {
