@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useConfirmAccountMutation } from "./mutations";
 
 interface IFormInput {
@@ -13,7 +13,7 @@ interface IFormInput {
 export default function useConfirmAccount() {
   const mutation = useConfirmAccountMutation();
   const [userData] = useSearchParams();
-  const userId = userData.get("userId");
+  const { userId } = useParams();
   const userToken = userData.get("token");
 
   let userSchema = yup.object().shape({
