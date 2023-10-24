@@ -1,1 +1,0 @@
-export const navigationWidth: number = 280;
