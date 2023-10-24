@@ -4,11 +4,17 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import Copyright from "components/Copyright";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import { logoHeight, logoWidth } from "sizes";
+import { useNavigate } from "react-router-dom";
+import { SignInLink } from "links";
 
 export default function ApprovedEmail() {
+  const navigate = useNavigate();
+  const goToSignIn = () => {
+    navigate(SignInLink);
+  };
   return (
     <Container
       component="main"
@@ -27,14 +33,14 @@ export default function ApprovedEmail() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mb: 6
+          mb: 6,
         }}
       >
         <Avatar
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4}}
+          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
         />
         <Typography component="h1" variant="h5" textAlign={"center"}>
           Sprawdź swoją skrzynkę pocztową!
@@ -42,6 +48,14 @@ export default function ApprovedEmail() {
         <Typography component="p" textAlign={"center"}>
           Wysłaliśmy na twojego e-maila linka ze zmianą hasła.
         </Typography>
+        <Button
+          fullWidth
+          onClick={goToSignIn}
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Powróć na ekran logowania
+        </Button>
       </Box>
       <Copyright />
     </Container>
