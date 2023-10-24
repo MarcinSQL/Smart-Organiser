@@ -82,12 +82,12 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link onClick={goToResetPassword} variant="body2">
+              <Link onClick={goToResetPassword} variant="body2" sx={{cursor: "pointer"}}>
                 Zapomniałeś hasła?
               </Link>
             </Grid>
             <Grid item>
-              <Link onClick={goToSignUp} variant="body2">
+              <Link onClick={goToSignUp} variant="body2" sx={{cursor: "pointer"}}>
                 Nie masz konta? Zarejestruj się
               </Link>
             </Grid>
