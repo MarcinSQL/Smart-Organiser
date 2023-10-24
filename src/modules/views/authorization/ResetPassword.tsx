@@ -70,12 +70,12 @@ export default function ResetPassword() {
           </Button>
           <Grid container gap={2}>
             <Grid item xs>
-              <Link onClick={goToSignIn} variant="body2">
+              <Link onClick={goToSignIn} variant="body2" sx={{cursor: "pointer"}}>
                 Posiadasz konto? Zaloguj się
               </Link>
             </Grid>
             <Grid item>
-              <Link onClick={goToSignUp} variant="body2">
+              <Link onClick={goToSignUp} variant="body2" sx={{cursor: "pointer"}}>
                 Nie masz konta? Zarejestruj się
               </Link>
             </Grid>

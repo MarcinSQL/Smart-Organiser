@@ -90,6 +90,7 @@ export default function SignUp() {
           <Link
             onClick={goToSignIn}
             variant="body2"
+            sx={{cursor: "pointer"}}
           >
             {"Posiadasz konto? Zaloguj się"}
           </Link>
