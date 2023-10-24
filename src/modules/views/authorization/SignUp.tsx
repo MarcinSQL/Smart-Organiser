@@ -39,19 +39,19 @@ export default function SignUp() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mb: 6
+          mb: 6,
         }}
       >
         <Avatar
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4}}
+          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
         />
         <Typography component="h1" variant="h5">
           Zarejestruj się
         </Typography>
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1, textAlign: "center" }}>
           <Grid container spacing={2}>
             <Grid item xs={4}>
               <TextInput
@@ -87,7 +87,10 @@ export default function SignUp() {
           >
             Zarejestruj się
           </Button>
-          <Link onClick={goToSignIn} variant="body2">
+          <Link
+            onClick={goToSignIn}
+            variant="body2"
+          >
             {"Posiadasz konto? Zaloguj się"}
           </Link>
         </Box>
