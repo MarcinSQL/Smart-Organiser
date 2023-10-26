@@ -1,8 +1,20 @@
+import * as yup from "yup";
+
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import { useUserProfileMutation } from "./mutations";
+
+interface IFormInput {
+  name?: string;
+  surname?: string;
+  password?: string;
+}
 
 export default function useUserProfile() {
   const [editAvatarOpen, setEditAvatarOpen] = useState(false);
   const [img, setImg] = useState("");
+  const mutation = useUserProfileMutation();
 
   const editAvatarOpenHandler = () => {
     setEditAvatarOpen(true);
@@ -24,6 +36,22 @@ export default function useUserProfile() {
     setEditAvatarOpen(false);
   };
 
+  let userSchema = yup.object().shape({
+    name: yup.string(),
+    surname: yup.string(),
+    password: yup
+      .string()
+      .min(6, "Wymagane min 6 znaków"),
+  });
+
+  const { register, handleSubmit, control } = useForm<IFormInput>({
+    resolver: yupResolver(userSchema),
+  });
+
+  const onSubmit: SubmitHandler<IFormInput> = (editedData) => {
+    mutation.mutate(editedData);
+  };
+
   return {
     editAvatarOpenHandler,
     editAvatarCloseHandler,
@@ -32,5 +60,9 @@ export default function useUserProfile() {
     onClose,
     saveImageHandler,
     img,
+    register,
+    handleSubmit,
+    onSubmit,
+    control
   };
 }

@@ -1,3 +1,5 @@
-export interface ISotreImage{
-    img: string;
+export interface IUserProfile{
+    name?: string;
+    surname?: string;
+    password?: string;
 }
