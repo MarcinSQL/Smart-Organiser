@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useUserProfileMutation } from "./mutations";
 
 interface IFormInput {
+  img?: string;
   name?: string;
   surname?: string;
   password?: string;
@@ -13,14 +14,23 @@ interface IFormInput {
 
 export default function useUserProfile() {
   const [editAvatarOpen, setEditAvatarOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [img, setImg] = useState("");
   const mutation = useUserProfileMutation();
 
-  const editAvatarOpenHandler = () => {
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  const handleEditAvatarOpen = () => {
     setEditAvatarOpen(true);
   };
 
-  const editAvatarCloseHandler = () => {
+  const handleEditAvatarClose = () => {
     setEditAvatarOpen(false);
   };
 
@@ -32,16 +42,15 @@ export default function useUserProfile() {
     setImg("");
   };
 
-  const saveImageHandler = () => {
+  const handleSaveImage = () => {
     setEditAvatarOpen(false);
   };
 
   let userSchema = yup.object().shape({
+    img: yup.string(),
     name: yup.string(),
     surname: yup.string(),
-    password: yup
-      .string()
-      .min(6, "Wymagane min 6 znaków"),
+    password: yup.string().min(6, "Wymagane min 6 znaków"),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
@@ -49,20 +58,27 @@ export default function useUserProfile() {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (editedData) => {
+    if (img !== "") {
+      editedData = { ...editedData, img: img };
+    }
+
     mutation.mutate(editedData);
   };
 
   return {
-    editAvatarOpenHandler,
-    editAvatarCloseHandler,
+    handleEditAvatarClose,
+    handleEditAvatarOpen,
     editAvatarOpen,
     onCrop,
     onClose,
-    saveImageHandler,
+    handleSaveImage,
     img,
     register,
     handleSubmit,
     onSubmit,
-    control
+    control,
+    modalOpen,
+    handleModalClose,
+    handleModalOpen,
   };
 }

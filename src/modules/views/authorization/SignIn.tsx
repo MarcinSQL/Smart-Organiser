@@ -8,11 +8,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import Copyright from "components/Copyright";
-import TextInput from "components/TextInput";
+import TextInput from "components/UI/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import AuthContext from "store/auth-context";
-import Toast from "../../../components/Toast";
+import Toast from "../../../components/UI/Toast";
 import useSignIn from "modules/logic/authorization/useSignIn";
 import { logoHeight, logoWidth } from "sizes";
 
