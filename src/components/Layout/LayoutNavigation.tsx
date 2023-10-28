@@ -1,6 +1,6 @@
 import { Container, Avatar, List } from "@mui/material";
 import ListItems from "./ListItems";
-import { navigationWidth } from "sizes";
+import { logoHeight, logoWidth, navigationWidth } from "sizes";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 
 export default function LayoutNavigation() {
@@ -17,7 +17,7 @@ export default function LayoutNavigation() {
         src={BlackboxStudioLogo}
         alt="Blackbox Studio logo"
         variant="rounded"
-        sx={{ width: 56, height: 56, m: 4 }}
+        sx={{ width: logoWidth, height: logoHeight, m: 4 }}
       />
       <List
         component="nav"

@@ -13,8 +13,8 @@ export function useUserProfileMutation() {
     },
     {
       onSuccess: (response: any) => {
-        ctx.img = response.img;
-        ctx.name = response.name;
+        ctx.img = response.response.data.img;
+        ctx.name = response.response.data.name;
       },
       onError: (response: any) => {},
     }
