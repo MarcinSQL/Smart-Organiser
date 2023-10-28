@@ -10,7 +10,7 @@ import Copyright from "components/Copyright";
 import TextInput from "components/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
-import Toast from "./Toast";
+import Toast from "../../../components/Toast";
 import AuthContext from "store/auth-context";
 import useResetPasswordConfirm from "modules/logic/authorization/useResetPasswordConfirmation";
 import { logoHeight, logoWidth } from "sizes";
