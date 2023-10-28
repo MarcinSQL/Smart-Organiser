@@ -17,7 +17,7 @@ export default function LayoutHeader(props: ILayoutHeader) {
     >
       <IconButton>
         <Avatar
-          alt={props.username}
+          alt={props.name}
           src={props.avatarSrc ? props.avatarSrc : "error"}
         />
       </IconButton>
@@ -28,7 +28,7 @@ export default function LayoutHeader(props: ILayoutHeader) {
         noWrap
         sx={{ pr: 2, pl: 2 }}
       >
-        Witaj {props.username}
+        Witaj {props.name}
       </Typography>
       <IconButton color="inherit">
         <SettingsIcon />

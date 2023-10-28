@@ -15,7 +15,9 @@ import {
 import Layout from "components/Layout/Layout";
 import TextInput from "components/UI/TextInput";
 import useUserProfile from "modules/logic/dashboard/useUserProfile";
+import { useContext } from "react";
 import Avatar1 from "react-avatar-edit";
+import UserContext from "store/user-context";
 
 const modalStyle = {
   position: "absolute" as "absolute",
@@ -46,8 +48,10 @@ export default function UserProfile() {
     handleModalOpen,
     modalOpen,
   } = useUserProfile();
+
+  const ctx = useContext(UserContext);
   return (
-    <Layout username={"User"}>
+    <Layout name={ctx.name} avatarSrc={ctx.img}>
       <Toolbar />
       <Paper sx={{ p: 3 }}>
         <Container>

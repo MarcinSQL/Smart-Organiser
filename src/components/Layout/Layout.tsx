@@ -8,7 +8,7 @@ export default function Layout(props: ILayout) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <LayoutHeader username={props.username} avatarSrc={props.avatarSrc} />
+      <LayoutHeader name={props.name} avatarSrc={props.avatarSrc} />
       <LayoutNavigation />
       <LayoutContent children={props.children} />
     </Box>

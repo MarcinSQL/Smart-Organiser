@@ -1,5 +1,5 @@
 import { Container, Avatar, List } from "@mui/material";
-import { mainListItems } from "./ListItems";
+import ListItems from "./ListItems";
 import { navigationWidth } from "sizes";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 
@@ -25,7 +25,7 @@ export default function LayoutNavigation() {
           width: "100%",
         }}
       >
-        {mainListItems}
+        <ListItems />
       </List>
     </Container>
   );
