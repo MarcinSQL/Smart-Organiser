@@ -1,6 +1,6 @@
 import { Container, Avatar, List } from "@mui/material";
 import ListItems from "./ListItems";
-import { logoHeight, logoWidth, navigationWidth } from "sizes";
+import { logoHeight, logoWidth, navigationWidth } from "components/utils/sizes";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 
 export default function LayoutNavigation() {

@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Copyright from "components/Copyright";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
-import { logoHeight, logoWidth } from "sizes";
+import { logoHeight, logoWidth } from "components/utils/sizes";
 
 export default function SignUpInfo() {
   return (

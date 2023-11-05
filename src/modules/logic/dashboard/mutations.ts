@@ -7,9 +7,9 @@ import UserContext from "store/user-context";
 export function useUserProfileMutation() {
   const ctx = useContext(UserContext);
 
-  return useMutation<unknown, unknown, IUserProfile>(
-    (data) => {
-      return dashboardUserProfile(data);
+  return useMutation<unknown, unknown>(
+    () => {
+      return dashboardUserProfile();
     },
     {
       onSuccess: (response: any) => {

@@ -8,10 +8,16 @@ interface ITextInput {
   type: string;
   defaultValue?: string;
   disabled?: boolean;
+  size?: TextFieldSize;
+}
+
+export enum TextFieldSize{
+  small = "small",
+  medium = "medium"
 }
 
 export default function TextInput(props: ITextInput) {
-  const { control, name, label, defaultValue, type, disabled } = props;
+  const { control, name, label, defaultValue, type, disabled, size} = props;
   return (
     <Controller
       name={name}
@@ -25,7 +31,7 @@ export default function TextInput(props: ITextInput) {
             disabled={disabled}
             {...field}
             type={type}
-            size="medium"
+            size={size || "medium"}
             label={fieldState.error ? fieldState.error.message : label}
             error={!!fieldState.error}
           />

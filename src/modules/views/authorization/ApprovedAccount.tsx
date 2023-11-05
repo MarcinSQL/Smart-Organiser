@@ -8,7 +8,7 @@ import { Avatar, Button } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
-import { logoHeight, logoWidth } from "sizes";
+import { logoHeight, logoWidth } from "components/utils/sizes";
 
 export default function ApprovedAccount() {
   const navigate = useNavigate();

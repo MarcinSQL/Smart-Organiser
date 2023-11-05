@@ -14,7 +14,7 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import AuthContext from "store/auth-context";
 import Toast from "../../../components/UI/Toast";
 import useSignIn from "modules/logic/authorization/useSignIn";
-import { logoHeight, logoWidth } from "sizes";
+import { logoHeight, logoWidth } from "components/utils/sizes";
 
 export default function SignIn() {
   const ctx = useContext(AuthContext);

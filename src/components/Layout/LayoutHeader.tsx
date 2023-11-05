@@ -1,6 +1,6 @@
 import { AppBar, Avatar, IconButton, Typography } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { navigationWidth } from "sizes";
+import { navigationWidth } from "components/utils/sizes";
 import { ILayoutHeader } from "modules/types/dashboard/layout.types";
 
 export default function LayoutHeader(props: ILayoutHeader) {
@@ -12,7 +12,7 @@ export default function LayoutHeader(props: ILayoutHeader) {
         alignItems: "center",
         justifyContent: "flex-end",
         ml: `${navigationWidth}px`,
-        width: `calc(100% - ${navigationWidth}px)`,
+        width: `calc(100vw - ${navigationWidth}px)`,
       }}
     >
       <IconButton>

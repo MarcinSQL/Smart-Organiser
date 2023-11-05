@@ -13,10 +13,22 @@ interface IFormInput {
 }
 
 export default function useUserProfile() {
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [editAvatarOpen, setEditAvatarOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [img, setImg] = useState("");
   const mutation = useUserProfileMutation();
+
+  const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  }
+
+  const popoverOpen = Boolean(anchorEl);
+  const popoverId = popoverOpen ? 'simple-popover' : undefined;
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -38,7 +50,7 @@ export default function useUserProfile() {
     setImg(view);
   };
 
-  const onClose = () => {
+  const onAvatarClose = () => {
     setImg("");
   };
 
@@ -62,7 +74,7 @@ export default function useUserProfile() {
       editedData = { ...editedData, img: img };
     }
 
-    mutation.mutate(editedData);
+    mutation.mutate();
   };
 
   return {
@@ -70,7 +82,7 @@ export default function useUserProfile() {
     handleEditAvatarOpen,
     editAvatarOpen,
     onCrop,
-    onClose,
+    onAvatarClose,
     handleSaveImage,
     img,
     register,
@@ -80,5 +92,10 @@ export default function useUserProfile() {
     modalOpen,
     handleModalClose,
     handleModalOpen,
+    handlePopoverClick,
+    handlePopoverClose,
+    popoverId,
+    popoverOpen,
+    anchorEl
   };
 }

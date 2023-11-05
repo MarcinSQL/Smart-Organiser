@@ -13,7 +13,7 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import Toast from "../../../components/UI/Toast";
 import AuthContext from "store/auth-context";
 import useResetPasswordConfirm from "modules/logic/authorization/useResetPasswordConfirmation";
-import { logoHeight, logoWidth } from "sizes";
+import { logoHeight, logoWidth } from "components/utils/sizes";
 
 export default function ResetPasswordConfirmation() {
   const ctx = useContext(AuthContext);
