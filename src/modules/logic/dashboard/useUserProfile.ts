@@ -3,13 +3,15 @@ import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useUserProfileMutation } from "./mutations";
+import { useEditUserProfileMutation } from "./mutations";
+import { IUserProfile } from "modules/types/dashboard/userProfile.types";
 
 interface IFormInput {
   img?: string;
   name?: string;
   surname?: string;
   password?: string;
+  confirmPassword?: string;
 }
 
 export default function useUserProfile() {
@@ -17,7 +19,7 @@ export default function useUserProfile() {
   const [editAvatarOpen, setEditAvatarOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [img, setImg] = useState("");
-  const mutation = useUserProfileMutation();
+  const mutation = useEditUserProfileMutation();
 
   const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -25,10 +27,10 @@ export default function useUserProfile() {
 
   const handlePopoverClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   const popoverOpen = Boolean(anchorEl);
-  const popoverId = popoverOpen ? 'simple-popover' : undefined;
+  const popoverId = anchorEl ? anchorEl.id : undefined;
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -54,27 +56,30 @@ export default function useUserProfile() {
     setImg("");
   };
 
-  const handleSaveImage = () => {
-    setEditAvatarOpen(false);
-  };
-
   let userSchema = yup.object().shape({
     img: yup.string(),
     name: yup.string(),
     surname: yup.string(),
     password: yup.string().min(6, "Wymagane min 6 znaków"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password")], "Hasła muszą być identyczne"),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
     resolver: yupResolver(userSchema),
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (editedData) => {
+  const onSubmit: SubmitHandler<IUserProfile> = (editedData) => {
     if (img !== "") {
       editedData = { ...editedData, img: img };
     }
 
-    mutation.mutate();
+    mutation.mutate(editedData);
+  };
+
+  const handleSaveImage = () => {
+    setEditAvatarOpen(false);
   };
 
   return {
@@ -96,6 +101,6 @@ export default function useUserProfile() {
     handlePopoverClose,
     popoverId,
     popoverOpen,
-    anchorEl
+    anchorEl,
   };
 }

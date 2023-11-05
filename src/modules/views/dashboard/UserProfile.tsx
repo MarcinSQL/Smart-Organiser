@@ -124,81 +124,23 @@ export default function UserProfile() {
             <Box className={classes["input-box"]}>
               <Typography component={"p"}>Imię i nazwisko: aaaaa</Typography>
               <Button
-                aria-describedby={popoverId}
+                id="editPersonalInformationBtn"
                 variant="outlined"
                 onClick={handlePopoverClick}
               >
                 Zmień personalia
               </Button>
-              <Popover
-                id={popoverId}
-                open={popoverOpen}
-                anchorEl={anchorEl}
-                onClose={handlePopoverClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-              >
-                <Grid container spacing={2} sx={{ p: 2 }}>
-                  <Grid item xs={4}>
-                    <TextInput
-                      control={control}
-                      type="text"
-                      required
-                      size={TextFieldSize.small}
-                      label="Imię"
-                      {...register("name", { required: true })}
-                    />
-                  </Grid>
-                  <Grid item xs={8}>
-                    <TextInput
-                      control={control}
-                      type="text"
-                      required
-                      size={TextFieldSize.small}
-                      label="Nazwisko"
-                      {...register("surname", { required: true })}
-                    />
-                  </Grid>
-                </Grid>
-                <Container
-                  component="form"
-                  onSubmit={handleSubmit(onSubmit)}
-                >
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mb: 2 }}
-                  >
-                    Edytuj
-                  </Button>
-                </Container>
-              </Popover>
             </Box>
             <Box className={classes["input-box"]}>
               <Typography component={"p"}>Hasło: ******</Typography>
-              <Button variant="outlined">Zmień hasło</Button>
-            </Box>
-            {/* <Container
-              component="form"
-              onSubmit={handleSubmit(onSubmit)}
-              sx={{ mt: 1 }}
-            >
               <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                id="editPasswordBtn"
+                variant="outlined"
+                onClick={handlePopoverClick}
               >
-                Edytuj
+                Zmień hasło
               </Button>
-            </Container> */}
+            </Box>
           </Box>
         </Box>
 
@@ -227,6 +169,100 @@ export default function UserProfile() {
             </Container>
           </Box>
         </Modal>
+
+        {popoverId === "editPersonalInformationBtn" ? (
+          <Popover
+            id={popoverId}
+            open={popoverOpen}
+            anchorEl={anchorEl}
+            onClose={handlePopoverClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            <Container component="form" onSubmit={handleSubmit(onSubmit)}>
+              <Grid container spacing={2} sx={{ pt: 2, pb: 2 }}>
+                <Grid item xs={4}>
+                  <TextInput
+                    control={control}
+                    type="text"
+                    required
+                    size={TextFieldSize.small}
+                    label="Imię"
+                    {...register("name", { required: true })}
+                  />
+                </Grid>
+                <Grid item xs={8}>
+                  <TextInput
+                    control={control}
+                    type="text"
+                    required
+                    size={TextFieldSize.small}
+                    label="Nazwisko"
+                    {...register("surname", { required: true })}
+                  />
+                </Grid>
+              </Grid>
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                sx={{ mb: 2 }}
+              >
+                Edytuj
+              </Button>
+            </Container>
+          </Popover>
+        ) : popoverId === "editPasswordBtn" ? (
+          <Popover
+            id={popoverId}
+            open={popoverOpen}
+            anchorEl={anchorEl}
+            onClose={handlePopoverClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            <Container component="form" onSubmit={handleSubmit(onSubmit)}>
+              <TextInput
+                control={control}
+                type="text"
+                required
+                size={TextFieldSize.small}
+                label="Hasło"
+                {...register("password", { required: true })}
+              />
+              <TextInput
+                control={control}
+                type="text"
+                required
+                size={TextFieldSize.small}
+                label="Powtórz nowe hasło"
+                {...register("confirmPassword", { required: true })}
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                sx={{ mb: 2, mt: 2 }}
+              >
+                Edytuj
+              </Button>
+            </Container>
+          </Popover>
+        ) : (
+          ""
+        )}
       </Paper>
     </Layout>
   );
