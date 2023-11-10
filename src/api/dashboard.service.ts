@@ -10,7 +10,7 @@ const baseURL = "/dashboard/";
 export const dashboardDeleteUserProfile = (userId: IDeleteUserProfile) => {
   return service
     .delete(`${baseURL}`, {
-      params: { id: userId },
+      params: userId,
     })
     .then((response) => {
       return Promise.resolve(response);
