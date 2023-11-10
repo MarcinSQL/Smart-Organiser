@@ -19,6 +19,7 @@ import { TextFieldSize } from "components/UI/TextInput";
 import ModalTrueFalse from "components/UI/ModalTrueFalse";
 import UserProfileAvatar from "./UserProfileAvatar";
 import UserProfileInput from "./UserProfileInput";
+import UserProfileTitle from "./UserProfileTitle";
 
 export default function UserProfile() {
   const {
@@ -49,22 +50,7 @@ export default function UserProfile() {
     <Layout name={ctx.name} avatarSrc={ctx.img}>
       <Toolbar />
       <Paper className={classes.container}>
-        
-        <Box>
-          <Typography component="h1" variant="h5">
-            Konto użytkownika
-          </Typography>
-          <Button
-            color="error"
-            fullWidth
-            variant="outlined"
-            onClick={handleModalOpen}
-            sx={{ mt: 2, mb: 3 }}
-          >
-            Usuń konto
-          </Button>
-        </Box>
-
+        <UserProfileTitle onClick={handleModalOpen} />
         <Box className={classes["user-information"]}>
           <UserProfileAvatar
             img={img}
