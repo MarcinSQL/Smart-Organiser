@@ -8,7 +8,6 @@ import {
   Container,
   Box,
   Toolbar,
-  Modal,
   Typography,
   Popover,
   Grid,
@@ -21,18 +20,7 @@ import Avatar1 from "react-avatar-edit";
 import UserContext from "store/user-context";
 import classes from "./classes/UserProfile.module.css";
 import { TextFieldSize } from "components/UI/TextInput";
-
-const modalStyle = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  borderRadius: "5px",
-  boxShadow: 24,
-  p: 4,
-};
+import ModalTrueFalse from "components/UI/ModalTrueFalse";
 
 export default function UserProfile() {
   const {
@@ -55,6 +43,7 @@ export default function UserProfile() {
     popoverId,
     popoverOpen,
     anchorEl,
+    handleModalClick
   } = useUserProfile();
 
   const ctx = useContext(UserContext);
@@ -144,31 +133,7 @@ export default function UserProfile() {
           </Box>
         </Box>
 
-        <Modal
-          open={modalOpen}
-          onClose={handleModalClose}
-          aria-labelledby="child-modal-title"
-        >
-          <Box sx={modalStyle}>
-            <Typography component="h2" variant="h6">
-              Czy napewno chcesz usunąć konto?
-            </Typography>
-            <Container
-              sx={{ display: "flex", justifyContent: "space-evenly", mt: 3 }}
-            >
-              <Button
-                variant="outlined"
-                sx={{ width: "40%" }}
-                onClick={handleModalClose}
-              >
-                Nie
-              </Button>
-              <Button color="error" variant="outlined" sx={{ width: "40%" }}>
-                Tak
-              </Button>
-            </Container>
-          </Box>
-        </Modal>
+       <ModalTrueFalse open={modalOpen} onClose={handleModalClose} title={"Czy napewno chcesz usunąć konto?"} onClick={handleModalClick} />
 
         {popoverId === "editPersonalInformationBtn" ? (
           <Popover
@@ -239,7 +204,7 @@ export default function UserProfile() {
                 type="text"
                 required
                 size={TextFieldSize.small}
-                label="Hasło"
+                label="Nowe hasło"
                 {...register("password", { required: true })}
               />
               <TextInput

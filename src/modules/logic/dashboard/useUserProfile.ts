@@ -30,7 +30,7 @@ export default function useUserProfile() {
   };
 
   const popoverOpen = Boolean(anchorEl);
-  const popoverId = anchorEl ? anchorEl.id : undefined;
+  const popoverId = anchorEl ? anchorEl.id : "errorId";
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -47,6 +47,8 @@ export default function useUserProfile() {
   const handleEditAvatarClose = () => {
     setEditAvatarOpen(false);
   };
+
+  const handleModalClick = () => {};
 
   const onCrop = (view: string) => {
     setImg(view);
@@ -102,5 +104,6 @@ export default function useUserProfile() {
     popoverId,
     popoverOpen,
     anchorEl,
+    handleModalClick,
   };
 }
