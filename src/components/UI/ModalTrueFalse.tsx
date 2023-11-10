@@ -5,7 +5,7 @@ import {
   Modal,
   Typography,
 } from "@mui/material";
-import classes from "modules/views/dashboard/classes/UserProfile.module.css";
+import classes from "./classes/modal.module.css";
 
 interface IModalTrueFalse {
   open: boolean;
