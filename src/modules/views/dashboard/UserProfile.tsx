@@ -18,6 +18,7 @@ import classes from "./classes/UserProfile.module.css";
 import { TextFieldSize } from "components/UI/TextInput";
 import ModalTrueFalse from "components/UI/ModalTrueFalse";
 import UserProfileAvatar from "./UserProfileAvatar";
+import UserProfileInput from "./UserProfileInput";
 
 export default function UserProfile() {
   const {
@@ -48,6 +49,7 @@ export default function UserProfile() {
     <Layout name={ctx.name} avatarSrc={ctx.img}>
       <Toolbar />
       <Paper className={classes.container}>
+        
         <Box>
           <Typography component="h1" variant="h5">
             Konto użytkownika
@@ -62,8 +64,8 @@ export default function UserProfile() {
             Usuń konto
           </Button>
         </Box>
-        <Box className={classes["user-information"]}>
 
+        <Box className={classes["user-information"]}>
           <UserProfileAvatar
             img={img}
             onAvatarClose={onAvatarClose}
@@ -73,27 +75,18 @@ export default function UserProfile() {
             open={editAvatarOpen}
             onDialogOpen={handleEditAvatarOpen}
           />
-
-          <Box className={classes["input-box"]}>
-            <Typography component={"p"}>Imię i nazwisko: aaaaa</Typography>
-            <Button
-              id="editPersonalInformationBtn"
-              variant="outlined"
-              onClick={handlePopoverClick}
-            >
-              Zmień personalia
-            </Button>
-          </Box>
-          <Box className={classes["input-box"]}>
-            <Typography component={"p"}>Hasło: ******</Typography>
-            <Button
-              id="editPasswordBtn"
-              variant="outlined"
-              onClick={handlePopoverClick}
-            >
-              Zmień hasło
-            </Button>
-          </Box>
+          <UserProfileInput
+            title="Imię i nazwisko: aaaa"
+            id="editPersonalInformationBtn"
+            btnText="Zmień personalia"
+            onClick={handlePopoverClick}
+          />
+          <UserProfileInput
+            title="Hasło: ******"
+            id="editPasswordBtn"
+            btnText="Zmień hasło"
+            onClick={handlePopoverClick}
+          />
         </Box>
 
         <ModalTrueFalse
