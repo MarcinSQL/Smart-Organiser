@@ -3,8 +3,12 @@ import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useEditUserProfileMutation } from "./mutations";
+import {
+  useDeleteUserProfileMutation,
+  useEditUserProfileMutation,
+} from "./mutations";
 import { IUserProfile } from "modules/types/dashboard/userProfile.types";
+import { useSearchParams } from "react-router-dom";
 
 interface IFormInput {
   img?: string;
@@ -20,6 +24,8 @@ export default function useUserProfile() {
   const [modalOpen, setModalOpen] = useState(false);
   const [img, setImg] = useState("");
   const mutation = useEditUserProfileMutation();
+  const deleteUserMutation = useDeleteUserProfileMutation();
+  const [userData] = useSearchParams();
 
   const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -48,7 +54,12 @@ export default function useUserProfile() {
     setEditAvatarOpen(false);
   };
 
-  const handleModalClick = () => {};
+  const handleModalClick = () => {
+    const userId = userData.get("userId");
+    if (userId !== null) {
+      deleteUserMutation.mutate({ userId: userId });
+    }
+  };
 
   const onCrop = (view: string) => {
     setImg(view);
@@ -77,7 +88,7 @@ export default function useUserProfile() {
   };
 
   const handleSaveImage = () => {
-    onSubmit({img: img});
+    onSubmit({ img: img });
     setEditAvatarOpen(false);
   };
 

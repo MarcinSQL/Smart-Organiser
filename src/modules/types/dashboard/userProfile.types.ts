@@ -5,6 +5,10 @@ export interface IUserProfile {
   password?: string;
 }
 
+export interface IDeleteUserProfile {
+  userId: string;
+}
+
 export interface IEditPersonalInformation {
   name: string;
   surname: string;
