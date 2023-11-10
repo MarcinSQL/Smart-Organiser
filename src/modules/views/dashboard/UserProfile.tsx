@@ -148,7 +148,7 @@ export default function UserProfile() {
             <Container component="form" onSubmit={handleSubmit(onSubmit)}>
               <TextInput
                 control={control}
-                type="text"
+                type="password"
                 required
                 size={TextFieldSize.small}
                 label="Nowe hasło"
@@ -156,7 +156,7 @@ export default function UserProfile() {
               />
               <TextInput
                 control={control}
-                type="text"
+                type="password"
                 required
                 size={TextFieldSize.small}
                 label="Powtórz nowe hasło"

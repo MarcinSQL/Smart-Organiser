@@ -73,14 +73,11 @@ export default function useUserProfile() {
   });
 
   const onSubmit: SubmitHandler<IUserProfile> = (editedData) => {
-    if (img !== "") {
-      editedData = { ...editedData, img: img };
-    }
-
     mutation.mutate(editedData);
   };
 
   const handleSaveImage = () => {
+    onSubmit({img: img});
     setEditAvatarOpen(false);
   };
 

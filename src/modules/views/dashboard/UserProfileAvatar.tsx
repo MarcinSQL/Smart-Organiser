@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import Avatar1 from "react-avatar-edit";
 import classes from "./classes/UserProfile.module.css";
+import useUserProfile from "modules/logic/dashboard/useUserProfile";
 
 interface IUserProfileAvatar {
   img: string;
@@ -36,7 +37,11 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
         alt="User"
         src={img ? img : `error`}
       />
-      <Button variant="outlined" onClick={onDialogOpen} className={classes["user-information__avatar--button"]}>
+      <Button
+        variant="outlined"
+        onClick={onDialogOpen}
+        className={classes["user-information__avatar--button"]}
+      >
         Zmień Awatar
       </Button>
       <Dialog onClose={onDialogClose} open={open}>
