@@ -1,11 +1,10 @@
 import Layout from "components/Layout/Layout";
-import { useContext } from "react";
-import UserContext from "store/user-context";
+import useMainPage from "modules/logic/dashboard/useMainPage";
 
 export default function MainPage() {
-  const ctx = useContext(UserContext);
+  const { data, isLoading } = useMainPage();
   return (
-    <Layout name={ctx.name} avatarSrc={ctx.img}>
+    <Layout name={!!data ? data.name : "User"} avatarSrc={!!data ? data.img : "error"}>
       {" "}
     </Layout>
   );

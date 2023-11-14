@@ -4,24 +4,25 @@ import {
   Container,
   Box,
   Toolbar,
-  Typography,
   Popover,
   Grid,
 } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import TextInput from "components/UI/TextInput";
 import useUserProfile from "modules/logic/dashboard/useUserProfile";
-import { useContext } from "react";
 
-import UserContext from "store/user-context";
 import classes from "./classes/UserProfile.module.css";
 import { TextFieldSize } from "components/UI/TextInput";
 import ModalTrueFalse from "components/UI/ModalTrueFalse";
 import UserProfileAvatar from "./UserProfileAvatar";
 import UserProfileInput from "./UserProfileInput";
 import UserProfileTitle from "./UserProfileTitle";
+import AuthContext from "store/auth-context";
+import { useContext } from "react";
+import Toast from "components/UI/Toast";
 
 export default function UserProfile() {
+  const ctx = useContext(AuthContext);
   const {
     handleEditAvatarClose,
     handleEditAvatarOpen,
@@ -43,11 +44,10 @@ export default function UserProfile() {
     popoverOpen,
     anchorEl,
     handleModalClick,
+    data
   } = useUserProfile();
-
-  const ctx = useContext(UserContext);
   return (
-    <Layout name={ctx.name} avatarSrc={ctx.img}>
+    <Layout name={!!data ? data.name : "User"} avatarSrc={!!data ? data.img : "error"}>
       <Toolbar />
       <Paper className={classes.container}>
         <UserProfileTitle onClick={handleModalOpen} />
@@ -173,9 +173,10 @@ export default function UserProfile() {
             </Container>
           </Popover>
         ) : (
-          ""
+          null
         )}
       </Paper>
+      {ctx.isError && <Toast message={ctx.message} />}
     </Layout>
   );
 }

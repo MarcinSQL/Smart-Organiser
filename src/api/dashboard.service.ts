@@ -18,9 +18,11 @@ export const dashboardDeleteUserProfile = (userId: IDeleteUserProfile) => {
 };
 
 export const dashboardUserProfile = () => {
-  return service.get(`${baseURL}user-profile`).then((response) => {
-    return Promise.resolve(response);
-  });
+  return service
+    .get(`${baseURL}user-profile`)
+    .then((response) => {
+      return Promise.resolve(response.data);
+    })
 };
 
 export const dashboardEditUserProfile = (personalData: IUserProfile) => {

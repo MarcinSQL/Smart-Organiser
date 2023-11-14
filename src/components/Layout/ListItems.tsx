@@ -18,12 +18,6 @@ export default function ListItems() {
         </ListItemIcon>
         <ListItemText primary="Kalendarz" />
       </ListItemButton>
-      <ListItemButton onClick={() => navigate(UserProfileLink)}>
-        <ListItemIcon>
-          <PersonIcon />
-        </ListItemIcon>
-        <ListItemText primary="Profil użytkownika" />
-      </ListItemButton>
     </React.Fragment>
   );
 }

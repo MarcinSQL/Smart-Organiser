@@ -9,6 +9,7 @@ import {
 } from "./mutations";
 import { IUserProfile } from "modules/types/dashboard/userProfile.types";
 import { useSearchParams } from "react-router-dom";
+import useGetProfileDataQuery from "./queries";
 
 interface IFormInput {
   img?: string;
@@ -26,6 +27,8 @@ export default function useUserProfile() {
   const mutation = useEditUserProfileMutation();
   const deleteUserMutation = useDeleteUserProfileMutation();
   const [userData] = useSearchParams();
+
+  const { data, isLoading } = useGetProfileDataQuery();
 
   const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -113,5 +116,7 @@ export default function useUserProfile() {
     popoverOpen,
     anchorEl,
     handleModalClick,
+    data,
+    isLoading,
   };
 }
