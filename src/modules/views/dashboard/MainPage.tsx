@@ -4,8 +4,11 @@ import useMainPage from "modules/logic/dashboard/useMainPage";
 export default function MainPage() {
   const { data, isLoading } = useMainPage();
   return (
-    <Layout name={data.name} avatarSrc={data.img}>
-      {" "}
+    <Layout
+      name={!!data === undefined ? data.name : null}
+      avatarSrc={!!data === undefined ? data.img : null}
+    >
+      {"in progress"}
     </Layout>
   );
 }

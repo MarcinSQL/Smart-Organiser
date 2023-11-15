@@ -3,9 +3,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
-import { MainPageLink, UserProfileLink } from "links";
+import { MainPageLink } from "links";
 
 export default function ListItems() {
   const navigate = useNavigate();

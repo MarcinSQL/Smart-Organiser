@@ -11,13 +11,13 @@ interface ITextInput {
   size?: TextFieldSize;
 }
 
-export enum TextFieldSize{
+export enum TextFieldSize {
   small = "small",
-  medium = "medium"
+  medium = "medium",
 }
 
 export default function TextInput(props: ITextInput) {
-  const { control, name, label, defaultValue, type, disabled, size} = props;
+  const { control, name, label, defaultValue, type, disabled, size } = props;
   return (
     <Controller
       name={name}

@@ -32,7 +32,7 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
   return (
     <Box className={classes["user-information__avatar"]}>
       <Avatar
-        sx={{ width: 102, height: 102, mb: 2 }}
+        className={classes["user-information__avatar--icon"]}
         alt="User"
         src={img ? img : `error`}
       />

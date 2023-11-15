@@ -30,6 +30,12 @@
     align-items: center;
 }
 
+.user-information__avatar--icon{
+  width: 102px !important;
+  height: 102px !important;
+  margin-bottom: 1rem;
+}
+
 .user-information__avatar--button{
     height: 50%;
 }

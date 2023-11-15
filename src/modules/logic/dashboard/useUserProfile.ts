@@ -28,8 +28,7 @@ export default function useUserProfile() {
   const mutation = useEditUserProfileMutation();
   const deleteUserMutation = useDeleteUserProfileMutation();
   const [userData] = useSearchParams();
-
-  const [img, setImg] = useState(data.img);
+  const [img, setImg] = useState(!!data ? data.img : "");
 
   const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);

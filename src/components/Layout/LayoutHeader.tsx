@@ -1,12 +1,5 @@
-import {
-  AppBar,
-  Avatar,
-  IconButton,
-  Popover,
-  Typography,
-} from "@mui/material";
+import { AppBar, Avatar, IconButton, Popover, Typography } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { navigationWidth } from "components/utils/sizes";
 import { ILayoutHeader } from "modules/types/dashboard/layout.types";
 import { SignInLink, UserProfileLink } from "links";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +9,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+
+import classes from "./classes/Layout.module.css";
 
 export default function LayoutHeader(props: ILayoutHeader) {
   const navigate = useNavigate();
@@ -34,29 +29,14 @@ export default function LayoutHeader(props: ILayoutHeader) {
   const popoverId = anchorEl ? anchorEl.id : "errorId";
 
   return (
-    <AppBar
-      sx={{
-        p: 2,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        ml: `${navigationWidth}px`,
-        width: `calc(100vw - ${navigationWidth}px)`,
-      }}
-    >
+    <AppBar className={classes["layout__header"]}>
       <IconButton onClick={() => navigate(UserProfileLink)}>
         <Avatar
           alt={props.name}
           src={props.avatarSrc ? props.avatarSrc : "error"}
         />
       </IconButton>
-      <Typography
-        component="h1"
-        variant="h6"
-        color="inherit"
-        noWrap
-        sx={{ pr: 2, pl: 2 }}
-      >
+      <Typography component="h1" variant="h6" color="inherit" noWrap>
         Witaj {props.name}
       </Typography>
       <IconButton
@@ -69,6 +49,7 @@ export default function LayoutHeader(props: ILayoutHeader) {
 
       {popoverId === "userManagment" ? (
         <Popover
+          className={classes["layout__header__popover"]}
           id={popoverId}
           open={popoverOpen}
           anchorEl={anchorEl}
@@ -81,7 +62,6 @@ export default function LayoutHeader(props: ILayoutHeader) {
             vertical: "top",
             horizontal: "right",
           }}
-          sx={{ mt: 2 }}
         >
           <ListItemButton onClick={() => navigate(UserProfileLink)}>
             <ListItemIcon>
