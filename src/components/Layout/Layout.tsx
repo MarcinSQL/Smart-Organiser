@@ -8,7 +8,12 @@ export default function Layout(props: ILayout) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <LayoutHeader name={props.name} avatarSrc={props.avatarSrc} />
+      <LayoutHeader
+        name={typeof props.name === "string" ? props.name : "User"}
+        avatarSrc={
+          typeof props.avatarSrc === "string" ? props.avatarSrc : "ERROR_SRC"
+        }
+      />
       <LayoutNavigation />
       <LayoutContent children={props.children} />
     </Box>

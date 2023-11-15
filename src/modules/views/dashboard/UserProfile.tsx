@@ -47,7 +47,7 @@ export default function UserProfile() {
     data
   } = useUserProfile();
   return (
-    <Layout name={!!data ? data.name : "User"} avatarSrc={!!data ? data.img : "error"}>
+    <Layout name={!!data === undefined ? data.name : null} avatarSrc={!!data === undefined ? data.img : null}>
       <Toolbar />
       <Paper className={classes.container}>
         <UserProfileTitle onClick={handleModalOpen} />
@@ -62,7 +62,7 @@ export default function UserProfile() {
             onDialogOpen={handleEditAvatarOpen}
           />
           <UserProfileInput
-            title="Imię i nazwisko: aaaa"
+            title={`Imię i nazwisko: ${!!data === undefined ? data.name : "ERROR_DATA"}`}
             id="editPersonalInformationBtn"
             btnText="Zmień personalia"
             onClick={handlePopoverClick}

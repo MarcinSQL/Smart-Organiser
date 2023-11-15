@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import Avatar1 from "react-avatar-edit";
 import classes from "./classes/UserProfile.module.css";
-import useUserProfile from "modules/logic/dashboard/useUserProfile";
 
 interface IUserProfileAvatar {
   img: string;

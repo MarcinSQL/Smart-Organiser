@@ -20,15 +20,16 @@ interface IFormInput {
 }
 
 export default function useUserProfile() {
+  const { data, isLoading } = useGetProfileDataQuery();
+
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [editAvatarOpen, setEditAvatarOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [img, setImg] = useState("");
   const mutation = useEditUserProfileMutation();
   const deleteUserMutation = useDeleteUserProfileMutation();
   const [userData] = useSearchParams();
 
-  const { data, isLoading } = useGetProfileDataQuery();
+  const [img, setImg] = useState(data.img);
 
   const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -73,7 +74,6 @@ export default function useUserProfile() {
   };
 
   let userSchema = yup.object().shape({
-    img: yup.string(),
     name: yup.string(),
     surname: yup.string(),
     password: yup.string().min(6, "Wymagane min 6 znaków"),
