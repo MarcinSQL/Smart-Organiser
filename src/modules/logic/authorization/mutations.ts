@@ -34,6 +34,7 @@ export function useLoginMutation() {
     },
     {
       onSuccess: (response: any) => {
+        localStorage.setItem("userId", response.response.data.userId);
         navigate(MainPageLink);
       },
       onError: (response: any) => {

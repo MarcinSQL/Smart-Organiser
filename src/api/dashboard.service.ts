@@ -1,7 +1,8 @@
 import {
   IDeleteUserProfile,
   IEditAvatar,
-  IUserProfile,
+  IEditPassword,
+  IEditPersonalInformation,
 } from "modules/types/dashboard/userProfile.types";
 import service from "utils/axios";
 
@@ -18,14 +19,26 @@ export const dashboardDeleteUserProfile = (userId: IDeleteUserProfile) => {
 };
 
 export const dashboardUserProfile = () => {
-  return service
-    .get(`${baseURL}user-profile`)
-    .then((response) => {
-      return Promise.resolve(response.data);
-    })
+  return service.get(`${baseURL}user-profile`).then((response) => {
+    return Promise.resolve(response.data);
+  });
 };
 
-export const dashboardEditUserProfile = (personalData: IUserProfile) => {
+export const dashboardEditAvatar = (avatarSrc: IEditAvatar) => {
+  return service.post(`${baseURL}user-profile/`, avatarSrc).then((response) => {
+    return Promise.resolve(response);
+  });
+};
+
+export const dashboardEditPassword = (password: IEditPassword) => {
+  return service.post(`${baseURL}user-profile/`, password).then((response) => {
+    return Promise.resolve(response);
+  });
+};
+
+export const dashboardEditPersonalInformation = (
+  personalData: IEditPersonalInformation
+) => {
   return service
     .post(`${baseURL}user-profile/`, personalData)
     .then((response) => {

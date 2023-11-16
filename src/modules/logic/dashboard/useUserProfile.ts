@@ -5,19 +5,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import {
   useDeleteUserProfileMutation,
-  useEditUserProfileMutation,
+  useEditAvatarMutation,
 } from "./mutations";
-import { IUserProfile } from "modules/types/dashboard/userProfile.types";
+import { IEditAvatar } from "modules/types/dashboard/userProfile.types";
 import { useSearchParams } from "react-router-dom";
 import useGetProfileDataQuery from "./queries";
 
-interface IFormInput {
-  img?: string;
-  name?: string;
-  surname?: string;
-  password?: string;
-  confirmPassword?: string;
-}
+// interface IFormInput {
+//   img: string;
+//   name: string;
+//   surname: string;
+//   password: string;
+//   confirmPassword: string;
+// }
 
 export default function useUserProfile() {
   const { data, isLoading } = useGetProfileDataQuery();
@@ -25,7 +25,7 @@ export default function useUserProfile() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [editAvatarOpen, setEditAvatarOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const mutation = useEditUserProfileMutation();
+  const mutation = useEditAvatarMutation();
   const deleteUserMutation = useDeleteUserProfileMutation();
   const [userData] = useSearchParams();
   const [img, setImg] = useState(!!data ? data.img : "");
@@ -72,20 +72,21 @@ export default function useUserProfile() {
     setImg("");
   };
 
-  let userSchema = yup.object().shape({
-    name: yup.string(),
-    surname: yup.string(),
-    password: yup.string().min(6, "Wymagane min 6 znaków"),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password")], "Hasła muszą być identyczne"),
-  });
+  // let  userSchema = yup.object().shape({
+  //   img: yup.string().required("dsda"),
+  //   name: yup.string().required("Aaa"),
+  //   surname: yup.string().required("Aaa"),
+  //   password: yup.string().min(6, "Wymagane min 6 znaków").required(),
+  //   confirmPassword: yup
+  //     .string()
+  //     .oneOf([yup.ref("password")], "Hasła muszą być identyczne").required(),
+  // });
 
-  const { register, handleSubmit, control } = useForm<IFormInput>({
-    resolver: yupResolver(userSchema),
-  });
+  //  const { register, handleSubmit, control } = useForm<IFormInput>({
+  //    resolver: yupResolver(userSchema),
+  //  });
 
-  const onSubmit: SubmitHandler<IUserProfile> = (editedData) => {
+  const onSubmit: SubmitHandler<IEditAvatar> = (editedData) => {
     mutation.mutate(editedData);
   };
 
@@ -102,10 +103,10 @@ export default function useUserProfile() {
     onAvatarClose,
     handleSaveImage,
     img,
-    register,
-    handleSubmit,
-    onSubmit,
-    control,
+    //  register,
+    //  handleSubmit,
+    //  onSubmit,
+    //  control,
     modalOpen,
     handleModalClose,
     handleModalOpen,

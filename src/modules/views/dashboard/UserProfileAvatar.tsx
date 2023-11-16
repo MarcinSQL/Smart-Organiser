@@ -11,12 +11,12 @@ import classes from "./classes/UserProfile.module.css";
 
 interface IUserProfileAvatar {
   img: string;
-  onDialogClose: any;
+  onDialogClose: () => void;
   open: boolean;
   onCrop: any;
-  onDialogOpen: any;
+  onDialogOpen: () => void;
   onSave: any;
-  onAvatarClose: any;
+  onAvatarClose: () => void;
 }
 
 export default function UserProfileAvatar(props: IUserProfileAvatar) {
@@ -54,7 +54,7 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
           />
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={onSave}>
+          <Button variant="outlined" fullWidth onClick={onSave}>
             Zapisz nowy Awatar
           </Button>
         </DialogActions>
