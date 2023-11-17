@@ -28,6 +28,9 @@ export default function useUserProfileFormPassword() {
   });
 
   const onSubmit: SubmitHandler<IEditPassword> = (editedData) => {
+    const { password } = editedData;
+    editedData = { password: password };
+
     mutation.mutate(editedData);
   };
 

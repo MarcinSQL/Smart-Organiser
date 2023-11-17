@@ -3,7 +3,7 @@ import {
   dashboardEditAvatar,
   dashboardEditPassword,
   dashboardEditPersonalInformation,
-} from "api/dashboard.service";
+} from "api/user.service";
 import {
   IDeleteUserProfile,
   IEditAvatar,
@@ -39,7 +39,6 @@ export function useEditPersonalInformationMutation() {
   const ctx = useContext(AuthContext);
   return useMutation<unknown, unknown, IEditPersonalInformation>(
     (data) => {
-      console.log(data);
       return dashboardEditPersonalInformation(data);
     },
     {
@@ -59,7 +58,6 @@ export function useEditPasswordMutation() {
   const ctx = useContext(AuthContext);
   return useMutation<unknown, unknown, IEditPassword>(
     (data) => {
-      console.log(data);
       return dashboardEditPassword(data);
     },
     {

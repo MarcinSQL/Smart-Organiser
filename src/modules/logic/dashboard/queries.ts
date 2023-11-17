@@ -1,4 +1,4 @@
-import { dashboardUserProfile } from "api/dashboard.service";
+import { dashboardUserProfile } from "api/user.service";
 import { useQuery } from "react-query";
 import { ProfileData } from "utils/query-keys";
 

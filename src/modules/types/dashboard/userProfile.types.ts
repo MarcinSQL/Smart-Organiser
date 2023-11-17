@@ -27,5 +27,4 @@ export interface IEditAvatar {
 
 export interface IEditPassword {
   password: string;
-  confirmPassword: string;
 }

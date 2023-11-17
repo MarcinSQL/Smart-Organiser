@@ -1,23 +1,11 @@
-import * as yup from "yup";
-
-import { useForm, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 import {
   useDeleteUserProfileMutation,
   useEditAvatarMutation,
 } from "./mutations";
 import { IEditAvatar } from "modules/types/dashboard/userProfile.types";
-import { useSearchParams } from "react-router-dom";
 import useGetProfileDataQuery from "./queries";
-
-// interface IFormInput {
-//   img: string;
-//   name: string;
-//   surname: string;
-//   password: string;
-//   confirmPassword: string;
-// }
 
 export default function useUserProfile() {
   const { data, isLoading } = useGetProfileDataQuery();
@@ -27,7 +15,6 @@ export default function useUserProfile() {
   const [modalOpen, setModalOpen] = useState(false);
   const mutation = useEditAvatarMutation();
   const deleteUserMutation = useDeleteUserProfileMutation();
-  const [userData] = useSearchParams();
   const [img, setImg] = useState(!!data ? data.img : "");
 
   const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -58,7 +45,7 @@ export default function useUserProfile() {
   };
 
   const handleModalClick = () => {
-    const userId = userData.get("userId");
+    const userId = localStorage.getItem("userId");
     if (userId !== null) {
       deleteUserMutation.mutate({ userId: userId });
     }
@@ -71,20 +58,6 @@ export default function useUserProfile() {
   const onAvatarClose = () => {
     setImg("");
   };
-
-  // let  userSchema = yup.object().shape({
-  //   img: yup.string().required("dsda"),
-  //   name: yup.string().required("Aaa"),
-  //   surname: yup.string().required("Aaa"),
-  //   password: yup.string().min(6, "Wymagane min 6 znaków").required(),
-  //   confirmPassword: yup
-  //     .string()
-  //     .oneOf([yup.ref("password")], "Hasła muszą być identyczne").required(),
-  // });
-
-  //  const { register, handleSubmit, control } = useForm<IFormInput>({
-  //    resolver: yupResolver(userSchema),
-  //  });
 
   const onSubmit: SubmitHandler<IEditAvatar> = (editedData) => {
     mutation.mutate(editedData);
@@ -103,10 +76,6 @@ export default function useUserProfile() {
     onAvatarClose,
     handleSaveImage,
     img,
-    //  register,
-    //  handleSubmit,
-    //  onSubmit,
-    //  control,
     modalOpen,
     handleModalClose,
     handleModalOpen,
