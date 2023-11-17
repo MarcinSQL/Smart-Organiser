@@ -53,7 +53,7 @@
   }
 
   .title__btn {
-    width: fit-content;
+    width: fit-content !important;
     margin: 0 !important;
   }
 

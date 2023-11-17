@@ -15,7 +15,7 @@
 
 .modal__btn-container {
   display: flex !important;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin-top: 1.5rem;
 }
 
