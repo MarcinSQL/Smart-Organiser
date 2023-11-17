@@ -8,7 +8,7 @@ interface IUserProfileTitle {
 export default function UserProfileTitle(props: IUserProfileTitle) {
   const { onClick } = props;
   return (
-    <Box>
+    <Box className={classes["title"]}>
       <Typography component="h1" variant="h5">
         Konto użytkownika
       </Typography>
