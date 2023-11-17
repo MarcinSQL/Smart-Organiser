@@ -1,5 +1,5 @@
 import { Button, Typography, Box } from "@mui/material";
-import classes from "./classes/UserProfile.module.css";
+import classes from "modules/views/dashboard/classes/UserProfile.module.css";
 
 interface IUserProfileInput {
   onClick: any;

@@ -7,7 +7,7 @@ import {
   Box,
 } from "@mui/material";
 import Avatar1 from "react-avatar-edit";
-import classes from "./classes/UserProfile.module.css";
+import classes from "modules/views/dashboard/classes/UserProfile.module.css";
 
 interface IUserProfileAvatar {
   img: string;

@@ -4,14 +4,14 @@ import useUserProfile from "modules/logic/dashboard/useUserProfile";
 
 import classes from "./classes/UserProfile.module.css";
 import ModalTrueFalse from "components/UI/ModalTrueFalse";
-import UserProfileAvatar from "./UserProfileAvatar";
-import UserProfileInput from "./UserProfileInput";
-import UserProfileTitle from "./UserProfileTitle";
+import UserProfileAvatar from "components/Busines/UserProfileAvatar";
+import UserProfileInput from "components/Pure/UserProfileInput";
+import UserProfileTitle from "components/Pure/UserProfileTitle";
 import AuthContext from "store/auth-context";
 import { useContext } from "react";
 import Toast from "components/UI/Toast";
-import UserProfileFormPersonalINformation from "./UserProfileFormPersonalInformation";
-import UserProfileFormPassword from "./UserProfileFormPassword";
+import UserProfileFormPersonalINformation from "components/Busines/UserProfileFormPersonalInformation";
+import UserProfileFormPassword from "components/Busines/UserProfileFormPassword";
 
 export default function UserProfile() {
   const ctx = useContext(AuthContext);
