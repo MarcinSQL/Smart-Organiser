@@ -18,8 +18,6 @@ export function useEditAvatarMutation() {
   const ctx = useContext(AuthContext);
   return useMutation<unknown, unknown, IEditAvatar>(
     (data) => {
-      console.log(data);
-
       return dashboardEditAvatar(data);
     },
     {
