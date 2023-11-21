@@ -12,6 +12,7 @@ import {
   ApprovedAccountLink,
   SignUpInfoLink,
   MainPageLink,
+  UserProfileLink,
 } from "./links";
 import ResetPassword from "./modules/views/authorization/ResetPassword";
 import ConfirmAccount from "modules/views/authorization/ConfirmAccount";
@@ -21,6 +22,7 @@ import ApprovedResetPassword from "modules/views/authorization/ApprovedResetPass
 import ApprovedAccount from "modules/views/authorization/ApprovedAccount";
 import SignUpInfo from "modules/views/authorization/SignUpInfo";
 import MainPage from "modules/views/dashboard/MainPage";
+import UserProfile from "modules/views/dashboard/UserProfile";
 
 export default function router() {
   const routing = createBrowserRouter([
@@ -63,6 +65,10 @@ export default function router() {
     {
       path: MainPageLink,
       element: <MainPage />,
+    },  
+    {
+      path: UserProfileLink,
+      element: <UserProfile />,
     }
   ]);
 

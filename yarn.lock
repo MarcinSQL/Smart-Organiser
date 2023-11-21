@@ -4609,6 +4609,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"blueimp-load-image@npm:^5.14.0":
+  version: 5.16.0
+  resolution: "blueimp-load-image@npm:5.16.0"
+  checksum: 5250333c578938fa6c0130c925a70d35bd012f0f17a9e9fa7ea0c5c754ce9ec6ab0a9960aa760e603a0b3b06a2af3bff12026022b205ca13409ac73dbe436c00
+  languageName: node
+  linkType: hard
+
 "body-parser@npm:1.20.1":
   version: 1.20.1
   resolution: "body-parser@npm:1.20.1"
@@ -6697,6 +6704,13 @@ __metadata:
     signal-exit: ^3.0.3
     strip-final-newline: ^2.0.0
   checksum: fba9022c8c8c15ed862847e94c252b3d946036d7547af310e344a527e59021fd8b6bb0723883ea87044dc4f0201f949046993124a42ccb0855cae5bf8c786343
+  languageName: node
+  linkType: hard
+
+"exif-js@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "exif-js@npm:2.3.0"
+  checksum: 5a9f5491bc7a804d4fd4d89d97343a822e916e044bc3c59734136e056bdc4a314aae63fd1ac18058f0a477dc90566f2ec0770ab9a30c26a47a52f1600161048b
   languageName: node
   linkType: hard
 
@@ -9204,6 +9218,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"konva@npm:^8.3.5":
+  version: 8.4.3
+  resolution: "konva@npm:8.4.3"
+  checksum: 5fc805e2c51a3eab4e08d3752ca43a6cd12917da5d44b73d9ce3b022fcfe84f215eedb44082b0d9fa9e456f029673e42db6a72dcf123e290dfe68e971150a6e3
+  languageName: node
+  linkType: hard
+
 "language-subtag-registry@npm:~0.3.2":
   version: 0.3.22
   resolution: "language-subtag-registry@npm:0.3.22"
@@ -11508,6 +11529,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-avatar-edit@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "react-avatar-edit@npm:1.2.0"
+  dependencies:
+    blueimp-load-image: ^5.14.0
+    exif-js: ^2.3.0
+    konva: ^8.3.5
+  peerDependencies:
+    react: ^16.x || ^17 || ^18
+  checksum: c49f3723575184a82752d2348e1e0e7b907797a5bd6092ecddfb7d16e0e6973d6aef1aa069ceb33356eb2f1870b617bafdb21cb8af1a47395ef7db5a15627a92
+  languageName: node
+  linkType: hard
+
 "react-dev-utils@npm:^12.0.1":
   version: 12.0.1
   resolution: "react-dev-utils@npm:12.0.1"
@@ -12495,6 +12529,7 @@ __metadata:
     "@types/react-dom": ^18.0.0
     axios: ^1.5.1
     react: ^18.2.0
+    react-avatar-edit: ^1.2.0
     react-dom: ^18.2.0
     react-hook-form: ^7.46.2
     react-query: ^3.39.3

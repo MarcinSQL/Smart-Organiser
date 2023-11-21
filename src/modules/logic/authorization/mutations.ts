@@ -20,6 +20,7 @@ import {
   ApprovedAccountLink,
   ApprovedEmailLink,
   ApprovedResetPasswordLink,
+  MainPageLink,
   SignUpInfoLink,
 } from "links";
 
@@ -33,7 +34,8 @@ export function useLoginMutation() {
     },
     {
       onSuccess: (response: any) => {
-        //localhost/panel
+        localStorage.setItem("userId", response.response.data.userId);
+        navigate(MainPageLink);
       },
       onError: (response: any) => {
         ctx.isError = response.response.data.isError;

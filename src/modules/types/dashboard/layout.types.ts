@@ -1,11 +1,11 @@
 export interface ILayout {
-  username: string;
+  name: string;
   avatarSrc?: string;
   children: React.ReactNode;
 }
 
 export interface ILayoutHeader {
-  username: string;
+  name: string;
   avatarSrc?: string;
 }
 

@@ -10,3 +10,4 @@ export const ApprovedAccountLink = "/approved-account";
 export const SignUpInfoLink = "/registration-info";
 
 export const MainPageLink = "/main-page";
+export const UserProfileLink = "/user-profile";

@@ -1,0 +1,63 @@
+.input-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: solid 1px rgba(77, 77, 77, 0.5);
+}
+
+.container {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.title__btn {
+  margin: 1rem 0 !important;
+}
+
+.user-information {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-information__avatar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-information__avatar--icon {
+  width: 102px !important;
+  height: 102px !important;
+  margin-bottom: 1rem;
+}
+
+.user-information__avatar--button {
+  height: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    display: block;
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .title__btn {
+    width: fit-content !important;
+    margin: 0 !important;
+  }
+
+  .user-information {
+    width: 100%;
+  }
+}
