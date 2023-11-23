@@ -20,6 +20,7 @@ import {
   ApprovedAccountLink,
   ApprovedEmailLink,
   ApprovedResetPasswordLink,
+  MainPageLink,
   SignUpInfoLink,
 } from "links";
 
@@ -33,11 +34,12 @@ export function useLoginMutation() {
     },
     {
       onSuccess: (response: any) => {
-        //localhost/panel
+        localStorage.setItem("token", response.data.token);
+        navigate(MainPageLink);
       },
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;
-        const errorMessage = response.response.data.errorMessage;
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
         switch (errorMessage) {
           case "USER_NOT_FOUND":
             ctx.message = "Użytkownik nie został znaleziony.";
@@ -74,8 +76,8 @@ export function useSignUpMutation() {
         navigate(SignUpInfoLink);
       },
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;
-        const errorMessage = response.response.data.errorMessage;
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
         if (errorMessage === "ACCOUNT_EXISTS")
           ctx.message = "Użytkownik już istnieje.";
         else if (errorMessage === "REGISTRATION_ERROR")
@@ -101,8 +103,8 @@ export function useConfirmAccountMutation() {
         navigate(ApprovedAccountLink);
       },
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;
-        const errorMessage = response.response.data.errorMessage;
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
         if (errorMessage === "USER_NOT_FOUND")
           ctx.message = "Użytkownik nie został odnaleziony.";
         else ctx.message = "Błąd nie został rozpoznany.";
@@ -124,8 +126,8 @@ export function useResetPasswordMutation() {
         navigate(ApprovedEmailLink);
       },
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;
-        const errorMessage = response.response.data.errorMessage;
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
         if (errorMessage === "USER_NOT_FOUND")
           ctx.message = "Użytkownik nie został odnaleziony.";
         else ctx.message = "Błąd nie został rozpoznany.";
@@ -147,8 +149,8 @@ export function useResetPasswordConfirmMutation() {
         navigate(ApprovedResetPasswordLink);
       },
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;
-        const errorMessage = response.response.data.errorMessage;
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
         if (errorMessage === "USER_NOT_FOUND")
           ctx.message = "Użytkownik nie został odnaleziony.";
         else ctx.message = "Błąd nie został rozpoznany.";

@@ -2,7 +2,7 @@ import { CssBaseline, Box, Typography, Container, Button } from "@mui/material";
 import Copyright from "components/Copyright";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
-import { logoHeight, logoWidth } from "sizes";
+import { logoHeight, logoWidth } from "components/utils/sizes";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
 

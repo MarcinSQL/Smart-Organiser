@@ -1,0 +1,24 @@
+.modal {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 30vw;
+  min-width: 260px;
+  max-width: 400px;
+  border-radius: 6px;
+  box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+}
+
+.modal__btn-container {
+  display: flex !important;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+}
+
+.modal__btn-container button {
+  width: 40%;
+}

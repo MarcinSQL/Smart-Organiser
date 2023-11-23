@@ -9,13 +9,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import Copyright from "components/Copyright";
-import TextInput from "components/TextInput";
+import TextInput from "components/UI/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
-import Toast from "./Toast";
+import Toast from "../../../components/UI/Toast";
 import AuthContext from "store/auth-context";
 import useSignUp from "modules/logic/authorization/useSignUp";
-import { logoHeight, logoWidth } from "sizes";
+import { logoHeight, logoWidth } from "components/utils/sizes";
 
 export default function SignUp() {
   const ctx = useContext(AuthContext);
