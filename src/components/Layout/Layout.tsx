@@ -10,7 +10,7 @@ import { SignInLink } from "links";
 
 export default function Layout(props: ILayout) {
   const navigate = useNavigate();
-  if(!localStorage.getItem("userId")) navigate(SignInLink);
+  if (!localStorage.getItem("token")) navigate(SignInLink);
   return (
     <Box className={classes.layout}>
       <CssBaseline />
