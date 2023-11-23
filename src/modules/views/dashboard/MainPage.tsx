@@ -5,8 +5,8 @@ export default function MainPage() {
   const { data, isLoading } = useMainPage();
   return (
     <Layout
-      name={!!data === undefined ? data.name : null}
-      avatarSrc={!!data === undefined ? data.img : null}
+      name={isLoading ? null : data.name}
+      avatarSrc={isLoading ? null : data.img}
     >
       {"in progress"}
     </Layout>
