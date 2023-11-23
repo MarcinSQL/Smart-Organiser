@@ -25,8 +25,8 @@ export function useEditAvatarMutation() {
     {
       onSuccess: (response: any) => {},
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;
-        const errorMessage = response.response.data.errorMessage;
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
           ctx.message = "Żądanie nie zostało wysłane.";
         else ctx.message = "Błąd nie został rozpoznany.";
@@ -44,8 +44,8 @@ export function useEditPersonalInformationMutation() {
     {
       onSuccess: (response: any) => {},
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;
-        const errorMessage = response.response.data.errorMessage;
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
           ctx.message = "Żądanie nie zostało wysłane.";
         else ctx.message = "Błąd nie został rozpoznany.";
@@ -63,8 +63,8 @@ export function useEditPasswordMutation() {
     {
       onSuccess: (response: any) => {},
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;
-        const errorMessage = response.response.data.errorMessage;
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
           ctx.message = "Żądanie nie zostało wysłane.";
         else ctx.message = "Błąd nie został rozpoznany.";
@@ -82,8 +82,8 @@ export function useDeleteUserProfileMutation() {
     {
       onSuccess: (response: any) => {},
       onError: (response: any) => {
-        ctx.isError = response.response.data.isError;
-        const errorMessage = response.response.data.errorMessage;
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
           ctx.message = "Żądanie nie zostało wysłane.";
         else ctx.message = "Błąd nie został rozpoznany.";
