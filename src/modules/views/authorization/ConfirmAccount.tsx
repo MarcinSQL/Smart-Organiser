@@ -46,7 +46,7 @@ export default function ConfirmAccount() {
           sx={{ width: logoWidth, height: logoHeight, m: 4}}
         />
         <Typography component="h1" variant="h5">
-          Utwórz hasło do potwierdźenia konta
+          Utwórz hasło do potwierdzenia konta
         </Typography>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
           <TextInput
