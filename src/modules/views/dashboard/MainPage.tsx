@@ -18,6 +18,8 @@ export default function MainPage() {
       <Paper className={classes["calendar-container"]}>
         <FullCalendar
           locale={plLocale}
+          selectable={true}
+          editable={true}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView={"dayGridMonth"}
           headerToolbar={{
@@ -25,7 +27,7 @@ export default function MainPage() {
             center: "title",
             end: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
-          height={"60vh"}
+          contentHeight={460}
         />
       </Paper>
     </Layout>
