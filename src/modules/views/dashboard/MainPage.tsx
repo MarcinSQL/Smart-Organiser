@@ -6,6 +6,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import plLocale from "@fullcalendar/core/locales/pl";
 import { Paper } from "@mui/material";
+import classes from "./classes/MainPage.module.css";
 
 export default function MainPage() {
   const { data, isLoading } = useMainPage();
@@ -14,7 +15,7 @@ export default function MainPage() {
       name={isLoading ? null : data.name}
       avatarSrc={isLoading ? null : data.img}
     >
-      <Paper>
+      <Paper className={classes["calendar-container"]}>
         <FullCalendar
           locale={plLocale}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
