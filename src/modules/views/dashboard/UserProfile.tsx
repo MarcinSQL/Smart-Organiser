@@ -33,18 +33,19 @@ export default function UserProfile() {
     anchorEl,
     handleModalClick,
     data,
+    isLoading,
   } = useUserProfile();
   return (
     <Layout
-      name={!!data === undefined ? data.name : null}
-      avatarSrc={!!data === undefined ? data.img : null}
+      name={isLoading ? null : data.name}
+      avatarSrc={isLoading ? null : data.img}
     >
       <Toolbar />
       <Paper className={classes.container}>
         <UserProfileTitle onClick={handleModalOpen} />
         <Box className={classes["user-information"]}>
           <UserProfileAvatar
-            img={img}
+            img={img === "" ? (isLoading ? "" : data.img) : img}
             onAvatarClose={onAvatarClose}
             onCrop={onCrop}
             onDialogClose={handleEditAvatarClose}
@@ -54,7 +55,7 @@ export default function UserProfile() {
           />
           <UserProfileInput
             title={`Imię i nazwisko: ${
-              !!data === undefined ? data.name : "ERROR_DATA"
+              isLoading ? "ERROR_DATA" : `${data.name} ${data.surname}`
             }`}
             id="editPersonalInformationBtn"
             btnText="Zmień personalia"
