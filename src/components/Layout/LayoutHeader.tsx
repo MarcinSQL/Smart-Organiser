@@ -25,6 +25,15 @@ export default function LayoutHeader(props: ILayoutHeader) {
     setAnchorEl(null);
   };
 
+  const handleUserProfileNavigation = () => {
+    navigate(UserProfileLink);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate(SignInLink);
+  };
+
   const popoverOpen = Boolean(anchorEl);
   const popoverId = anchorEl ? anchorEl.id : "errorId";
 
@@ -63,13 +72,13 @@ export default function LayoutHeader(props: ILayoutHeader) {
             horizontal: "right",
           }}
         >
-          <ListItemButton onClick={() => navigate(UserProfileLink)}>
+          <ListItemButton onClick={handleUserProfileNavigation}>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Profil użytkownika" />
           </ListItemButton>
-          <ListItemButton onClick={() => navigate(SignInLink)}>
+          <ListItemButton onClick={handleLogout}>
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>
