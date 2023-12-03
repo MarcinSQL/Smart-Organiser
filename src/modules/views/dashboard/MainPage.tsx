@@ -21,8 +21,10 @@ export default function MainPage() {
 
   return (
     <Layout
-      name={isLoading ? null : data.name}
-      avatarSrc={isLoading ? null : data.img}
+      name="aaa"
+      avatarSrc="aaa"
+      // name={isLoading ? null : data.name}
+      // avatarSrc={isLoading ? null : data.img}
     >
       <Paper className={classes["calendar-container"]}>
         <FullCalendar
@@ -45,7 +47,7 @@ export default function MainPage() {
         <ModalEvents
           open={showModal}
           onClose={handleModalClose}
-          title={"Dodaj nowy wydarzenie"}
+          title={"Dodaj nowe wydarzenie"}
           defaultStartDate={eventData}
         />
       </Paper>

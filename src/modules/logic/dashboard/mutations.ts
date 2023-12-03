@@ -5,6 +5,7 @@ import {
   dashboardEditPassword,
   dashboardEditPersonalInformation,
 } from "api/user.service";
+import { MainPageLink } from "links";
 import { IModalEventsForm } from "modules/types/dashboard/mainPage.types";
 import {
   IDeleteUserProfile,
@@ -14,6 +15,7 @@ import {
 } from "modules/types/dashboard/userProfile.types";
 import { useContext } from "react";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "store/auth-context";
 
 export function useEditAvatarMutation() {
@@ -75,12 +77,15 @@ export function useEditPasswordMutation() {
 
 export function useCreateEventMutation() {
   const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
   return useMutation<unknown, unknown, IModalEventsForm>(
     (data) => {
       return dashboardCreateEvent(data);
     },
     {
-      onSuccess: (response: any) => {},
+      onSuccess: (response: any) => {
+        navigate(MainPageLink);
+      },
       onError: (response: any) => {
         ctx.isError = true;
         const errorMessage = response.response.data.errorCode;

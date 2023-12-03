@@ -9,19 +9,20 @@ interface IFormInput {
   endDate: string;
   title: string;
   note?: string;
+  type: string;
 }
 
 export default function useMainPageModalEventsForm() {
   const mutation = useCreateEventMutation();
 
   let userSchema = yup.object().shape({
-    title: yup
+    title: yup.string().required("Tytuł jest wymagany"),
+    startDate: yup
       .string()
-      .email("Niepoprawny typ maila")
-      .required("Email jest wymagany"),
-    startDate: yup.string().required("Data zaczęcia wydarzenia jest wymagana"),
+      .required("Data rozpoczęcia wydarzenia jest wymagana"),
     endDate: yup.string().required("Data zakończenia wydarzenia jest wymagana"),
     note: yup.string(),
+    type: yup.string().required("Typ jest wymagany"),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
@@ -30,6 +31,7 @@ export default function useMainPageModalEventsForm() {
 
   const onSubmit: SubmitHandler<IFormInput> = (eventData) => {
     mutation.mutate(eventData);
+    console.log(eventData);
   };
 
   return {

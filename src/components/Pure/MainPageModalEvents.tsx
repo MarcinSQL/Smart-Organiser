@@ -1,5 +1,5 @@
 import { Button, Box, Modal, Typography } from "@mui/material";
-import classes from "../UI/classes/Modal.module.css";
+import classes from "./classes/ModalEvents.module.css";
 import MainPageModalEvents from "components/Busines/MainPageModalEventsForm";
 
 interface IModalEvents {
@@ -15,7 +15,7 @@ export default function ModalEvents(props: IModalEvents) {
   return (
     <Modal open={open} onClose={onClose} aria-labelledby="child-modal-title">
       <Box className={classes.modal}>
-        <Button variant="text" onClick={onClose}>
+        <Button variant="text" onClick={onClose} className={classes["modal__close-btn"]}>
           X
         </Button>
         <Typography component="h2" variant="h6">
