@@ -21,10 +21,8 @@ export default function MainPage() {
 
   return (
     <Layout
-      name="aaa"
-      avatarSrc="aaa"
-      // name={isLoading ? null : data.name}
-      // avatarSrc={isLoading ? null : data.img}
+      name={isLoading ? null : data.name}
+      avatarSrc={isLoading ? null : data.img}
     >
       <Paper className={classes["calendar-container"]}>
         <FullCalendar
@@ -42,7 +40,9 @@ export default function MainPage() {
           selectable={true}
           editable={true}
           selectMirror={true}
-          dateClick={(data) => handleModalShow(data)}
+          dateClick={(data) => {
+            handleModalShow(data.dateStr);
+          }}
         />
         <ModalEvents
           open={showModal}

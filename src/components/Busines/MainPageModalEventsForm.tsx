@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 import {
   Button,
   Box,
@@ -9,8 +11,19 @@ import {
 } from "@mui/material";
 
 import TextInput from "components/UI/TextInput";
-import useMainPageModalEventsForm from "modules/logic/dashboard/useMainPageModalEventsForm";
 import classes from "../Pure/classes/ModalEvents.module.css";
+
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
+
+interface IFormInput {
+  startDate: string;
+  endDate: string;
+  title: string;
+  note?: string;
+  type: string;
+}
 
 interface IMainPageModalEvents {
   defaultStartDate: string;
@@ -18,8 +31,31 @@ interface IMainPageModalEvents {
 
 export default function MainPageModalEvents(props: IMainPageModalEvents) {
   const { defaultStartDate } = props;
-  const { register, handleSubmit, onSubmit, control } =
-    useMainPageModalEventsForm();
+
+  const mutation = useCreateEventMutation();
+
+  let userSchema = yup.object().shape({
+    title: yup.string().required("Tytuł jest wymagany"),
+    startDate: yup
+      .string()
+      .required("Data rozpoczęcia wydarzenia jest wymagana")
+      .default(defaultStartDate),
+    endDate: yup
+      .string()
+      .required("Data zakończenia wydarzenia jest wymagana")
+      .default(defaultStartDate),
+    note: yup.string(),
+    type: yup.string().required("Typ jest wymagany"),
+  });
+
+  const { register, handleSubmit, control } = useForm<IFormInput>({
+    resolver: yupResolver(userSchema),
+  });
+
+  const onSubmit: SubmitHandler<IFormInput> = (eventData) => {
+    mutation.mutate(eventData);
+  };
+
   return (
     <Box
       component="form"
@@ -47,7 +83,7 @@ export default function MainPageModalEvents(props: IMainPageModalEvents) {
         type="date"
         label="Data zakończenia"
         defaultValue={defaultStartDate}
-        {...register("endDate", { required: true })}
+        {...register("endDate", { required: false })}
       />
       <TextInput
         control={control}

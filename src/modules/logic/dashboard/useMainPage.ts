@@ -10,8 +10,8 @@ export default function useMainPage() {
     setShowModal(false);
   };
 
-  const handleModalShow = (e: any) => {
-    setEventData(e.dateStr);
+  const handleModalShow = (e : string) => {
+    setEventData(e);
     setShowModal(true);
   };
 
