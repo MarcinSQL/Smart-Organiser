@@ -24,8 +24,14 @@ export const dashboardUserProfile = () => {
   });
 };
 
+export const dashboardUserAvatar = () => {
+  return service.get(`${baseURL}avatar`).then((response) => {
+    return Promise.resolve(response.data);
+  });
+};
+
 export const dashboardEditAvatar = (avatarSrc: IEditAvatar) => {
-  return service.post(`${baseURL}user-data/`, avatarSrc).then((response) => {
+  return service.post(`${baseURL}avatar/`, avatarSrc).then((response) => {
     return Promise.resolve(response);
   });
 };
@@ -39,9 +45,7 @@ export const dashboardEditPassword = (password: IEditPassword) => {
 export const dashboardEditPersonalInformation = (
   personalData: IEditPersonalInformation
 ) => {
-  return service
-    .post(`${baseURL}user-data/`, personalData)
-    .then((response) => {
-      return Promise.resolve(response);
-    });
+  return service.post(`${baseURL}user-data/`, personalData).then((response) => {
+    return Promise.resolve(response);
+  });
 };
