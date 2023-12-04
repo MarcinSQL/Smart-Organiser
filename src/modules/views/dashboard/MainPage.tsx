@@ -7,9 +7,18 @@ import interactionPlugin from "@fullcalendar/interaction";
 import plLocale from "@fullcalendar/core/locales/pl";
 import { Paper } from "@mui/material";
 import classes from "./classes/MainPage.module.css";
+import ModalEvents from "components/Pure/MainPageModalEvents";
 
 export default function MainPage() {
-  const { data, isLoading } = useMainPage();
+  const {
+    data,
+    isLoading,
+    showModal,
+    handleModalClose,
+    eventData,
+    handleModalShow,
+  } = useMainPage();
+
   return (
     <Layout
       name={isLoading ? null : data.name}
@@ -18,8 +27,6 @@ export default function MainPage() {
       <Paper className={classes["calendar-container"]}>
         <FullCalendar
           locale={plLocale}
-          selectable={true}
-          editable={true}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView={"dayGridMonth"}
           headerToolbar={{
@@ -28,6 +35,20 @@ export default function MainPage() {
             end: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
           contentHeight={460}
+          events={{}}
+          nowIndicator={true}
+          selectable={true}
+          editable={true}
+          selectMirror={true}
+          dateClick={(data) => {
+            handleModalShow(data.dateStr);
+          }}
+        />
+        <ModalEvents
+          open={showModal}
+          onClose={handleModalClose}
+          title={"Dodaj nowe wydarzenie"}
+          defaultStartDate={eventData}
         />
       </Paper>
     </Layout>

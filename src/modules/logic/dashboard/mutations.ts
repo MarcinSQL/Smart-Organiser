@@ -1,9 +1,12 @@
+import { dashboardCreateEvent } from "api/calendar.service";
 import {
   dashboardDeleteUserProfile,
   dashboardEditAvatar,
   dashboardEditPassword,
   dashboardEditPersonalInformation,
 } from "api/user.service";
+import { MainPageLink } from "links";
+import { IModalEventsForm } from "modules/types/dashboard/mainPage.types";
 import {
   IDeleteUserProfile,
   IEditAvatar,
@@ -12,6 +15,7 @@ import {
 } from "modules/types/dashboard/userProfile.types";
 import { useContext } from "react";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "store/auth-context";
 
 export function useEditAvatarMutation() {
@@ -60,6 +64,28 @@ export function useEditPasswordMutation() {
     },
     {
       onSuccess: (response: any) => {},
+      onError: (response: any) => {
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
+        if (errorMessage === "MESSAGE_NOT_SENT")
+          ctx.message = "Żądanie nie zostało wysłane.";
+        else ctx.message = "Błąd nie został rozpoznany.";
+      },
+    }
+  );
+}
+
+export function useCreateEventMutation() {
+  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
+  return useMutation<unknown, unknown, IModalEventsForm>(
+    (data) => {
+      return dashboardCreateEvent(data);
+    },
+    {
+      onSuccess: (response: any) => {
+        navigate(MainPageLink);
+      },
       onError: (response: any) => {
         ctx.isError = true;
         const errorMessage = response.response.data.errorCode;

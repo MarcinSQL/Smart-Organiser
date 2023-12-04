@@ -1,6 +1,26 @@
+import { useState } from "react";
 import useGetProfileDataQuery from "./queries";
 
 export default function useMainPage() {
   const { data, isLoading } = useGetProfileDataQuery();
-  return { data, isLoading };
+  const [showModal, setShowModal] = useState(false);
+  const [eventData, setEventData] = useState("");
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
+  const handleModalShow = (e : string) => {
+    setEventData(e);
+    setShowModal(true);
+  };
+
+  return {
+    data,
+    isLoading,
+    showModal,
+    handleModalShow,
+    eventData,
+    handleModalClose,
+  };
 }
