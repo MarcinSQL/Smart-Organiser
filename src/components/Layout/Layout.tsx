@@ -12,7 +12,7 @@ import useGetProfileDataQuery from "modules/logic/dashboard/queries";
 export default function Layout(props: ILayout) {
   const navigate = useNavigate();
   const { data, isLoading } = useGetProfileDataQuery();
-  // if (!localStorage.getItem("token")) navigate(SignInLink);
+  if (!localStorage.getItem("token")) navigate(SignInLink);
   return (
     <Box className={classes.layout}>
       <CssBaseline />
