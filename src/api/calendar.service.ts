@@ -1,5 +1,5 @@
 import service from "utils/axios";
-import { IModalEventsForm } from "modules/types/dashboard/mainPage.types";
+import { IModalEventsForm } from "modules/types/dashboard/calendar.types";
 
 const baseURL = "/calendar/";
 

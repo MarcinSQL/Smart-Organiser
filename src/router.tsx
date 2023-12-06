@@ -11,8 +11,9 @@ import {
   ApprovedResetPasswordLink,
   ApprovedAccountLink,
   SignUpInfoLink,
-  MainPageLink,
   UserProfileLink,
+  CalendarLink,
+  MainPageLink,
 } from "./links";
 import ResetPassword from "./modules/views/authorization/ResetPassword";
 import ConfirmAccount from "modules/views/authorization/ConfirmAccount";
@@ -21,8 +22,9 @@ import ResetPasswordConfirmation from "modules/views/authorization/ResetPassword
 import ApprovedResetPassword from "modules/views/authorization/ApprovedResetPassword";
 import ApprovedAccount from "modules/views/authorization/ApprovedAccount";
 import SignUpInfo from "modules/views/authorization/SignUpInfo";
-import MainPage from "modules/views/dashboard/MainPage";
 import UserProfile from "modules/views/dashboard/UserProfile";
+import Calendar from "modules/views/dashboard/Calendar";
+import MainPage from "modules/views/dashboard/MainPage";
 
 export default function router() {
   const routing = createBrowserRouter([
@@ -65,11 +67,15 @@ export default function router() {
     {
       path: MainPageLink,
       element: <MainPage />,
-    },  
+    },
+    {
+      path: CalendarLink,
+      element: <Calendar />,
+    },
     {
       path: UserProfileLink,
       element: <UserProfile />,
-    }
+    },
   ]);
 
   return { routing };

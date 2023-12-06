@@ -1,8 +1,7 @@
 import { useState } from "react";
 import useGetProfileDataQuery from "./queries";
 
-export default function useMainPage() {
-  const { data, isLoading } = useGetProfileDataQuery();
+export default function useCalendar() {
   const [showModal, setShowModal] = useState(false);
   const [eventData, setEventData] = useState("");
 
@@ -16,8 +15,6 @@ export default function useMainPage() {
   };
 
   return {
-    data,
-    isLoading,
     showModal,
     handleModalShow,
     eventData,

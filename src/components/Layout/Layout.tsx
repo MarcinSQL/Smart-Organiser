@@ -7,17 +7,21 @@ import LayoutContent from "./LayoutContent";
 import classes from "./classes/Layout.module.css";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
+import useGetProfileDataQuery from "modules/logic/dashboard/queries";
 
 export default function Layout(props: ILayout) {
   const navigate = useNavigate();
-  if (!localStorage.getItem("token")) navigate(SignInLink);
+  const { data, isLoading } = useGetProfileDataQuery();
+  // if (!localStorage.getItem("token")) navigate(SignInLink);
   return (
     <Box className={classes.layout}>
       <CssBaseline />
       <LayoutHeader
-        name={typeof props.name === "string" ? props.name : "User"}
+        name={
+          isLoading ? "User" : data !== undefined || null ? data.name : "User"
+        }
         avatarSrc={
-          typeof props.avatarSrc === "string" ? props.avatarSrc : "ERROR_SRC"
+          isLoading ? "ERROR" : data !== undefined || null ? data.img : "ERROR"
         }
       />
       <LayoutNavigation />

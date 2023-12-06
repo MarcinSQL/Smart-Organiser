@@ -6,7 +6,7 @@ import {
   dashboardEditPersonalInformation,
 } from "api/user.service";
 import { MainPageLink } from "links";
-import { IModalEventsForm } from "modules/types/dashboard/mainPage.types";
+import { IModalEventsForm } from "modules/types/dashboard/calendar.types";
 import {
   IDeleteUserProfile,
   IEditAvatar,
