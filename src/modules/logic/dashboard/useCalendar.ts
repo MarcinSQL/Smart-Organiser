@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useGetProfileDataQuery from "./queries";
 
 export default function useCalendar() {
   const [showModal, setShowModal] = useState(false);
@@ -9,7 +8,7 @@ export default function useCalendar() {
     setShowModal(false);
   };
 
-  const handleModalShow = (e : string) => {
+  const handleModalShow = (e: string) => {
     setEventData(e);
     setShowModal(true);
   };

@@ -34,6 +34,8 @@ export default function UserProfile() {
     handleModalClick,
     data,
     isLoading,
+    avatar,
+    avatarIsLoading,
   } = useUserProfile();
   return (
     <Layout>
@@ -42,13 +44,14 @@ export default function UserProfile() {
         <UserProfileTitle onClick={handleModalOpen} />
         <Box className={classes["user-information"]}>
           <UserProfileAvatar
-            img={img === "" ? (isLoading ? "" : data.img) : img}
+            img={img === "" ? (avatarIsLoading ? "" : avatar) : img}
             onAvatarClose={onAvatarClose}
             onCrop={onCrop}
             onDialogClose={handleEditAvatarClose}
             onSave={handleSaveImage}
             open={editAvatarOpen}
             onDialogOpen={handleEditAvatarOpen}
+            userName={isLoading ? null : data.name}
           />
           <UserProfileInput
             title={`Imię i nazwisko: ${

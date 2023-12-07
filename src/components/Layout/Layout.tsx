@@ -7,7 +7,7 @@ import LayoutContent from "./LayoutContent";
 import classes from "./classes/Layout.module.css";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
-import useGetProfileDataQuery from "modules/logic/dashboard/queries";
+import { useGetProfileDataQuery } from "modules/logic/dashboard/queries";
 
 export default function Layout(props: ILayout) {
   const navigate = useNavigate();

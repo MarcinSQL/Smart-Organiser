@@ -5,10 +5,12 @@ import {
   useEditAvatarMutation,
 } from "./mutations";
 import { IEditAvatar } from "modules/types/dashboard/userProfile.types";
-import useGetProfileDataQuery from "./queries";
+import { useGetProfileAvatarQuery, useGetProfileDataQuery } from "./queries";
 
 export default function useUserProfile() {
   const { data, isLoading } = useGetProfileDataQuery();
+  const { data: avatar, isLoading: avatarIsLoading } =
+    useGetProfileAvatarQuery();
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [editAvatarOpen, setEditAvatarOpen] = useState(false);
@@ -87,5 +89,7 @@ export default function useUserProfile() {
     handleModalClick,
     data,
     isLoading,
+    avatar,
+    avatarIsLoading,
   };
 }

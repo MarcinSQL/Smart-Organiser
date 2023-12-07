@@ -17,6 +17,7 @@ interface IUserProfileAvatar {
   onDialogOpen: () => void;
   onSave: any;
   onAvatarClose: () => void;
+  userName: string;
 }
 
 export default function UserProfileAvatar(props: IUserProfileAvatar) {
@@ -28,12 +29,13 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
     onDialogOpen,
     onSave,
     onAvatarClose,
+    userName,
   } = props;
   return (
     <Box className={classes["user-information__avatar"]}>
       <Avatar
         className={classes["user-information__avatar--icon"]}
-        alt="User"
+        alt={userName}
         src={img ? img : `error`}
       />
       <Button
