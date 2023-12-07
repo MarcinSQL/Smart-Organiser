@@ -1,8 +1,10 @@
 import { useState } from "react";
-import useGetProfileDataQuery from "./queries";
+import { useGetProfileAvatarQuery, useGetProfileDataQuery } from "./queries";
 
 export default function useMainPage() {
   const { data, isLoading } = useGetProfileDataQuery();
+  const { data: avatar, isLoading: avatarIsLoading } =
+    useGetProfileAvatarQuery();
   const [showModal, setShowModal] = useState(false);
   const [eventData, setEventData] = useState("");
 
@@ -10,7 +12,7 @@ export default function useMainPage() {
     setShowModal(false);
   };
 
-  const handleModalShow = (e : string) => {
+  const handleModalShow = (e: string) => {
     setEventData(e);
     setShowModal(true);
   };
@@ -22,5 +24,7 @@ export default function useMainPage() {
     handleModalShow,
     eventData,
     handleModalClose,
+    avatar,
+    avatarIsLoading,
   };
 }

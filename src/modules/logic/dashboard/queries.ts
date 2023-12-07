@@ -1,7 +1,11 @@
-import { dashboardUserProfile } from "api/user.service";
+import { dashboardUserAvatar, dashboardUserProfile } from "api/user.service";
 import { useQuery } from "react-query";
-import { ProfileData } from "utils/query-keys";
+import { ProfileAvatar, ProfileData } from "utils/query-keys";
 
-export default function useGetProfileDataQuery(){
-    return useQuery(ProfileData, dashboardUserProfile);
+export function useGetProfileDataQuery() {
+  return useQuery(ProfileData, dashboardUserProfile);
+}
+
+export function useGetProfileAvatarQuery() {
+  return useQuery(ProfileAvatar, dashboardUserAvatar);
 }

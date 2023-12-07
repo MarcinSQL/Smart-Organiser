@@ -1,10 +1,3 @@
-// export interface IUserProfile {
-//   img?: string;
-//   name?: string;
-//   surname?: string;
-//   password?: string;
-// }
-
 export interface IUserProfileForms {
   popoverId: string;
   anchorEl: HTMLButtonElement | null;
@@ -17,6 +10,7 @@ export interface IDeleteUserProfile {
 }
 
 export interface IEditPersonalInformation {
+  img?: string;
   name: string;
   surname: string;
 }

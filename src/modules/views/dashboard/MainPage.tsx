@@ -13,6 +13,8 @@ export default function MainPage() {
   const {
     data,
     isLoading,
+    avatar,
+    avatarIsLoading,
     showModal,
     handleModalClose,
     eventData,
@@ -22,7 +24,7 @@ export default function MainPage() {
   return (
     <Layout
       name={isLoading ? null : data.name}
-      avatarSrc={isLoading ? null : data.img}
+      avatarSrc={avatarIsLoading ? null : avatar}
     >
       <Paper className={classes["calendar-container"]}>
         <FullCalendar
