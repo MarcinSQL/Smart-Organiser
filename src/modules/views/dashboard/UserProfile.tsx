@@ -38,10 +38,7 @@ export default function UserProfile() {
     avatarIsLoading,
   } = useUserProfile();
   return (
-    <Layout
-      name={isLoading ? null : data.name}
-      avatarSrc={avatarIsLoading ? null : avatar}
-    >
+    <Layout>
       <Toolbar />
       <Paper className={classes.container}>
         <UserProfileTitle onClick={handleModalOpen} />

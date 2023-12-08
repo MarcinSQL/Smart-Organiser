@@ -3,8 +3,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useNavigate } from "react-router-dom";
-import { MainPageLink } from "links";
+import { CalendarLink, MainPageLink } from "links";
 import classes from "./classes/Layout.module.css";
 
 export default function ListItems() {
@@ -13,6 +14,12 @@ export default function ListItems() {
   return (
     <React.Fragment>
       <ListItemButton onClick={() => navigate(MainPageLink)} className={classes["layout__navigation__list__item"]}>
+        <ListItemIcon className={classes["layout__navigation__list__item__icon"]}>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Strona główna" />
+      </ListItemButton>
+      <ListItemButton onClick={() => navigate(CalendarLink)} className={classes["layout__navigation__list__item"]}>
         <ListItemIcon className={classes["layout__navigation__list__item__icon"]}>
           <CalendarMonthIcon />
         </ListItemIcon>

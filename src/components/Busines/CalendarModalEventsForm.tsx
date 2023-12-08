@@ -25,11 +25,11 @@ interface IFormInput {
   type: string;
 }
 
-interface IMainPageModalEvents {
+interface ICalendarModalEvents {
   defaultStartDate: string;
 }
 
-export default function MainPageModalEvents(props: IMainPageModalEvents) {
+export default function CalendarModalEvents(props: ICalendarModalEvents) {
   const { defaultStartDate } = props;
 
   const mutation = useCreateEventMutation();

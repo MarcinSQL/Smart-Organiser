@@ -1,6 +1,6 @@
 export interface ILayout {
-  name: string;
-  avatarSrc?: string;
+  // name: string;
+  // avatarSrc?: string;
   children: React.ReactNode;
 }
 

@@ -1,10 +1,6 @@
 import { useState } from "react";
-import { useGetProfileAvatarQuery, useGetProfileDataQuery } from "./queries";
 
-export default function useMainPage() {
-  const { data, isLoading } = useGetProfileDataQuery();
-  const { data: avatar, isLoading: avatarIsLoading } =
-    useGetProfileAvatarQuery();
+export default function useCalendar() {
   const [showModal, setShowModal] = useState(false);
   const [eventData, setEventData] = useState("");
 
@@ -18,13 +14,9 @@ export default function useMainPage() {
   };
 
   return {
-    data,
-    isLoading,
     showModal,
     handleModalShow,
     eventData,
     handleModalClose,
-    avatar,
-    avatarIsLoading,
   };
 }

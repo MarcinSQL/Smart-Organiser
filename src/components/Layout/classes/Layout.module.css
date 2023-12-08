@@ -58,6 +58,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .layout__navigation__icon {
+  cursor: pointer;
   margin: 2rem;
 }
 
