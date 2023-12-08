@@ -38,6 +38,24 @@ body::-webkit-scrollbar-thumb {
   width: calc(100vw - 280px) !important;
 }
 
+.layout__header__skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: .5rem 0;
+}
+
+.layout__header__skeleton__avatar-icon {
+  width: 40px;
+  height: 40px !important;
+}
+
+.layout__header__skeleton__text {
+  width: 180px;
+  height: 40px !important;
+}
+
 .layout__header h1 {
   padding: 0 1rem;
 }
