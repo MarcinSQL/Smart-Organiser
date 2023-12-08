@@ -33,65 +33,69 @@ export default function UserProfile() {
     anchorEl,
     handleModalClick,
     data,
-    isLoading,
     avatar,
+    isError,
+    avatarIsError,
+    isLoading,
     avatarIsLoading,
   } = useUserProfile();
   return (
     <Layout>
       <Toolbar />
-      <Paper className={classes.container}>
-        <UserProfileTitle onClick={handleModalOpen} />
-        <Box className={classes["user-information"]}>
-          <UserProfileAvatar
-            img={img === "" ? (avatarIsLoading ? "" : avatar) : img}
-            onAvatarClose={onAvatarClose}
-            onCrop={onCrop}
-            onDialogClose={handleEditAvatarClose}
-            onSave={handleSaveImage}
-            open={editAvatarOpen}
-            onDialogOpen={handleEditAvatarOpen}
-            userName={isLoading ? null : data.name}
-          />
-          <UserProfileInput
-            title={`Imię i nazwisko: ${
-              isLoading ? "ERROR_DATA" : `${data.name} ${data.surname}`
-            }`}
-            id="editPersonalInformationBtn"
-            btnText="Zmień personalia"
-            onClick={handlePopoverClick}
-          />
-          <UserProfileInput
-            title="Hasło: ******"
-            id="editPasswordBtn"
-            btnText="Zmień hasło"
-            onClick={handlePopoverClick}
-          />
-        </Box>
+      {isLoading || avatarIsLoading ? null : (
+        <Paper className={classes.container}>
+          <UserProfileTitle onClick={handleModalOpen} />
+          <Box className={classes["user-information"]}>
+            <UserProfileAvatar
+              img={img === "" ? (avatarIsError ? "ERROR" : avatar) : img}
+              onAvatarClose={onAvatarClose}
+              onCrop={onCrop}
+              onDialogClose={handleEditAvatarClose}
+              onSave={handleSaveImage}
+              open={editAvatarOpen}
+              onDialogOpen={handleEditAvatarOpen}
+              userName={isError ? "ERROR" : data.name}
+            />
+            <UserProfileInput
+              title={`Imię i nazwisko: ${
+                isError ? "ERROR_DATA" : `${data.name} ${data.surname}`
+              }`}
+              id="editPersonalInformationBtn"
+              btnText="Zmień personalia"
+              onClick={handlePopoverClick}
+            />
+            <UserProfileInput
+              title="Hasło: ******"
+              id="editPasswordBtn"
+              btnText="Zmień hasło"
+              onClick={handlePopoverClick}
+            />
+          </Box>
 
-        <ModalTrueFalse
-          open={modalOpen}
-          onClose={handleModalClose}
-          title={"Czy napewno chcesz usunąć konto?"}
-          onClick={handleModalClick}
-        />
+          <ModalTrueFalse
+            open={modalOpen}
+            onClose={handleModalClose}
+            title={"Czy napewno chcesz usunąć konto?"}
+            onClick={handleModalClick}
+          />
 
-        {popoverId === "editPersonalInformationBtn" ? (
-          <UserProfileFormPersonalINformation
-            popoverId={popoverId}
-            open={popoverOpen}
-            anchorEl={anchorEl}
-            onClose={handlePopoverClose}
-          />
-        ) : popoverId === "editPasswordBtn" ? (
-          <UserProfileFormPassword
-            popoverId={popoverId}
-            open={popoverOpen}
-            anchorEl={anchorEl}
-            onClose={handlePopoverClose}
-          />
-        ) : null}
-      </Paper>
+          {popoverId === "editPersonalInformationBtn" ? (
+            <UserProfileFormPersonalINformation
+              popoverId={popoverId}
+              open={popoverOpen}
+              anchorEl={anchorEl}
+              onClose={handlePopoverClose}
+            />
+          ) : popoverId === "editPasswordBtn" ? (
+            <UserProfileFormPassword
+              popoverId={popoverId}
+              open={popoverOpen}
+              anchorEl={anchorEl}
+              onClose={handlePopoverClose}
+            />
+          ) : null}
+        </Paper>
+      )}
       {ctx.isError && <Toast message={ctx.message} />}
     </Layout>
   );
