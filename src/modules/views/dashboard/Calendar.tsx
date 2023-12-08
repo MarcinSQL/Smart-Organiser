@@ -5,7 +5,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import plLocale from "@fullcalendar/core/locales/pl";
-import { Paper, Skeleton } from "@mui/material";
+import { Paper } from "@mui/material";
 import classes from "./classes/Calendar.module.css";
 import ModalEvents from "components/Pure/CalendarModalEvents";
 
@@ -15,12 +15,6 @@ export default function Calendar() {
     handleModalClose,
     eventData,
     handleModalShow,
-    data,
-    isLoading,
-    isError,
-    avatar,
-    avatarIsLoading,
-    avatarIsError,
   } = useCalendar();
 
   return (

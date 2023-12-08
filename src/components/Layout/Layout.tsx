@@ -14,8 +14,7 @@ export default function Layout(props: ILayout) {
   return (
     <Box className={classes.layout}>
       <CssBaseline />
-      <LayoutHeader
-      />
+      <LayoutHeader />
       <LayoutNavigation />
       <LayoutContent children={props.children} />
     </Box>
