@@ -8,9 +8,12 @@ import { IEditAvatar } from "modules/types/dashboard/userProfile.types";
 import { useGetProfileAvatarQuery, useGetProfileDataQuery } from "./queries";
 
 export default function useUserProfile() {
-  const { data, isLoading } = useGetProfileDataQuery();
-  const { data: avatar, isLoading: avatarIsLoading } =
-    useGetProfileAvatarQuery();
+  const { data, isLoading, isError } = useGetProfileDataQuery();
+  const {
+    data: avatar,
+    isLoading: avatarIsLoading,
+    isError: avatarIsError,
+  } = useGetProfileAvatarQuery();
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [editAvatarOpen, setEditAvatarOpen] = useState(false);
@@ -88,8 +91,10 @@ export default function useUserProfile() {
     anchorEl,
     handleModalClick,
     data,
-    isLoading,
+    isError,
     avatar,
+    avatarIsError,
+    isLoading,
     avatarIsLoading,
   };
 }

@@ -5,8 +5,8 @@ export interface ILayout {
 }
 
 export interface ILayoutHeader {
-  name: string;
-  avatarSrc?: string;
+  // name: string;
+  // avatarSrc?: string;
 }
 
 export interface ILayoutContent {

@@ -10,8 +10,12 @@ import classes from "./classes/Calendar.module.css";
 import ModalEvents from "components/Pure/CalendarModalEvents";
 
 export default function Calendar() {
-  const { showModal, handleModalClose, eventData, handleModalShow } =
-    useCalendar();
+  const {
+    showModal,
+    handleModalClose,
+    eventData,
+    handleModalShow,
+  } = useCalendar();
 
   return (
     <Layout>
