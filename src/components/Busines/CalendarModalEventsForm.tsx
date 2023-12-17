@@ -8,6 +8,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  CircularProgress,
 } from "@mui/material";
 
 import TextInput from "components/UI/TextInput";
@@ -16,6 +17,7 @@ import classes from "../Pure/classes/ModalEvents.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
+import { useGetCalendarEventsQuery } from "modules/logic/dashboard/queries";
 
 interface IFormInput {
   startDate: string;
@@ -33,6 +35,8 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
   const { defaultStartDate } = props;
 
   const mutation = useCreateEventMutation();
+
+  const { isLoading } = useGetCalendarEventsQuery();
 
   let userSchema = yup.object().shape({
     title: yup.string().required("Tytuł jest wymagany"),
@@ -118,12 +122,13 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
         </RadioGroup>
       </FormControl>
       <Button
+        disabled={isLoading}
         type="submit"
         fullWidth
         variant="contained"
         className={classes["form__submit-btn"]}
       >
-        Stwórz
+        {isLoading ? <CircularProgress /> : "Stwórz"}
       </Button>
     </Box>
   );
