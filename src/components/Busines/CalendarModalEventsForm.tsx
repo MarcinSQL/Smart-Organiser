@@ -1,5 +1,5 @@
 import * as yup from "yup";
-
+import dayjs, { Dayjs } from "dayjs";
 import {
   Button,
   Box,
@@ -37,18 +37,19 @@ interface ICalendarModalEvents {
 
 export default function CalendarModalEvents(props: ICalendarModalEvents) {
   const { defaultStartDate } = props;
-
+  const now = dayjs();
+  now.locale("pl");
   const mutation = useCreateEventMutation();
 
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndTime] = useState();
+  const [startTime, setStartTime] = useState<Dayjs | null>(now);
+  const [endTime, setEndTime] = useState<Dayjs | null>(now.add(1, "hour"));
 
-  const handleStartTimeChange = (props: ChangeEvent<HTMLInputElement>) => {
-    console.log(props);
+  const handleStartTimeChange = (props: Dayjs | null) => {
+    setStartTime(props);
   };
 
-  const handleEndTimeChange = (props: ChangeEvent<HTMLInputElement>) => {
-    console.log(props);
+  const handleEndTimeChange = (props: Dayjs | null) => {
+    setEndTime(props);
   };
 
   const handleIsAllDayChange = (props: ChangeEvent<HTMLInputElement>) => {
@@ -75,6 +76,8 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (eventData) => {
+    console.log(eventData);
+
     mutation.mutate(eventData);
   };
 
@@ -133,22 +136,22 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
               onChange={(e) => {
                 console.log(e);
                 startTimeField.onChange;
-                handleStartTimeChange;
+                handleStartTimeChange(e);
               }}
-              value={"03:30 PM"}
+              value={startTime}
             />
           </Grid>
           <Grid item xs={6}>
             <TimePicker
-              label={"Godzina rozpoczęcia"}
+              label={"Godzina zakończenia"}
               ampm={false}
-              {...startTimeField}
+              {...endTimeField}
               onChange={(e) => {
                 console.log(e);
                 endTimeField.onChange;
-                handleEndTimeChange;
+                handleEndTimeChange(e);
               }}
-              value={"03:30 PM"}
+              value={endTime}
             />
           </Grid>
         </LocalizationProvider>
