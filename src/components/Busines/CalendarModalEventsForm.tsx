@@ -15,18 +15,18 @@ import TextInput from "components/UI/TextInput";
 import classes from "../Pure/classes/ModalEvents.module.css";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 
 interface IFormInput {
   title: string;
   day: string;
-  // isAllDay: boolean;
-  startTime: string;
-  endTime: string;
+  isAllDay?: boolean;
+  startTime?: string;
+  endTime?: string;
   eventType: string;
   note?: string;
 }
@@ -43,6 +43,7 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
 
   const [startTime, setStartTime] = useState<Dayjs | null>(now);
   const [endTime, setEndTime] = useState<Dayjs | null>(now.add(1, "hour"));
+  const [isAllDay, setIsAllDay] = useState(true);
 
   const handleStartTimeChange = (props: Dayjs | null) => {
     setStartTime(props);
@@ -52,8 +53,8 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
     setEndTime(props);
   };
 
-  const handleIsAllDayChange = (props: ChangeEvent<HTMLInputElement>) => {
-    console.log(props);
+  const handleIsAllDayChange = (props: boolean) => {
+    setIsAllDay(props);
   };
 
   let userSchema = yup.object().shape({
@@ -63,10 +64,8 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
       .required("Data rozpoczęcia wydarzenia jest wymagana")
       .default(defaultStartDate),
     isAllDay: yup.boolean(),
-    startTime: yup
-      .string()
-      .required("Data rozpoczęcia wydarzenia jest wymagana"),
-    endTime: yup.string().required("Data zakończenia wydarzenia jest wymagana"),
+    startTime: yup.string(),
+    endTime: yup.string(),
     eventType: yup.string().required("Typ jest wymagany"),
     note: yup.string(),
   });
@@ -76,14 +75,29 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (eventData) => {
-    console.log(eventData);
-
-    mutation.mutate(eventData);
+    if (isAllDay === true) {
+      console.log(eventData);
+      mutation.mutate(eventData);
+    } else {
+      const startTimeString = `${startTime?.get("hours")}:${startTime?.get(
+        "minutes"
+      )}`;
+      const endTimeString = `${endTime?.get("hours")}:${endTime?.get(
+        "minutes"
+      )}`;
+      eventData = {
+        ...eventData,
+        startTime: startTimeString,
+        endTime: endTimeString,
+      };
+      console.log(eventData);
+      mutation.mutate(eventData);
+    }
   };
 
   const startTimeField = register("startTime", { required: false });
   const endTimeField = register("endTime", { required: false });
-  // const isAllDayField = register("isAllDay", { required: true });
+  const isAllDayField = register("isAllDay", { required: true });
 
   return (
     <Box
@@ -98,72 +112,68 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
         label="Tytuł"
         {...register("title", { required: true })}
       />
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <TextInput
-            control={control}
-            required
-            type="date"
-            label="Data rozpoczęcia"
-            defaultValue={defaultStartDate}
-            {...register("day", { required: true })}
+      <FormControlLabel
+        label="Cały dzień:"
+        labelPlacement="start"
+        control={
+          <Checkbox
+            {...isAllDayField}
+            onChange={(e) => {
+              isAllDayField.onChange;
+              handleIsAllDayChange(e.target.checked);
+            }}
+            defaultChecked
           />
-        </Grid>
-        <Grid item xs={4}>
-          {/* <FormControlLabel
-            label="Cały dzień:"
-            control={
-              <Checkbox
-                {...isAllDayField}
-                onChange={(e) => {
-                  isAllDayField.onChange;
-                  handleIsAllDayChange;
-                }}
-                name={"isAllDay"}
-                defaultChecked
-              />
-            }
-          /> */}
-        </Grid>
-      </Grid>
+        }
+      />
       <Grid container spacing={2}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Grid item xs={6}>
-            <TimePicker
-              label={"Godzina rozpoczęcia"}
-              ampm={false}
-              {...startTimeField}
-              onChange={(e) => {
-                console.log(e);
-                startTimeField.onChange;
-                handleStartTimeChange(e);
-              }}
-              value={startTime}
+            <Controller
+              name="startTime"
+              control={control}
+              defaultValue=""
+              render={() => (
+                <>
+                  <TimePicker
+                    label={"Godzina rozpoczęcia"}
+                    ampm={false}
+                    {...startTimeField}
+                    onChange={(e) => {
+                      startTimeField.onChange;
+                      handleStartTimeChange(e);
+                    }}
+                    value={startTime}
+                    disabled={isAllDay ? true : false}
+                  />
+                </>
+              )}
             />
           </Grid>
           <Grid item xs={6}>
-            <TimePicker
-              label={"Godzina zakończenia"}
-              ampm={false}
-              {...endTimeField}
-              onChange={(e) => {
-                console.log(e);
-                endTimeField.onChange;
-                handleEndTimeChange(e);
-              }}
-              value={endTime}
+            <Controller
+              name="endTime"
+              control={control}
+              defaultValue=""
+              render={() => (
+                <>
+                  <TimePicker
+                    label={"Godzina zakończenia"}
+                    ampm={false}
+                    {...endTimeField}
+                    onChange={(e) => {
+                      endTimeField.onChange;
+                      handleEndTimeChange(e);
+                    }}
+                    value={endTime}
+                    disabled={isAllDay ? true : false}
+                  />
+                </>
+              )}
             />
           </Grid>
         </LocalizationProvider>
       </Grid>
-      <TextInput
-        control={control}
-        required
-        type="date"
-        label="Data zakończenia"
-        defaultValue={defaultStartDate}
-        {...register("endTime", { required: true })}
-      />
       <FormControl>
         <FormLabel id="event-type-label">Typ wydarzenia</FormLabel>
         <RadioGroup
