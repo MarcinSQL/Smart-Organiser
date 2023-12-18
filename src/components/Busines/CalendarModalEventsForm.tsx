@@ -11,19 +11,20 @@ import {
   Grid,
   Checkbox,
 } from "@mui/material";
-import { DesktopTimePicker } from "@mui/x-date-pickers/DesktopTimePicker";
 import TextInput from "components/UI/TextInput";
 import classes from "../Pure/classes/ModalEvents.module.css";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 
 interface IFormInput {
   title: string;
   day: string;
-  isAllDay: boolean;
+  // isAllDay: boolean;
   startTime: string;
   endTime: string;
   eventType: string;
@@ -39,10 +40,19 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
 
   const mutation = useCreateEventMutation();
 
-  const [currTime, setCurrTime] = useState(new Date().toLocaleTimeString());
+  const [startTime, setStartTime] = useState();
+  const [endTime, setEndTime] = useState();
 
-  const handleTimeChange = (props: string) => {
-    setCurrTime(props);
+  const handleStartTimeChange = (props: ChangeEvent<HTMLInputElement>) => {
+    console.log(props);
+  };
+
+  const handleEndTimeChange = (props: ChangeEvent<HTMLInputElement>) => {
+    console.log(props);
+  };
+
+  const handleIsAllDayChange = (props: ChangeEvent<HTMLInputElement>) => {
+    console.log(props);
   };
 
   let userSchema = yup.object().shape({
@@ -55,9 +65,7 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
     startTime: yup
       .string()
       .required("Data rozpoczęcia wydarzenia jest wymagana"),
-    endTime: yup
-      .string()
-      .required("Data zakończenia wydarzenia jest wymagana"),
+    endTime: yup.string().required("Data zakończenia wydarzenia jest wymagana"),
     eventType: yup.string().required("Typ jest wymagany"),
     note: yup.string(),
   });
@@ -69,6 +77,10 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
   const onSubmit: SubmitHandler<IFormInput> = (eventData) => {
     mutation.mutate(eventData);
   };
+
+  const startTimeField = register("startTime", { required: false });
+  const endTimeField = register("endTime", { required: false });
+  // const isAllDayField = register("isAllDay", { required: true });
 
   return (
     <Box
@@ -95,32 +107,51 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
           />
         </Grid>
         <Grid item xs={4}>
-          <FormControlLabel
+          {/* <FormControlLabel
             label="Cały dzień:"
-            control={<Checkbox defaultChecked />}
-            {...register("isAllDay", { required: false })}
-          />
+            control={
+              <Checkbox
+                {...isAllDayField}
+                onChange={(e) => {
+                  isAllDayField.onChange;
+                  handleIsAllDayChange;
+                }}
+                name={"isAllDay"}
+                defaultChecked
+              />
+            }
+          /> */}
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <DesktopTimePicker
-            label={"Godzina rozpoczęcia"}
-            ampm={false}
-            onChange={handleTimeChange}
-            value={currTime}
-            {...register("startTime", { required: false })}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <DesktopTimePicker
-            label={"Godzina rozpoczęcia"}
-            ampm={false}
-            onChange={handleTimeChange}
-            value={currTime}
-            {...register("endTime", { required: false })}
-          />
-        </Grid>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <Grid item xs={6}>
+            <TimePicker
+              label={"Godzina rozpoczęcia"}
+              ampm={false}
+              {...startTimeField}
+              onChange={(e) => {
+                console.log(e);
+                startTimeField.onChange;
+                handleStartTimeChange;
+              }}
+              value={"03:30 PM"}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TimePicker
+              label={"Godzina rozpoczęcia"}
+              ampm={false}
+              {...startTimeField}
+              onChange={(e) => {
+                console.log(e);
+                endTimeField.onChange;
+                handleEndTimeChange;
+              }}
+              value={"03:30 PM"}
+            />
+          </Grid>
+        </LocalizationProvider>
       </Grid>
       <TextInput
         control={control}
