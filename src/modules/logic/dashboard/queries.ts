@@ -1,6 +1,7 @@
+import { dashboardCalendarEvents } from "api/calendar.service";
 import { dashboardUserAvatar, dashboardUserProfile } from "api/user.service";
 import { useQuery } from "react-query";
-import { ProfileAvatar, ProfileData } from "utils/query-keys";
+import { CalendarEvents, ProfileAvatar, ProfileData } from "utils/query-keys";
 
 export function useGetProfileDataQuery() {
   return useQuery(ProfileData, dashboardUserProfile);
@@ -8,4 +9,8 @@ export function useGetProfileDataQuery() {
 
 export function useGetProfileAvatarQuery() {
   return useQuery(ProfileAvatar, dashboardUserAvatar);
+}
+
+export function useGetCalendarEventsQuery() {
+  return useQuery(CalendarEvents, dashboardCalendarEvents);
 }

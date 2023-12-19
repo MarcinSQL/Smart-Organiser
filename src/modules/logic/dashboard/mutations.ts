@@ -1,4 +1,4 @@
-import { dashboardCreateEvent } from "api/calendar.service";
+import { dashboardCreateCalendarEvent } from "api/calendar.service";
 import {
   dashboardDeleteUserProfile,
   dashboardEditAvatar,
@@ -82,7 +82,7 @@ export function useCreateEventMutation() {
   const navigate = useNavigate();
   return useMutation<unknown, unknown, IModalEventsForm>(
     (data) => {
-      return dashboardCreateEvent(data);
+      return dashboardCreateCalendarEvent(data);
     },
     {
       onSuccess: (response: any) => {
