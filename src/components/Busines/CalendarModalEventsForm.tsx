@@ -76,7 +76,6 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
 
   const onSubmit: SubmitHandler<IFormInput> = (eventData) => {
     if (isAllDay === true) {
-      console.log(eventData);
       mutation.mutate(eventData);
     } else {
       const startTimeString = `${startTime?.get("hours")}:${startTime?.get(
@@ -90,7 +89,6 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
         startTime: startTimeString,
         endTime: endTimeString,
       };
-      console.log(eventData);
       mutation.mutate(eventData);
     }
   };

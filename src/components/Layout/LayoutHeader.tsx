@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { ILayoutHeader } from "modules/types/dashboard/layout.types";
 import { SignInLink, UserProfileLink } from "links";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -24,7 +23,7 @@ import {
   useGetProfileDataQuery,
 } from "modules/logic/dashboard/queries";
 
-export default function LayoutHeader(props: ILayoutHeader) {
+export default function LayoutHeader() {
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useGetProfileDataQuery();
