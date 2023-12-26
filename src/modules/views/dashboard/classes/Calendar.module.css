@@ -2,7 +2,7 @@
   padding: 1rem;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
   .calendar-container {
     margin-top: 2rem;
   }
