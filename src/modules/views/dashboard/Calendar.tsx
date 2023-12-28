@@ -15,6 +15,8 @@ export default function Calendar() {
     handleModalClose,
     eventData,
     handleModalShow,
+    windowBreakpoint,
+    windowWidth,
   } = useCalendar();
 
   return (
@@ -23,11 +25,18 @@ export default function Calendar() {
         <FullCalendar
           locale={plLocale}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView={"dayGridMonth"}
+          initialView={
+            windowWidth <= windowBreakpoint ? "timeGridDay" : "dayGridMonth"
+          }
           headerToolbar={{
-            start: "prev,next today",
+            start: `${
+              windowWidth <= windowBreakpoint ? "prev,next" : "prev,next today"
+            }`,
             center: "title",
-            end: "dayGridMonth,timeGridWeek,timeGridDay",
+            end:
+              windowWidth <= windowBreakpoint
+                ? "today"
+                : "dayGridMonth,timeGridWeek,timeGridDay",
           }}
           contentHeight={460}
           events={{}}
