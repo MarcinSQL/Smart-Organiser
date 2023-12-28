@@ -5,8 +5,7 @@ export interface ILayout {
 }
 
 export interface ILayoutHeader {
-  // name: string;
-  // avatarSrc?: string;
+  mobiNav: (props: boolean) => void;
 }
 
 export interface ILayoutContent {

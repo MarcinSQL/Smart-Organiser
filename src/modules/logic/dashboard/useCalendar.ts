@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useCalendar() {
   const [showModal, setShowModal] = useState(false);
   const [eventData, setEventData] = useState("");
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const windowBreakpoint = 1000;
+
+  useEffect(() => {
+    window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
+  }, []);
 
   const handleModalClose = () => {
     setShowModal(false);
@@ -18,5 +24,7 @@ export default function useCalendar() {
     handleModalShow,
     eventData,
     handleModalClose,
+    windowBreakpoint,
+    windowWidth
   };
 }

@@ -7,7 +7,6 @@ import {
   Skeleton,
   Typography,
 } from "@mui/material";
-import SettingsIcon from "@mui/icons-material/Settings";
 import { ILayoutHeader } from "modules/types/dashboard/layout.types";
 import { SignInLink, UserProfileLink } from "links";
 import { useNavigate } from "react-router-dom";
@@ -15,8 +14,11 @@ import { useState } from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import SettingsIcon from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import HamburgerIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 import classes from "./classes/Layout.module.css";
 import {
@@ -38,6 +40,10 @@ export default function LayoutHeader(props: ILayoutHeader) {
 
   const handlePopoverClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleMobileNavigationOpen = () => {
+    props.mobiNav(true);
   };
 
   const handlePopoverClose = () => {
@@ -71,22 +77,32 @@ export default function LayoutHeader(props: ILayoutHeader) {
         </Box>
       ) : (
         <>
-          <IconButton onClick={() => navigate(UserProfileLink)}>
-            <Avatar
-              alt={isError ? "ERROR" : data.name}
-              src={avatarIsError ? "ERROR" : avatar}
+          <IconButton
+            onClick={handleMobileNavigationOpen}
+            className={classes["layout__header__mobi-nav-btn"]}
+          >
+            <HamburgerIcon
+              className={classes["layout__header__mobi-nav-icon"]}
             />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap>
-            Witaj {isError ? "ERROR" : data.name}
-          </Typography>
-          <IconButton
-            id="userManagment"
-            onClick={handlePopoverClick}
-            color="inherit"
-          >
-            <SettingsIcon />
-          </IconButton>
+          <Box className={classes["layout__header__user-info-container"]}>
+            <IconButton onClick={() => navigate(UserProfileLink)}>
+              <Avatar
+                alt={isError ? "ERROR" : data.name}
+                src={avatarIsError ? "ERROR" : avatar}
+              />
+            </IconButton>
+            <Typography component="h1" variant="h6" color="inherit" noWrap>
+              Witaj {isError ? "ERROR" : data.name}
+            </Typography>
+            <IconButton
+              id="userManagment"
+              onClick={handlePopoverClick}
+              color="inherit"
+            >
+              <SettingsIcon />
+            </IconButton>
+          </Box>
           {popoverId === "userManagment" ? (
             <Popover
               className={classes["layout__header__popover"]}
