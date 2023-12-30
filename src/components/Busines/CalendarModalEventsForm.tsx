@@ -8,6 +8,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  CircularProgress,
   Grid,
   Checkbox,
 } from "@mui/material";
@@ -20,6 +21,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
 import { useState } from "react";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
+import { useGetCalendarEventsQuery } from "modules/logic/dashboard/queries";
 
 interface IFormInput {
   title: string;
@@ -56,6 +58,8 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
   const handleIsAllDayChange = (props: boolean) => {
     setIsAllDay(props);
   };
+
+  const { isLoading } = useGetCalendarEventsQuery();
 
   let userSchema = yup.object().shape({
     title: yup.string().required("Tytuł jest wymagany"),
@@ -205,12 +209,13 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
         {...register("note", { required: false })}
       />
       <Button
+        disabled={isLoading}
         type="submit"
         fullWidth
         variant="contained"
         className={classes["form__submit-btn"]}
       >
-        Stwórz
+        {isLoading ? <CircularProgress /> : "Stwórz"}
       </Button>
     </Box>
   );

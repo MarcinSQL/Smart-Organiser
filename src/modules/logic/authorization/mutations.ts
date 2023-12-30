@@ -35,6 +35,7 @@ export function useLoginMutation() {
     {
       onSuccess: (response: any) => {
         localStorage.setItem("token", response.data.token);
+        ctx.isError = false;
         navigate(MainPageLink);
       },
       onError: (response: any) => {
