@@ -18,7 +18,6 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import HamburgerIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 
 import classes from "./classes/Layout.module.css";
 import {

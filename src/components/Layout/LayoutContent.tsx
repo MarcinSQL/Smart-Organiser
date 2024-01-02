@@ -1,6 +1,6 @@
 import { Container, Toolbar, Box, Skeleton } from "@mui/material";
 import Copyright from "../Copyright";
-import { ILayoutContent } from "modules/types/dashboard/layout.types";
+import { ILayout } from "modules/types/dashboard/layout.types";
 
 import classes from "./classes/Layout.module.css";
 import {
@@ -8,7 +8,7 @@ import {
   useGetProfileDataQuery,
 } from "modules/logic/dashboard/queries";
 
-export default function LayoutContent(props: ILayoutContent) {
+export default function LayoutContent(props: ILayout) {
   const { isLoading } = useGetProfileDataQuery();
   const { isLoading: avatarIsLoading } = useGetProfileAvatarQuery();
 
