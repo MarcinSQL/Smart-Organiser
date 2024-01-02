@@ -10,7 +10,7 @@ export const dashboardCreateCalendarEvent = (event: IModalEventsForm) => {
 };
 
 export const dashboardCalendarEvents = () => {
-  return service.get(`${baseURL}event/`).then((response) => {
+  return service.get(`${baseURL}events/`).then((response) => {
     return Promise.resolve(response.data);
   });
 };
