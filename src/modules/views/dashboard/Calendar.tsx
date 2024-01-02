@@ -8,6 +8,7 @@ import plLocale from "@fullcalendar/core/locales/pl";
 import { Paper } from "@mui/material";
 import classes from "./classes/Calendar.module.css";
 import ModalEvents from "components/Pure/CalendarModalEvents";
+import useGetCalendarEvents from "modules/logic/dashboard/useGetCalendarEvents";
 
 export default function Calendar() {
   const {
@@ -18,6 +19,8 @@ export default function Calendar() {
     windowBreakpoint,
     windowWidth,
   } = useCalendar();
+
+  const { eventsList } = useGetCalendarEvents();
 
   return (
     <Layout>
@@ -39,7 +42,7 @@ export default function Calendar() {
                 : "dayGridMonth,timeGridWeek,timeGridDay",
           }}
           contentHeight={460}
-          events={{}}
+          events={eventsList}
           nowIndicator={true}
           selectable={true}
           editable={true}
