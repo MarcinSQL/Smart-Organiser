@@ -10,12 +10,12 @@ export default function useGetCalendarEvents() {
             id: element.id,
             title: element.title,
             allDay: element.isAllDay,
-            start: element.startTime ? element.day + " " + element.startTime : element.day,
-            end: element.endTime ? element.day + " " + element.endTime : element.day,
+            start: element.startTime ? (element.day).slice(0,-8) + element.startTime : (element.day).slice(0,-8) + "00:00:00",
+            end: element.endTime ? (element.day).slice(0,-8) + element.endTime : (element.day).slice(0,-8) + "00:00:00",
             color: element.eventType === "private" ? "#1976d2" : "orange"
         };
         eventsList.push(event);
     });
-
+    
     return { eventsList };
 }

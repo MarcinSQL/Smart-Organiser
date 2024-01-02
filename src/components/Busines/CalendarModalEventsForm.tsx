@@ -82,12 +82,8 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
     if (isAllDay === true) {
       mutation.mutate(eventData);
     } else {
-      const startTimeString = `${startTime?.get("hours")}:${startTime?.get(
-        "minutes"
-      )}`;
-      const endTimeString = `${endTime?.get("hours")}:${endTime?.get(
-        "minutes"
-      )}`;
+      const startTimeString = `${startTime?.format("HH")}:${startTime?.format("MM")}`;
+      const endTimeString = `${endTime?.format("HH")}:${endTime?.format("MM")}`;
       eventData = {
         ...eventData,
         startTime: startTimeString,
