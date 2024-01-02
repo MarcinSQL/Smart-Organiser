@@ -26,4 +26,5 @@ export interface IEventsList {
   start: string;
   end: string;
   color: string;
+  note?: string;
 }

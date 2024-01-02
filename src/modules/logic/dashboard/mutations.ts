@@ -5,7 +5,7 @@ import {
   dashboardEditPassword,
   dashboardEditPersonalInformation,
 } from "api/user.service";
-import { MainPageLink } from "links";
+import { CalendarLink } from "links";
 import { IModalEventsForm } from "modules/types/dashboard/calendar.types";
 import {
   IDeleteUserProfile,
@@ -79,14 +79,13 @@ export function useEditPasswordMutation() {
 
 export function useCreateEventMutation() {
   const ctx = useContext(AuthContext);
-  const navigate = useNavigate();
   return useMutation<unknown, unknown, IModalEventsForm>(
     (data) => {
       return dashboardCreateCalendarEvent(data);
     },
     {
       onSuccess: (response: any) => {
-        navigate(MainPageLink);
+        window.location.reload();
       },
       onError: (response: any) => {
         ctx.isError = true;
