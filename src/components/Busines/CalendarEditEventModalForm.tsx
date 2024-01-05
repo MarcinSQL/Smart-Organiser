@@ -210,7 +210,7 @@ export default function CalendarEditEventModalForm(
         <FormLabel id="event-type-label">Typ wydarzenia</FormLabel>
         <RadioGroup
           row
-          defaultValue="private"
+          defaultValue={eventData.eventType}
           aria-labelledby="event-type-label"
           className={classes["form__radio-container"]}
         >
@@ -236,6 +236,7 @@ export default function CalendarEditEventModalForm(
         type="text"
         multiline
         rows={4}
+        defaultValue={eventData.note}
         {...register("note", { required: false })}
       />
       <Button
@@ -245,7 +246,7 @@ export default function CalendarEditEventModalForm(
         variant="contained"
         className={classes["form__submit-btn"]}
       >
-        {isLoading ? <CircularProgress /> : "Stwórz"}
+        {isLoading ? <CircularProgress /> : "Edytuj"}
       </Button>
     </Box>
   );
