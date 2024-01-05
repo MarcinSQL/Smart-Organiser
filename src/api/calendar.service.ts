@@ -1,5 +1,8 @@
 import service from "utils/axios";
-import { IModalEventsForm } from "modules/types/dashboard/calendar.types";
+import {
+  IModalEditEventForm,
+  IModalEventsForm,
+} from "modules/types/dashboard/calendar.types";
 
 const baseURL = "/calendar/";
 
@@ -9,7 +12,7 @@ export const dashboardCreateCalendarEvent = (event: IModalEventsForm) => {
   });
 };
 
-export const dashboardEditCalendarEvent = (event: IModalEventsForm) => {
+export const dashboardEditCalendarEvent = (event: IModalEditEventForm) => {
   return service.put(`${baseURL}event/`, event).then((response) => {
     return Promise.resolve(response);
   });

@@ -24,17 +24,19 @@ import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { useGetCalendarEventsQuery } from "modules/logic/dashboard/queries";
 
 interface IFormInput {
+  id: string;
   title: string;
   day: string;
   isAllDay: boolean;
   startTime: string;
   endTime: string;
   eventType: string;
-  note: string;
+  note?: string;
 }
 
 interface ICalendarEditEventModalForm {
   eventData: {
+    id: string;
     title: string;
     day: string;
     isAllDay: boolean;
@@ -49,7 +51,6 @@ export default function CalendarEditEventModalForm(
   props: ICalendarEditEventModalForm
 ) {
   const { eventData } = props;
-  console.log(eventData);
 
   const now = dayjs();
   now.locale("pl");
@@ -87,6 +88,7 @@ export default function CalendarEditEventModalForm(
   const { isLoading } = useGetCalendarEventsQuery();
 
   let userSchema = yup.object().shape({
+    id: yup.string().default(eventData.id),
     title: yup
       .string()
       .required("Tytuł jest wymagany")
@@ -98,11 +100,8 @@ export default function CalendarEditEventModalForm(
     isAllDay: yup.boolean().default(eventData.isAllDay),
     startTime: yup.string().default(eventData.startTime),
     endTime: yup.string().default(eventData.endTime),
-    eventType: yup
-      .string()
-      .required("Typ jest wymagany")
-      .default(eventData.eventType),
-    note: yup.string().default(eventData.note),
+    eventType: yup.string().required("Typ jest wymagany"),
+    note: yup.string(),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
@@ -150,11 +149,11 @@ export default function CalendarEditEventModalForm(
         control={
           <Checkbox
             {...isAllDayField}
+            defaultChecked={eventData.isAllDay}
             onChange={(e) => {
               isAllDayField.onChange;
               handleIsAllDayChange(e.target.checked);
             }}
-            defaultChecked
           />
         }
       />

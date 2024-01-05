@@ -2,10 +2,7 @@ import { Button, Box, Modal, Typography } from "@mui/material";
 import classes from "./classes/ModalEvents.module.css";
 import CalendarEditEventModalForm from "components/Busines/CalendarEditEventModalForm";
 import { useGetCalendarEventsQuery } from "modules/logic/dashboard/queries";
-import {
-  IModalEventsForm,
-  IRawEvent,
-} from "modules/types/dashboard/calendar.types";
+import { IRawEvent } from "modules/types/dashboard/calendar.types";
 
 interface IModalEvents {
   open: boolean;
@@ -19,6 +16,7 @@ export default function ModalEditEvent(props: IModalEvents) {
   const { data } = useGetCalendarEventsQuery();
 
   let eventData = {
+    id: "",
     title: "",
     day: "",
     isAllDay: true,
@@ -31,6 +29,7 @@ export default function ModalEditEvent(props: IModalEvents) {
   data?.forEach((element: IRawEvent) => {
     if (element.id === eventId) {
       eventData = {
+        id: element.id,
         title: element.title,
         day: element.day,
         isAllDay: element.isAllDay,

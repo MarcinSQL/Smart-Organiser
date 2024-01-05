@@ -8,7 +8,10 @@ import {
   dashboardEditPassword,
   dashboardEditPersonalInformation,
 } from "api/user.service";
-import { IModalEventsForm } from "modules/types/dashboard/calendar.types";
+import {
+  IModalEditEventForm,
+  IModalEventsForm,
+} from "modules/types/dashboard/calendar.types";
 import {
   IDeleteUserProfile,
   IEditAvatar,
@@ -101,7 +104,7 @@ export function useCreateEventMutation() {
 
 export function useEditEventMutation() {
   const ctx = useContext(AuthContext);
-  return useMutation<unknown, unknown, IModalEventsForm>(
+  return useMutation<unknown, unknown, IModalEditEventForm>(
     (data) => {
       return dashboardEditCalendarEvent(data);
     },

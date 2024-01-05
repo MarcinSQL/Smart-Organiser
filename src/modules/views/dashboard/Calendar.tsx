@@ -22,7 +22,7 @@ export default function Calendar() {
     handleEventClick,
     showEditEventModal,
     handleEditEventModalClose,
-    eventId
+    eventId,
   } = useCalendar();
 
   const { eventsList } = useGetCalendarEvents();
@@ -63,7 +63,12 @@ export default function Calendar() {
           title={"Dodaj nowe wydarzenie"}
           defaultStartDate={eventData}
         />
-        <ModalEditEvent open={showEditEventModal} onClose={handleEditEventModalClose} title={"Edytuj wydarzenie"} eventId={eventId} />
+        <ModalEditEvent
+          open={showEditEventModal}
+          onClose={handleEditEventModalClose}
+          title={"Edytuj wydarzenie"}
+          eventId={eventId}
+        />
       </Paper>
     </Layout>
   );

@@ -23,7 +23,6 @@ export default function useCalendar() {
   };
 
   const handleEventClick = (arg: { event: EventApi; el: HTMLElement }) => {
-    console.log(arg.event);
     setShowEditEventModal(true);
     setEventId(arg.event.id);
   };
