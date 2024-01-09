@@ -9,10 +9,11 @@ interface IModalEvents {
   onClose: any;
   title: string;
   eventId: string;
+  deleteModalBtnOnOpen: () => void;
 }
 
 export default function ModalEditEvent(props: IModalEvents) {
-  const { open, onClose, title, eventId } = props;
+  const { open, onClose, title, eventId, deleteModalBtnOnOpen } = props;
   const { data } = useGetCalendarEventsQuery();
 
   let eventData = {
@@ -54,7 +55,10 @@ export default function ModalEditEvent(props: IModalEvents) {
         <Typography component="h2" variant="h6">
           {title}
         </Typography>
-        <CalendarEditEventModalForm eventData={eventData} />
+        <CalendarEditEventModalForm
+          eventData={eventData}
+          deleteModalBtnOnOpen={deleteModalBtnOnOpen}
+        />
       </Box>
     </Modal>
   );

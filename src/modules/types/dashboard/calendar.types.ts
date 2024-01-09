@@ -39,3 +39,7 @@ export interface IEventsList {
   color: string;
   note?: string;
 }
+
+export interface IDeleteEvent{
+  id: string;
+}

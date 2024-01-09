@@ -1,17 +1,32 @@
 import { EventApi } from "@fullcalendar/core";
 import { useEffect, useState } from "react";
+import { useDeleteEventMutation } from "./mutations";
 
 export default function useCalendar() {
   const [showModal, setShowModal] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [showEditEventModal, setShowEditEventModal] = useState(false);
   const [eventId, setEventId] = useState("");
   const [eventData, setEventData] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const windowBreakpoint = 1000;
+  const mutation = useDeleteEventMutation();
 
   useEffect(() => {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
   }, []);
+
+  const handleDeleteModalOpen = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteModalClose = () => {
+    setDeleteModalOpen(false);
+  };
+
+  const handleDeleteModalOnClick = () => {
+    mutation.mutate({ id: eventId });
+  };
 
   const handleModalClose = () => {
     setShowModal(false);
@@ -42,5 +57,9 @@ export default function useCalendar() {
     showEditEventModal,
     handleEditEventModalClose,
     eventId,
+    handleDeleteModalOpen,
+    deleteModalOpen,
+    handleDeleteModalClose,
+    handleDeleteModalOnClick,
   };
 }

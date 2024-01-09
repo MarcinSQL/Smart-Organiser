@@ -45,12 +45,13 @@ interface ICalendarEditEventModalForm {
     eventType: string;
     note: string;
   };
+  deleteModalBtnOnOpen: () => void;
 }
 
 export default function CalendarEditEventModalForm(
   props: ICalendarEditEventModalForm
 ) {
-  const { eventData } = props;
+  const { eventData, deleteModalBtnOnOpen } = props;
 
   const now = dayjs();
   now.locale("pl");
@@ -246,6 +247,7 @@ export default function CalendarEditEventModalForm(
           variant="contained"
           color="error"
           className={classes["form__remove-btn"]}
+          onClick={deleteModalBtnOnOpen}
         >
           {isLoading ? <CircularProgress /> : "Usuń"}
         </Button>
