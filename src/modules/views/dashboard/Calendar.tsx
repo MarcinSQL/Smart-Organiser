@@ -9,6 +9,7 @@ import { Paper } from "@mui/material";
 import classes from "./classes/Calendar.module.css";
 import ModalEvents from "components/Pure/CalendarModalEvents";
 import useGetCalendarEvents from "modules/logic/dashboard/useGetCalendarEvents";
+import ModalEditEvent from "components/Pure/CalendarModalEditEvent";
 
 export default function Calendar() {
   const {
@@ -18,6 +19,10 @@ export default function Calendar() {
     handleModalShow,
     windowBreakpoint,
     windowWidth,
+    handleEventClick,
+    showEditEventModal,
+    handleEditEventModalClose,
+    eventId,
   } = useCalendar();
 
   const { eventsList } = useGetCalendarEvents();
@@ -50,12 +55,19 @@ export default function Calendar() {
           dateClick={(data) => {
             handleModalShow(data.dateStr);
           }}
+          eventClick={handleEventClick}
         />
         <ModalEvents
           open={showModal}
           onClose={handleModalClose}
           title={"Dodaj nowe wydarzenie"}
           defaultStartDate={eventData}
+        />
+        <ModalEditEvent
+          open={showEditEventModal}
+          onClose={handleEditEventModalClose}
+          title={"Edytuj wydarzenie"}
+          eventId={eventId}
         />
       </Paper>
     </Layout>

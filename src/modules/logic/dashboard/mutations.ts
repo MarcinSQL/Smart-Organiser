@@ -1,12 +1,17 @@
-import { dashboardCreateCalendarEvent } from "api/calendar.service";
+import {
+  dashboardCreateCalendarEvent,
+  dashboardEditCalendarEvent,
+} from "api/calendar.service";
 import {
   dashboardDeleteUserProfile,
   dashboardEditAvatar,
   dashboardEditPassword,
   dashboardEditPersonalInformation,
 } from "api/user.service";
-import { CalendarLink } from "links";
-import { IModalEventsForm } from "modules/types/dashboard/calendar.types";
+import {
+  IModalEditEventForm,
+  IModalEventsForm,
+} from "modules/types/dashboard/calendar.types";
 import {
   IDeleteUserProfile,
   IEditAvatar,
@@ -15,7 +20,6 @@ import {
 } from "modules/types/dashboard/userProfile.types";
 import { useContext } from "react";
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
 import AuthContext from "store/auth-context";
 
 export function useEditAvatarMutation() {
@@ -84,7 +88,28 @@ export function useCreateEventMutation() {
       return dashboardCreateCalendarEvent(data);
     },
     {
-      onSuccess: (response: any) => {
+      onSuccess: () => {
+        window.location.reload();
+      },
+      onError: (response: any) => {
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
+        if (errorMessage === "MESSAGE_NOT_SENT")
+          ctx.message = "Żądanie nie zostało wysłane.";
+        else ctx.message = "Błąd nie został rozpoznany.";
+      },
+    }
+  );
+}
+
+export function useEditEventMutation() {
+  const ctx = useContext(AuthContext);
+  return useMutation<unknown, unknown, IModalEditEventForm>(
+    (data) => {
+      return dashboardEditCalendarEvent(data);
+    },
+    {
+      onSuccess: () => {
         window.location.reload();
       },
       onError: (response: any) => {
