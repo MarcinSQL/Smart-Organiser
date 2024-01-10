@@ -1,5 +1,6 @@
 import {
   dashboardCreateCalendarEvent,
+  dashboardDeleteCalendarEvent,
   dashboardEditCalendarEvent,
 } from "api/calendar.service";
 import {
@@ -9,6 +10,7 @@ import {
   dashboardEditPersonalInformation,
 } from "api/user.service";
 import {
+  IDeleteEvent,
   IModalEditEventForm,
   IModalEventsForm,
 } from "modules/types/dashboard/calendar.types";
@@ -107,6 +109,27 @@ export function useEditEventMutation() {
   return useMutation<unknown, unknown, IModalEditEventForm>(
     (data) => {
       return dashboardEditCalendarEvent(data);
+    },
+    {
+      onSuccess: () => {
+        window.location.reload();
+      },
+      onError: (response: any) => {
+        ctx.isError = true;
+        const errorMessage = response.response.data.errorCode;
+        if (errorMessage === "MESSAGE_NOT_SENT")
+          ctx.message = "Żądanie nie zostało wysłane.";
+        else ctx.message = "Błąd nie został rozpoznany.";
+      },
+    }
+  );
+}
+
+export function useDeleteEventMutation() {
+  const ctx = useContext(AuthContext);
+  return useMutation<unknown, unknown, IDeleteEvent>(
+    (data) => {
+      return dashboardDeleteCalendarEvent(data);
     },
     {
       onSuccess: () => {

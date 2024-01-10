@@ -45,12 +45,13 @@ interface ICalendarEditEventModalForm {
     eventType: string;
     note: string;
   };
+  deleteModalBtnOnOpen: () => void;
 }
 
 export default function CalendarEditEventModalForm(
   props: ICalendarEditEventModalForm
 ) {
-  const { eventData } = props;
+  const { eventData, deleteModalBtnOnOpen } = props;
 
   const now = dayjs();
   now.locale("pl");
@@ -238,15 +239,28 @@ export default function CalendarEditEventModalForm(
         defaultValue={eventData.note}
         {...register("note", { required: false })}
       />
-      <Button
-        disabled={isLoading}
-        type="submit"
-        fullWidth
-        variant="contained"
-        className={classes["form__submit-btn"]}
-      >
-        {isLoading ? <CircularProgress /> : "Edytuj"}
-      </Button>
+      <Box className={classes["form__control-btn-container"]}>
+        <Button
+          disabled={isLoading}
+          type="button"
+          fullWidth
+          variant="contained"
+          color="error"
+          className={classes["form__remove-btn"]}
+          onClick={deleteModalBtnOnOpen}
+        >
+          {isLoading ? <CircularProgress /> : "Usuń"}
+        </Button>
+        <Button
+          disabled={isLoading}
+          type="submit"
+          fullWidth
+          variant="contained"
+          className={classes["form__submit-btn"]}
+        >
+          {isLoading ? <CircularProgress /> : "Edytuj"}
+        </Button>
+      </Box>
     </Box>
   );
 }

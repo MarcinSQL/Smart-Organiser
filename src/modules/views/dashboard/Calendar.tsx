@@ -10,6 +10,7 @@ import classes from "./classes/Calendar.module.css";
 import ModalEvents from "components/Pure/CalendarModalEvents";
 import useGetCalendarEvents from "modules/logic/dashboard/useGetCalendarEvents";
 import ModalEditEvent from "components/Pure/CalendarModalEditEvent";
+import ModalTrueFalse from "components/UI/ModalTrueFalse";
 
 export default function Calendar() {
   const {
@@ -23,6 +24,10 @@ export default function Calendar() {
     showEditEventModal,
     handleEditEventModalClose,
     eventId,
+    handleDeleteModalClose,
+    handleDeleteModalOpen,
+    deleteModalOpen,
+    handleDeleteModalOnClick,
   } = useCalendar();
 
   const { eventsList } = useGetCalendarEvents();
@@ -68,6 +73,13 @@ export default function Calendar() {
           onClose={handleEditEventModalClose}
           title={"Edytuj wydarzenie"}
           eventId={eventId}
+          deleteModalBtnOnOpen={handleDeleteModalOpen}
+        />
+        <ModalTrueFalse
+          title="Czy napewno chcesz usunąć zdarzenie?"
+          onClose={handleDeleteModalClose}
+          onClick={handleDeleteModalOnClick}
+          open={deleteModalOpen}
         />
       </Paper>
     </Layout>

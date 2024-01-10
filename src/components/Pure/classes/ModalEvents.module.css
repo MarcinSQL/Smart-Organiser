@@ -30,6 +30,16 @@
   margin-top: 1.5rem !important;
 }
 
+.form__remove-btn {
+  margin-top: 1.5rem !important;
+  width: 50% !important;
+}
+
+.form__control-btn-container{
+  display: flex;
+  gap: 1rem;
+}
+
 .modal__btn-container {
   display: flex !important;
   justify-content: space-around;
