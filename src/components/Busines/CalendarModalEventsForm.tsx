@@ -82,13 +82,18 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
     if (isAllDay === true) {
       mutation.mutate(eventData);
     } else {
-      const startTimeString = `${startTime?.format("HH")}:${startTime?.format("MM")}`;
-      const endTimeString = `${endTime?.format("HH")}:${endTime?.format("MM")}`;
+      const startTimeString = `${startTime?.format("HH")}:${startTime?.format(
+        "mm"
+      )}`;
+
+      const endTimeString = `${endTime?.format("HH")}:${endTime?.format("mm")}`;
+      
       eventData = {
         ...eventData,
         startTime: startTimeString,
         endTime: endTimeString,
       };
+
       mutation.mutate(eventData);
     }
   };
@@ -117,7 +122,7 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
           <Checkbox
             {...isAllDayField}
             onChange={(e) => {
-              isAllDayField.onChange;
+              isAllDayField.onChange(e);
               handleIsAllDayChange(e.target.checked);
             }}
             defaultChecked
@@ -138,7 +143,6 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
                     ampm={false}
                     {...startTimeField}
                     onChange={(e) => {
-                      startTimeField.onChange;
                       handleStartTimeChange(e);
                     }}
                     value={startTime}
@@ -160,7 +164,6 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
                     ampm={false}
                     {...endTimeField}
                     onChange={(e) => {
-                      endTimeField.onChange;
                       handleEndTimeChange(e);
                     }}
                     value={endTime}

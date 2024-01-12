@@ -114,14 +114,16 @@ export default function CalendarEditEventModalForm(
       mutation.mutate(editedEvent);
     } else {
       const startTimeString = `${startTime?.format("HH")}:${startTime?.format(
-        "MM"
+        "mm"
       )}`;
-      const endTimeString = `${endTime?.format("HH")}:${endTime?.format("MM")}`;
+
+      const endTimeString = `${endTime?.format("HH")}:${endTime?.format("mm")}`;
       editedEvent = {
         ...editedEvent,
         startTime: startTimeString,
         endTime: endTimeString,
       };
+
       mutation.mutate(editedEvent);
     }
   };
@@ -152,7 +154,7 @@ export default function CalendarEditEventModalForm(
             {...isAllDayField}
             defaultChecked={eventData.isAllDay}
             onChange={(e) => {
-              isAllDayField.onChange;
+              isAllDayField.onChange(e);
               handleIsAllDayChange(e.target.checked);
             }}
           />
@@ -172,7 +174,6 @@ export default function CalendarEditEventModalForm(
                     ampm={false}
                     {...startTimeField}
                     onChange={(e) => {
-                      startTimeField.onChange;
                       handleStartTimeChange(e);
                     }}
                     value={startTime}
@@ -194,7 +195,6 @@ export default function CalendarEditEventModalForm(
                     ampm={false}
                     {...endTimeField}
                     onChange={(e) => {
-                      endTimeField.onChange;
                       handleEndTimeChange(e);
                     }}
                     value={endTime}
