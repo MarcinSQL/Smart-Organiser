@@ -9,9 +9,13 @@ const baseURL = "/calendar/";
 
 export const dashboardDeleteCalendarEvent = (eventId: IDeleteEvent) => {
   let { id } = eventId;
-  return service.delete(`${baseURL}event/${id}`).then((response) => {
-    return Promise.resolve(response);
-  });
+  return service
+    .delete(`${baseURL}event/`, {
+      data: { id },
+    })
+    .then((response) => {
+      return Promise.resolve(response);
+    });
 };
 
 export const dashboardCreateCalendarEvent = (event: IModalEventsForm) => {
