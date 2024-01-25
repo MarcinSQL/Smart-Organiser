@@ -60,7 +60,6 @@ export default function CalendarEditEventModalForm(
 
   if (mutation.isSuccess) {
     mutationOnSuccess();
-    console.log(mutation.status);
   }
 
   const [startTime, setStartTime] = useState<Dayjs | null>(
