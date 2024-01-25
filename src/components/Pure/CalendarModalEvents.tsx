@@ -4,7 +4,7 @@ import CalendarModalEvents from "components/Busines/CalendarModalEventsForm";
 
 interface IModalEvents {
   open: boolean;
-  onClose: any;
+  onClose: () => void;
   title: string;
   defaultStartDate: string;
 }
@@ -25,7 +25,10 @@ export default function ModalEvents(props: IModalEvents) {
         <Typography component="h2" variant="h6">
           {title}
         </Typography>
-        <CalendarModalEvents defaultStartDate={defaultStartDate} />
+        <CalendarModalEvents
+          defaultStartDate={defaultStartDate}
+          mutationOnSuccess={onClose}
+        />
       </Box>
     </Modal>
   );

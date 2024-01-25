@@ -35,10 +35,11 @@ interface IFormInput {
 
 interface ICalendarModalEvents {
   defaultStartDate: string;
+  mutationOnSuccess: () => void;
 }
 
 export default function CalendarModalEvents(props: ICalendarModalEvents) {
-  const { defaultStartDate } = props;
+  const { defaultStartDate, mutationOnSuccess } = props;
   const now = dayjs();
   now.locale("pl");
   const mutation = useCreateEventMutation();
@@ -50,6 +51,10 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
   const handleStartTimeChange = (props: Dayjs | null) => {
     setStartTime(props);
   };
+
+  if (mutation.isSuccess) {
+    mutationOnSuccess();
+  }
 
   const handleEndTimeChange = (props: Dayjs | null) => {
     setEndTime(props);
@@ -87,7 +92,7 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
       )}`;
 
       const endTimeString = `${endTime?.format("HH")}:${endTime?.format("mm")}`;
-      
+
       eventData = {
         ...eventData,
         startTime: startTimeString,
