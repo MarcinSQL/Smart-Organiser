@@ -6,7 +6,7 @@ import { IRawEvent } from "modules/types/dashboard/calendar.types";
 
 interface IModalEvents {
   open: boolean;
-  onClose: any;
+  onClose: () => void;
   title: string;
   eventId: string;
   deleteModalBtnOnOpen: () => void;
@@ -58,6 +58,7 @@ export default function ModalEditEvent(props: IModalEvents) {
         <CalendarEditEventModalForm
           eventData={eventData}
           deleteModalBtnOnOpen={deleteModalBtnOnOpen}
+          mutationOnSuccess={onClose}
         />
       </Box>
     </Modal>

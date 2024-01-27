@@ -21,8 +21,9 @@ import {
   IEditPersonalInformation,
 } from "modules/types/dashboard/userProfile.types";
 import { useContext } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import AuthContext from "store/auth-context";
+import { CalendarEvents } from "utils/query-keys";
 
 export function useEditAvatarMutation() {
   const ctx = useContext(AuthContext);
@@ -85,13 +86,14 @@ export function useEditPasswordMutation() {
 
 export function useCreateEventMutation() {
   const ctx = useContext(AuthContext);
+  const queryClient = useQueryClient();
   return useMutation<unknown, unknown, IModalEventsForm>(
     (data) => {
       return dashboardCreateCalendarEvent(data);
     },
     {
       onSuccess: () => {
-        window.location.reload();
+        queryClient.refetchQueries(CalendarEvents);
       },
       onError: (response: any) => {
         ctx.isError = true;
@@ -106,13 +108,14 @@ export function useCreateEventMutation() {
 
 export function useEditEventMutation() {
   const ctx = useContext(AuthContext);
+  const queryClient = useQueryClient();
   return useMutation<unknown, unknown, IModalEditEventForm>(
     (data) => {
       return dashboardEditCalendarEvent(data);
     },
     {
       onSuccess: () => {
-        window.location.reload();
+        queryClient.refetchQueries(CalendarEvents);
       },
       onError: (response: any) => {
         ctx.isError = true;
@@ -127,13 +130,14 @@ export function useEditEventMutation() {
 
 export function useDeleteEventMutation() {
   const ctx = useContext(AuthContext);
+  const queryClient = useQueryClient();
   return useMutation<unknown, unknown, IDeleteEvent>(
     (data) => {
       return dashboardDeleteCalendarEvent(data);
     },
     {
       onSuccess: () => {
-        window.location.reload();
+        queryClient.refetchQueries(CalendarEvents);
       },
       onError: (response: any) => {
         ctx.isError = true;

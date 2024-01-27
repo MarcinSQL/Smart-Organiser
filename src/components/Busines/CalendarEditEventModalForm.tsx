@@ -46,16 +46,21 @@ interface ICalendarEditEventModalForm {
     note: string;
   };
   deleteModalBtnOnOpen: () => void;
+  mutationOnSuccess: () => void;
 }
 
 export default function CalendarEditEventModalForm(
   props: ICalendarEditEventModalForm
 ) {
-  const { eventData, deleteModalBtnOnOpen } = props;
-
+  const { eventData, deleteModalBtnOnOpen, mutationOnSuccess } = props;
+  const { isLoading } = useGetCalendarEventsQuery();
   const now = dayjs();
   now.locale("pl");
   const mutation = useEditEventMutation();
+
+  if (mutation.isSuccess) {
+    mutationOnSuccess();
+  }
 
   const [startTime, setStartTime] = useState<Dayjs | null>(
     eventData.isAllDay === false
@@ -86,8 +91,6 @@ export default function CalendarEditEventModalForm(
     setIsAllDay(props);
   };
 
-  const { isLoading } = useGetCalendarEventsQuery();
-
   let userSchema = yup.object().shape({
     id: yup.string().default(eventData.id),
     title: yup
@@ -99,8 +102,8 @@ export default function CalendarEditEventModalForm(
       .required("Data rozpoczęcia wydarzenia jest wymagana")
       .default(eventData.day),
     isAllDay: yup.boolean().default(eventData.isAllDay),
-    startTime: yup.string().default(eventData.startTime),
-    endTime: yup.string().default(eventData.endTime),
+    startTime: yup.string().default(eventData.startTime ?? "00:00"),
+    endTime: yup.string().default(eventData.endTime ?? "00:00"),
     eventType: yup.string().required("Typ jest wymagany"),
     note: yup.string(),
   });
@@ -252,7 +255,6 @@ export default function CalendarEditEventModalForm(
           {isLoading ? <CircularProgress /> : "Usuń"}
         </Button>
         <Button
-          disabled={isLoading}
           type="submit"
           fullWidth
           variant="contained"

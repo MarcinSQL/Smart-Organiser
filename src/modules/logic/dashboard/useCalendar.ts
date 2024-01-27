@@ -16,6 +16,11 @@ export default function useCalendar() {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
   }, []);
 
+  useEffect(() => {
+    setDeleteModalOpen(false);
+    setShowEditEventModal(false);
+  }, [mutation.status]);
+
   const handleDeleteModalOpen = () => {
     setDeleteModalOpen(true);
   };
