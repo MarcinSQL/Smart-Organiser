@@ -67,7 +67,11 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
   const { isLoading } = useGetCalendarEventsQuery();
 
   let userSchema = yup.object().shape({
-    title: yup.string().required("Tytuł jest wymagany"),
+    title: yup
+      .string()
+      .trim()
+      .required("Tytuł jest wymagany")
+      .max(64, "Maksymalnie 64 znaki!"),
     day: yup
       .string()
       .required("Data rozpoczęcia wydarzenia jest wymagana")
@@ -76,7 +80,7 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
     startTime: yup.string(),
     endTime: yup.string(),
     eventType: yup.string().required("Typ jest wymagany"),
-    note: yup.string(),
+    note: yup.string().trim(),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
