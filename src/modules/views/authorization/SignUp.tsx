@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
@@ -12,13 +10,11 @@ import Copyright from "components/Copyright";
 import TextInput from "components/UI/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
-import Toast from "../../../components/UI/Toast";
-import AuthContext from "store/auth-context";
 import useSignUp from "modules/logic/authorization/useSignUp";
 import { logoHeight, logoWidth } from "components/utils/sizes";
+import { Toaster } from "react-hot-toast";
 
 export default function SignUp() {
-  const ctx = useContext(AuthContext);
   const { handleSubmit, register, onSubmit, control, goToSignIn } = useSignUp();
 
   return (
@@ -34,6 +30,7 @@ export default function SignUp() {
       }}
     >
       <CssBaseline />
+      <Toaster position={"bottom-right"} />
       <Box
         sx={{
           display: "flex",
@@ -51,7 +48,11 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Zarejestruj się
         </Typography>
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1, textAlign: "center" }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit(onSubmit)}
+          sx={{ mt: 1, textAlign: "center" }}
+        >
           <Grid container spacing={2}>
             <Grid item xs={4}>
               <TextInput
@@ -87,17 +88,12 @@ export default function SignUp() {
           >
             Zarejestruj się
           </Button>
-          <Link
-            onClick={goToSignIn}
-            variant="body2"
-            sx={{cursor: "pointer"}}
-          >
+          <Link onClick={goToSignIn} variant="body2" sx={{ cursor: "pointer" }}>
             {"Posiadasz konto? Zaloguj się"}
           </Link>
         </Box>
       </Box>
       <Copyright />
-      {ctx.isError && <Toast message={ctx.message} />}
     </Container>
   );
 }
