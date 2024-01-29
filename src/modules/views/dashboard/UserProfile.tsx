@@ -7,14 +7,10 @@ import ModalTrueFalse from "components/UI/ModalTrueFalse";
 import UserProfileAvatar from "components/Busines/UserProfileAvatar";
 import UserProfileInput from "components/Pure/UserProfileInput";
 import UserProfileTitle from "components/Pure/UserProfileTitle";
-import AuthContext from "store/auth-context";
-import { useContext } from "react";
-import Toast from "components/UI/Toast";
 import UserProfileFormPersonalINformation from "components/Busines/UserProfileFormPersonalInformation";
 import UserProfileFormPassword from "components/Busines/UserProfileFormPassword";
 
 export default function UserProfile() {
-  const ctx = useContext(AuthContext);
   const {
     handleEditAvatarClose,
     handleEditAvatarOpen,
@@ -96,7 +92,6 @@ export default function UserProfile() {
           ) : null}
         </Paper>
       )}
-      {ctx.isError && <Toast message={ctx.message} />}
     </Layout>
   );
 }
