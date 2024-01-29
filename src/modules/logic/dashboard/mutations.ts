@@ -32,7 +32,7 @@ export function useEditAvatarMutation() {
       return dashboardEditAvatar(data);
     },
     {
-      onSuccess: (response: any) => {
+      onSuccess: () => {
         toast.success("Pomyślnie zmodyfikowano awatar");
       },
       onError: (response: any) => {
@@ -51,7 +51,7 @@ export function useEditPersonalInformationMutation() {
       return dashboardEditPersonalInformation(data);
     },
     {
-      onSuccess: (response: any) => {
+      onSuccess: () => {
         toast.success("Pomyślnie zmodyfikowano personalia");
       },
       onError: (response: any) => {
@@ -70,7 +70,7 @@ export function useEditPasswordMutation() {
       return dashboardEditPassword(data);
     },
     {
-      onSuccess: (response: any) => {
+      onSuccess: () => {
         toast.success("Pomyślnie zmodyfikowano hasło");
       },
       onError: (response: any) => {
@@ -153,7 +153,7 @@ export function useDeleteUserProfileMutation() {
       return dashboardDeleteUserProfile(data);
     },
     {
-      onSuccess: (response: any) => {
+      onSuccess: () => {
         navigate(SignInLink);
         toast.success("Pomyślnie usunięto konto użytkownika");
       },
