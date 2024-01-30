@@ -20,72 +20,70 @@ import {
   IEditPassword,
   IEditPersonalInformation,
 } from "modules/types/dashboard/userProfile.types";
-import { useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import AuthContext from "store/auth-context";
 import { CalendarEvents } from "utils/query-keys";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { SignInLink } from "links";
 
 export function useEditAvatarMutation() {
-  const ctx = useContext(AuthContext);
   return useMutation<unknown, unknown, IEditAvatar>(
     (data) => {
-      console.log(data);
-
       return dashboardEditAvatar(data);
     },
     {
-      onSuccess: (response: any) => {},
+      onSuccess: () => {
+        toast.success("Pomyślnie zmodyfikowano awatar");
+      },
       onError: (response: any) => {
-        ctx.isError = true;
         const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
-          ctx.message = "Żądanie nie zostało wysłane.";
-        else ctx.message = "Błąd nie został rozpoznany.";
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
       },
     }
   );
 }
 
 export function useEditPersonalInformationMutation() {
-  const ctx = useContext(AuthContext);
   return useMutation<unknown, unknown, IEditPersonalInformation>(
     (data) => {
       return dashboardEditPersonalInformation(data);
     },
     {
-      onSuccess: (response: any) => {},
+      onSuccess: () => {
+        toast.success("Pomyślnie zmodyfikowano personalia");
+      },
       onError: (response: any) => {
-        ctx.isError = true;
         const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
-          ctx.message = "Żądanie nie zostało wysłane.";
-        else ctx.message = "Błąd nie został rozpoznany.";
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
       },
     }
   );
 }
 
 export function useEditPasswordMutation() {
-  const ctx = useContext(AuthContext);
   return useMutation<unknown, unknown, IEditPassword>(
     (data) => {
       return dashboardEditPassword(data);
     },
     {
-      onSuccess: (response: any) => {},
+      onSuccess: () => {
+        toast.success("Pomyślnie zmodyfikowano hasło");
+      },
       onError: (response: any) => {
-        ctx.isError = true;
         const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
-          ctx.message = "Żądanie nie zostało wysłane.";
-        else ctx.message = "Błąd nie został rozpoznany.";
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
       },
     }
   );
 }
 
 export function useCreateEventMutation() {
-  const ctx = useContext(AuthContext);
   const queryClient = useQueryClient();
   return useMutation<unknown, unknown, IModalEventsForm>(
     (data) => {
@@ -93,21 +91,20 @@ export function useCreateEventMutation() {
     },
     {
       onSuccess: () => {
+        toast.success("Pomyślnie dodano wydarzenie");
         queryClient.refetchQueries(CalendarEvents);
       },
       onError: (response: any) => {
-        ctx.isError = true;
         const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
-          ctx.message = "Żądanie nie zostało wysłane.";
-        else ctx.message = "Błąd nie został rozpoznany.";
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
       },
     }
   );
 }
 
 export function useEditEventMutation() {
-  const ctx = useContext(AuthContext);
   const queryClient = useQueryClient();
   return useMutation<unknown, unknown, IModalEditEventForm>(
     (data) => {
@@ -115,21 +112,20 @@ export function useEditEventMutation() {
     },
     {
       onSuccess: () => {
+        toast.success("Pomyślnie zmodyfikowano wydarzenie");
         queryClient.refetchQueries(CalendarEvents);
       },
       onError: (response: any) => {
-        ctx.isError = true;
         const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
-          ctx.message = "Żądanie nie zostało wysłane.";
-        else ctx.message = "Błąd nie został rozpoznany.";
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
       },
     }
   );
 }
 
 export function useDeleteEventMutation() {
-  const ctx = useContext(AuthContext);
   const queryClient = useQueryClient();
   return useMutation<unknown, unknown, IDeleteEvent>(
     (data) => {
@@ -137,33 +133,35 @@ export function useDeleteEventMutation() {
     },
     {
       onSuccess: () => {
+        toast.success("Pomyślnie usunięto wydarzenie");
         queryClient.refetchQueries(CalendarEvents);
       },
       onError: (response: any) => {
-        ctx.isError = true;
         const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
-          ctx.message = "Żądanie nie zostało wysłane.";
-        else ctx.message = "Błąd nie został rozpoznany.";
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
       },
     }
   );
 }
 
 export function useDeleteUserProfileMutation() {
-  const ctx = useContext(AuthContext);
+  const navigate = useNavigate();
   return useMutation<unknown, unknown, IDeleteUserProfile>(
     (data) => {
       return dashboardDeleteUserProfile(data);
     },
     {
-      onSuccess: (response: any) => {},
+      onSuccess: () => {
+        navigate(SignInLink);
+        toast.success("Pomyślnie usunięto konto użytkownika");
+      },
       onError: (response: any) => {
-        ctx.isError = true;
         const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
-          ctx.message = "Żądanie nie zostało wysłane.";
-        else ctx.message = "Błąd nie został rozpoznany.";
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
       },
     }
   );

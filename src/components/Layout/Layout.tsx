@@ -8,6 +8,7 @@ import classes from "./classes/Layout.module.css";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
 import { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 export default function Layout(props: ILayout) {
   const navigate = useNavigate();
@@ -51,6 +52,7 @@ export default function Layout(props: ILayout) {
   return (
     <Box className={classes.layout}>
       <CssBaseline />
+      <Toaster position={'bottom-right'} />
       <LayoutHeader mobiNav={handleMobileNavigationOpen} />
       {windowWidth <= windowBreakpoint ? drawer : <LayoutNavigation />}
       <LayoutContent children={props.children} />

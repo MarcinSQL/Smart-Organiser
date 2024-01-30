@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
@@ -10,13 +8,11 @@ import Copyright from "components/Copyright";
 import TextInput from "components/UI/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
-import Toast from "../../../components/UI/Toast";
-import AuthContext from "store/auth-context";
 import useConfirmAccount from "modules/logic/authorization/useConfirmAccount";
 import { logoHeight, logoWidth } from "components/utils/sizes";
+import { Toaster } from "react-hot-toast";
 
 export default function ConfirmAccount() {
-  const ctx = useContext(AuthContext);
   const { handleSubmit, register, onSubmit, control } = useConfirmAccount();
   return (
     <Container
@@ -31,19 +27,20 @@ export default function ConfirmAccount() {
       }}
     >
       <CssBaseline />
+      <Toaster position={"bottom-right"} />
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mb: 6
+          mb: 6,
         }}
       >
         <Avatar
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4}}
+          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
         />
         <Typography component="h1" variant="h5">
           Utwórz hasło do potwierdzenia konta
@@ -74,7 +71,6 @@ export default function ConfirmAccount() {
         </Box>
       </Box>
       <Copyright />
-      {ctx.isError && <Toast message={ctx.message} />}
     </Container>
   );
 }

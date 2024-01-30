@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
@@ -10,13 +8,11 @@ import Copyright from "components/Copyright";
 import TextInput from "components/UI/TextInput";
 import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
-import Toast from "../../../components/UI/Toast";
-import AuthContext from "store/auth-context";
 import useResetPasswordConfirm from "modules/logic/authorization/useResetPasswordConfirmation";
 import { logoHeight, logoWidth } from "components/utils/sizes";
+import { Toaster } from "react-hot-toast";
 
 export default function ResetPasswordConfirmation() {
-  const ctx = useContext(AuthContext);
   const { handleSubmit, register, onSubmit, control } =
     useResetPasswordConfirm();
   return (
@@ -32,6 +28,7 @@ export default function ResetPasswordConfirmation() {
       }}
     >
       <CssBaseline />
+      <Toaster position={'bottom-right'} />
       <Box
         sx={{
           display: "flex",
@@ -75,7 +72,6 @@ export default function ResetPasswordConfirmation() {
         </Box>
       </Box>
       <Copyright />
-      {ctx.isError && <Toast message={ctx.message} />}
     </Container>
   );
 }

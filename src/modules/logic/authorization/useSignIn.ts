@@ -5,8 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { ResetPasswordLink, SignUpLink } from "links";
 import { useLoginMutation } from "./mutations";
-import { useContext } from "react";
-import AuthContext from "store/auth-context";
 
 interface IFormInput {
   email: string;
@@ -16,15 +14,12 @@ interface IFormInput {
 export default function useSignIn() {
   const mutation = useLoginMutation();
   const navigate = useNavigate();
-  const ctx = useContext(AuthContext);
 
   const goToSignUp = () => {
     navigate(SignUpLink);
-    ctx.isError = false;
   };
   const goToResetPassword = () => {
     navigate(ResetPasswordLink);
-    ctx.isError = false;
   };
 
   let userSchema = yup.object().shape({
