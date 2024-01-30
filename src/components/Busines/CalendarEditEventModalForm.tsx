@@ -95,7 +95,9 @@ export default function CalendarEditEventModalForm(
     id: yup.string().default(eventData.id),
     title: yup
       .string()
+      .trim()
       .required("Tytuł jest wymagany")
+      .max(64, "Maksymalnie 64 znaki!")
       .default(eventData.title),
     day: yup
       .string()
@@ -105,7 +107,7 @@ export default function CalendarEditEventModalForm(
     startTime: yup.string().default(eventData.startTime ?? "00:00"),
     endTime: yup.string().default(eventData.endTime ?? "00:00"),
     eventType: yup.string().required("Typ jest wymagany"),
-    note: yup.string(),
+    note: yup.string().trim(),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
