@@ -15,6 +15,7 @@ export default function useConfirmAccount() {
   const [userData] = useSearchParams();
   const { userId } = useParams();
   const userToken = userData.get("token");
+  const isLoading = mutation.isLoading;
 
   let userSchema = yup.object().shape({
     password: yup
@@ -46,5 +47,6 @@ export default function useConfirmAccount() {
     handleSubmit,
     onSubmit,
     control,
+    isLoading,
   };
 }

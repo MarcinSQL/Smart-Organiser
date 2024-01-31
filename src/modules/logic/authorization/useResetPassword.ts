@@ -13,6 +13,7 @@ interface IFormInput {
 export default function useResetPassword() {
   const mutation = useResetPasswordMutation();
   const navigate = useNavigate();
+  const isLoading = mutation.isLoading;
 
   const goToSignUp = () => {
     navigate(SignUpLink);
@@ -43,5 +44,6 @@ export default function useResetPassword() {
     control,
     goToSignUp,
     goToSignIn,
+    isLoading,
   };
 }

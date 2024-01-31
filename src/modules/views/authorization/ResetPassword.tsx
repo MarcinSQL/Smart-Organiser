@@ -13,10 +13,18 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useResetPassword from "modules/logic/authorization/useResetPassword";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
+import TextCircularProgress from "components/UI/TextCircularProgress";
 
 export default function ResetPassword() {
-  const { handleSubmit, register, onSubmit, control, goToSignUp, goToSignIn } =
-    useResetPassword();
+  const {
+    handleSubmit,
+    register,
+    onSubmit,
+    control,
+    goToSignUp,
+    goToSignIn,
+    isLoading,
+  } = useResetPassword();
 
   return (
     <Container
@@ -58,12 +66,13 @@ export default function ResetPassword() {
             {...register("email", { required: true })}
           />
           <Button
+            disabled={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Wyślij
+            <TextCircularProgress isLoading={isLoading} text="Wyślij" />
           </Button>
           <Grid container gap={2}>
             <Grid item xs>

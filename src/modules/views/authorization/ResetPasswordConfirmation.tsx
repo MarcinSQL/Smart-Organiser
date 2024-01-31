@@ -11,9 +11,10 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useResetPasswordConfirm from "modules/logic/authorization/useResetPasswordConfirmation";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
+import TextCircularProgress from "components/UI/TextCircularProgress";
 
 export default function ResetPasswordConfirmation() {
-  const { handleSubmit, register, onSubmit, control } =
+  const { handleSubmit, register, onSubmit, control, isLoading } =
     useResetPasswordConfirm();
   return (
     <Container
@@ -28,20 +29,20 @@ export default function ResetPasswordConfirmation() {
       }}
     >
       <CssBaseline />
-      <Toaster position={'bottom-right'} />
+      <Toaster position={"bottom-right"} />
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mb: 6
+          mb: 6,
         }}
       >
         <Avatar
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4}}
+          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
         />
         <Typography component="h1" variant="h5">
           Utwórz nowe hasło
@@ -62,12 +63,13 @@ export default function ResetPasswordConfirmation() {
             {...register("confirmPassword", { required: true })}
           />
           <Button
+            disabled={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Zmień hasło
+            <TextCircularProgress isLoading={isLoading} text="Zmień hasło" />
           </Button>
         </Box>
       </Box>

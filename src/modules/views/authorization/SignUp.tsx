@@ -13,9 +13,11 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useSignUp from "modules/logic/authorization/useSignUp";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
+import TextCircularProgress from "components/UI/TextCircularProgress";
 
 export default function SignUp() {
-  const { handleSubmit, register, onSubmit, control, goToSignIn } = useSignUp();
+  const { handleSubmit, register, onSubmit, control, goToSignIn, isLoading } =
+    useSignUp();
 
   return (
     <Container
@@ -81,12 +83,13 @@ export default function SignUp() {
             {...register("email", { required: true })}
           />
           <Button
+            disabled={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Zarejestruj się
+            <TextCircularProgress isLoading={isLoading} text="Zaloguj się" />
           </Button>
           <Link onClick={goToSignIn} variant="body2" sx={{ cursor: "pointer" }}>
             {"Posiadasz konto? Zaloguj się"}

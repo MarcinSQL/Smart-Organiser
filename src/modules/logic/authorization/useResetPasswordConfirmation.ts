@@ -15,6 +15,7 @@ export default function useResetPasswordConfirm() {
   const [userData] = useSearchParams();
   const userId = userData.get("userId");
   const userToken = userData.get("token");
+  const isLoading = mutation.isLoading;
 
   let userSchema = yup.object().shape({
     password: yup
@@ -46,5 +47,6 @@ export default function useResetPasswordConfirm() {
     handleSubmit,
     onSubmit,
     control,
+    isLoading,
   };
 }

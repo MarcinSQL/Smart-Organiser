@@ -11,9 +11,11 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useConfirmAccount from "modules/logic/authorization/useConfirmAccount";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
+import TextCircularProgress from "components/UI/TextCircularProgress";
 
 export default function ConfirmAccount() {
-  const { handleSubmit, register, onSubmit, control } = useConfirmAccount();
+  const { handleSubmit, register, onSubmit, control, isLoading } =
+    useConfirmAccount();
   return (
     <Container
       component="main"
@@ -61,12 +63,16 @@ export default function ConfirmAccount() {
             {...register("confirmPassword", { required: true })}
           />
           <Button
+            disabled={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Potwierdź konto
+            <TextCircularProgress
+              isLoading={isLoading}
+              text="Potwierdź konto"
+            />
           </Button>
         </Box>
       </Box>
