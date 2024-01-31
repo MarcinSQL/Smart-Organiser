@@ -14,6 +14,7 @@ interface IFormInput {
 export default function useSignIn() {
   const mutation = useLoginMutation();
   const navigate = useNavigate();
+  const isLoading = mutation.isLoading;
 
   const goToSignUp = () => {
     navigate(SignUpLink);
@@ -48,5 +49,6 @@ export default function useSignIn() {
     control,
     goToSignUp,
     goToResetPassword,
+    isLoading
   };
 }
