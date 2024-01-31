@@ -29,6 +29,8 @@ import { SignInLink } from "links";
 export function useEditAvatarMutation() {
   return useMutation<unknown, unknown, IEditAvatar>(
     (data) => {
+      console.log(data);
+      
       return dashboardEditAvatar(data);
     },
     {

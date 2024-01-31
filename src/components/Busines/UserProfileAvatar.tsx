@@ -5,9 +5,11 @@ import {
   DialogContent,
   DialogActions,
   Box,
+  Container,
 } from "@mui/material";
 import Avatar1 from "react-avatar-edit";
 import classes from "modules/views/dashboard/classes/UserProfile.module.css";
+import useUserProfileFormAvatar from "modules/logic/dashboard/useUserProfileFormAvatar";
 
 interface IUserProfileAvatar {
   img: string;
@@ -31,7 +33,9 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
     onAvatarClose,
     userName,
   } = props;
+  const { register, control, handleSubmit, onSubmit } = useUserProfileFormAvatar();
   return (
+    <Container component="form" onSubmit={handleSubmit(onSubmit)}>
     <Box className={classes["user-information__avatar"]}>
       <Avatar
         className={classes["user-information__avatar--icon"]}
@@ -56,11 +60,12 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
           />
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" fullWidth onClick={onSave}>
+          <Button type="submit" variant="outlined" fullWidth onClick={onSave}>
             Zapisz nowy Awatar
           </Button>
         </DialogActions>
       </Dialog>
     </Box>
+    </Container>
   );
 }
