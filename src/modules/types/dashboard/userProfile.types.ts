@@ -10,7 +10,6 @@ export interface IDeleteUserProfile {
 }
 
 export interface IEditPersonalInformation {
-  img?: string;
   name: string;
   surname: string;
 }

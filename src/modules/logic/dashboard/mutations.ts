@@ -21,7 +21,7 @@ import {
   IEditPersonalInformation,
 } from "modules/types/dashboard/userProfile.types";
 import { useMutation, useQueryClient } from "react-query";
-import { CalendarEvents } from "utils/query-keys";
+import { CalendarEvents, ProfileData } from "utils/query-keys";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
@@ -46,6 +46,7 @@ export function useEditAvatarMutation() {
 }
 
 export function useEditPersonalInformationMutation() {
+  const queryClient = useQueryClient();
   return useMutation<unknown, unknown, IEditPersonalInformation>(
     (data) => {
       return dashboardEditPersonalInformation(data);
@@ -53,6 +54,7 @@ export function useEditPersonalInformationMutation() {
     {
       onSuccess: () => {
         toast.success("Pomyślnie zmodyfikowano personalia");
+        queryClient.refetchQueries(ProfileData);
       },
       onError: (response: any) => {
         const errorMessage = response.response.data.errorCode;

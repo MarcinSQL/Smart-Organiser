@@ -37,7 +37,7 @@ export const dashboardEditAvatar = (avatarSrc: IEditAvatar) => {
 };
 
 export const dashboardEditPassword = (password: IEditPassword) => {
-  return service.post(`${baseURL}password/`, password).then((response) => {
+  return service.put(`${baseURL}password/`, password).then((response) => {
     return Promise.resolve(response);
   });
 };
@@ -45,7 +45,7 @@ export const dashboardEditPassword = (password: IEditPassword) => {
 export const dashboardEditPersonalInformation = (
   personalData: IEditPersonalInformation
 ) => {
-  return service.post(`${baseURL}user-data/`, personalData).then((response) => {
+  return service.put(`${baseURL}user-data/`, personalData).then((response) => {
     return Promise.resolve(response);
   });
 };
