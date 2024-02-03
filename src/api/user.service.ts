@@ -8,10 +8,11 @@ import service from "utils/axios";
 
 const baseURL = "/user/";
 
-export const dashboardDeleteUserProfile = (userId: IDeleteUserProfile) => {
+export const dashboardDeleteUserProfile = (userData: IDeleteUserProfile) => {
+  let { userId } = userData;
   return service
     .delete(`${baseURL}`, {
-      params: userId,
+      data: userId,
     })
     .then((response) => {
       return Promise.resolve(response);

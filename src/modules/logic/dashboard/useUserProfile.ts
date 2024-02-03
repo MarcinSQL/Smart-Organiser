@@ -50,7 +50,8 @@ export default function useUserProfile() {
   };
 
   const handleModalClick = () => {
-    const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("token");
+    
     if (userId !== null) {
       deleteUserMutation.mutate({ userId: userId });
     }
