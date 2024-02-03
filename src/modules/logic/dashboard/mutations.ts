@@ -21,21 +21,21 @@ import {
   IEditPersonalInformation,
 } from "modules/types/dashboard/userProfile.types";
 import { useMutation, useQueryClient } from "react-query";
-import { CalendarEvents, ProfileData } from "utils/query-keys";
+import { CalendarEvents, ProfileAvatar, ProfileData } from "utils/query-keys";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
 
 export function useEditAvatarMutation() {
+  const queryClient = useQueryClient();
   return useMutation<unknown, unknown, IEditAvatar>(
     (data) => {
-      console.log(data);
-      
       return dashboardEditAvatar(data);
     },
     {
       onSuccess: () => {
         toast.success("Pomyślnie zmodyfikowano awatar");
+        queryClient.refetchQueries(ProfileAvatar);
       },
       onError: (response: any) => {
         const errorMessage = response.response.data.errorCode;

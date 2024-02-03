@@ -36,15 +36,14 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
   } = props;
   const { data: avatar } = useGetProfileAvatarQuery();
 
-  const { handleSubmit, onSubmit } =
-    useUserProfileFormAvatar();
+  const { handleSubmit, onSubmit } = useUserProfileFormAvatar();
   return (
     <Container component="form" onSubmit={handleSubmit(onSubmit)}>
       <Box className={classes["user-information__avatar"]}>
         <Avatar
           className={classes["user-information__avatar--icon"]}
           alt={userName}
-          src={img === null ? avatar.avatar : img}
+          src={typeof(img) !== "string" ? avatar.avatar : img}
         />
         <Button
           variant="outlined"

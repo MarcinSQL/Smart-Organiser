@@ -51,7 +51,7 @@ export default function useUserProfile() {
 
   const handleModalClick = () => {
     const userId = localStorage.getItem("token");
-    
+
     if (userId !== null) {
       deleteUserMutation.mutate({ userId: userId });
     }
@@ -65,8 +65,14 @@ export default function useUserProfile() {
     setImg("");
   };
 
-  const onSubmit: SubmitHandler<IEditAvatar> = (editedData) => {
-    mutation.mutate(editedData);
+  const onSubmit: SubmitHandler<IEditAvatar> = (imgSrc) => {
+    const URL = imgSrc.img.substring(imgSrc.img.indexOf(",") + 1);
+    
+    const img = {
+      img: URL,
+    };
+
+    mutation.mutate(img);
   };
 
   const handleSaveImage = () => {
