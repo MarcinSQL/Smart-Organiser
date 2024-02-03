@@ -20,7 +20,12 @@ export default function useUserProfileFormAvatar() {
   });
 
   const onSubmit: SubmitHandler<IEditAvatar> = (imgSrc) => {
-    mutation.mutate(imgSrc);
+    const URL = imgSrc.img.substring(imgSrc.img.indexOf(",") + 1);
+    const img = {
+      img: URL,
+    };
+
+    mutation.mutate(img);
   };
 
   return { register, handleSubmit, control, onSubmit };

@@ -10,6 +10,7 @@ import {
 import Avatar1 from "react-avatar-edit";
 import classes from "modules/views/dashboard/classes/UserProfile.module.css";
 import useUserProfileFormAvatar from "modules/logic/dashboard/useUserProfileFormAvatar";
+import { useGetProfileAvatarQuery } from "modules/logic/dashboard/queries";
 
 interface IUserProfileAvatar {
   img: string;
@@ -33,39 +34,42 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
     onAvatarClose,
     userName,
   } = props;
-  const { register, control, handleSubmit, onSubmit } = useUserProfileFormAvatar();
+  const { data: avatar } = useGetProfileAvatarQuery();
+
+  const { handleSubmit, onSubmit } =
+    useUserProfileFormAvatar();
   return (
     <Container component="form" onSubmit={handleSubmit(onSubmit)}>
-    <Box className={classes["user-information__avatar"]}>
-      <Avatar
-        className={classes["user-information__avatar--icon"]}
-        alt={userName}
-        src={img ? img : `error`}
-      />
-      <Button
-        variant="outlined"
-        onClick={onDialogOpen}
-        className={classes["user-information__avatar--button"]}
-      >
-        Zmień Awatar
-      </Button>
-      <Dialog onClose={onDialogClose} open={open}>
-        <DialogContent>
-          <Avatar1
-            width={350}
-            height={350}
-            onCrop={onCrop}
-            onClose={onAvatarClose}
-            label={"Zmień awatar"}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button type="submit" variant="outlined" fullWidth onClick={onSave}>
-            Zapisz nowy Awatar
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Box>
+      <Box className={classes["user-information__avatar"]}>
+        <Avatar
+          className={classes["user-information__avatar--icon"]}
+          alt={userName}
+          src={img === null ? avatar.avatar : img}
+        />
+        <Button
+          variant="outlined"
+          onClick={onDialogOpen}
+          className={classes["user-information__avatar--button"]}
+        >
+          Zmień Awatar
+        </Button>
+        <Dialog onClose={onDialogClose} open={open}>
+          <DialogContent>
+            <Avatar1
+              width={350}
+              height={350}
+              onCrop={onCrop}
+              onClose={onAvatarClose}
+              label={"Zmień awatar"}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button type="submit" variant="outlined" fullWidth onClick={onSave}>
+              Zapisz nowy Awatar
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Box>
     </Container>
   );
 }

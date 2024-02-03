@@ -88,7 +88,7 @@ export default function LayoutHeader(props: ILayoutHeader) {
             <IconButton onClick={() => navigate(UserProfileLink)}>
               <Avatar
                 alt={isError ? "ERROR" : data.name}
-                src={avatarIsError ? "ERROR" : avatar}
+                src={avatarIsError ? "ERROR" : avatar.avatar}
               />
             </IconButton>
             <Typography component="h1" variant="h6" color="inherit" noWrap>
