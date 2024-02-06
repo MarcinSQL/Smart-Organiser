@@ -51,10 +51,10 @@ export default function useUserProfile() {
   };
 
   const handleModalClick = () => {
-    const ls = localStorage.getItem("token");
-    const id = tokenDecode.getUserId(ls || "");
+    const codedToken = localStorage.getItem("token");
+    const decodedId = tokenDecode.getUserId(codedToken || "");
     const userId = {
-      Id: id,
+      Id: decodedId,
     };
 
     deleteUserMutation.mutate(userId);
