@@ -6,6 +6,7 @@ import {
 } from "./mutations";
 import { IEditAvatar } from "modules/types/dashboard/userProfile.types";
 import { useGetProfileAvatarQuery, useGetProfileDataQuery } from "./queries";
+import tokenDecode from "utils/tokenDecode";
 
 export default function useUserProfile() {
   const { data, isLoading, isError } = useGetProfileDataQuery();
@@ -50,11 +51,13 @@ export default function useUserProfile() {
   };
 
   const handleModalClick = () => {
-    const userId = localStorage.getItem("token");
+    const ls = localStorage.getItem("token");
+    const id = tokenDecode.getUserId(ls || "");
+    const userId = {
+      Id: id,
+    };
 
-    if (userId !== null) {
-      deleteUserMutation.mutate({ userId: userId });
-    }
+    deleteUserMutation.mutate(userId);
   };
 
   const onCrop = (view: string) => {
@@ -67,7 +70,7 @@ export default function useUserProfile() {
 
   const onSubmit: SubmitHandler<IEditAvatar> = (imgSrc) => {
     const URL = imgSrc.img.substring(imgSrc.img.indexOf(",") + 1);
-    
+
     const img = {
       img: URL,
     };

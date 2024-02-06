@@ -24,6 +24,7 @@
     "@types/react-dom": "^18.0.0",
     "axios": "^1.5.1",
     "dayjs": "^1.11.10",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-avatar-edit": "^1.2.0",
     "react-dom": "^18.2.0",
@@ -59,5 +60,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.5"
   }
 }

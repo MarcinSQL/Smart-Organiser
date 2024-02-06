@@ -6,7 +6,7 @@ export interface IUserProfileForms {
 }
 
 export interface IDeleteUserProfile {
-  userId: string;
+  Id: string;
 }
 
 export interface IEditPersonalInformation {

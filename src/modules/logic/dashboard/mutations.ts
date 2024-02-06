@@ -158,10 +158,12 @@ export function useDeleteUserProfileMutation() {
     },
     {
       onSuccess: () => {
-        navigate(SignInLink);
         toast.success("Pomyślnie usunięto konto użytkownika");
+        navigate(SignInLink);
       },
       onError: (response: any) => {
+        console.log(response);
+
         const errorMessage = response.response.data.errorCode;
         if (errorMessage === "MESSAGE_NOT_SENT")
           toast.error("Żądanie nie zostało wysłane.");
