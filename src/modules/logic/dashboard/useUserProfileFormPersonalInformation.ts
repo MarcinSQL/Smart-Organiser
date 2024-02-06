@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { useEditPersonalInformationMutation } from "./mutations";
 
 interface IFormInput {
-  img?: string;
   name: string;
   surname: string;
 }
@@ -14,7 +13,6 @@ export default function useUserProfileFormPersonalInformation() {
   const mutation = useEditPersonalInformationMutation();
 
   let userSchema = yup.object().shape({
-    img: yup.string(),
     name: yup.string().required("Imię jest wymagane"),
     surname: yup.string().required("Nazwisko jest wymagane"),
   });
