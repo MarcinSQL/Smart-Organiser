@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
@@ -13,9 +12,11 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useSignUp from "modules/logic/authorization/useSignUp";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
+import { LoadingButton } from "@mui/lab";
 
 export default function SignUp() {
-  const { handleSubmit, register, onSubmit, control, goToSignIn } = useSignUp();
+  const { handleSubmit, register, onSubmit, control, goToSignIn, isLoading } =
+    useSignUp();
 
   return (
     <Container
@@ -80,14 +81,15 @@ export default function SignUp() {
             label="Email"
             {...register("email", { required: true })}
           />
-          <Button
+          <LoadingButton
+            loading={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Zarejestruj się
-          </Button>
+            <span>Zarejestruj się</span>
+          </LoadingButton>
           <Link onClick={goToSignIn} variant="body2" sx={{ cursor: "pointer" }}>
             {"Posiadasz konto? Zaloguj się"}
           </Link>

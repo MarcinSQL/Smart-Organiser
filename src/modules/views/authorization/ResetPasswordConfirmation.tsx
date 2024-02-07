@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,9 +10,10 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useResetPasswordConfirm from "modules/logic/authorization/useResetPasswordConfirmation";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
+import { LoadingButton } from "@mui/lab";
 
 export default function ResetPasswordConfirmation() {
-  const { handleSubmit, register, onSubmit, control } =
+  const { handleSubmit, register, onSubmit, control, isLoading } =
     useResetPasswordConfirm();
   return (
     <Container
@@ -28,20 +28,20 @@ export default function ResetPasswordConfirmation() {
       }}
     >
       <CssBaseline />
-      <Toaster position={'bottom-right'} />
+      <Toaster position={"bottom-right"} />
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mb: 6
+          mb: 6,
         }}
       >
         <Avatar
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4}}
+          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
         />
         <Typography component="h1" variant="h5">
           Utwórz nowe hasło
@@ -61,14 +61,15 @@ export default function ResetPasswordConfirmation() {
             type="password"
             {...register("confirmPassword", { required: true })}
           />
-          <Button
+          <LoadingButton
+            loading={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Zmień hasło
-          </Button>
+            <span>Zmień hasło</span>
+          </LoadingButton>
         </Box>
       </Box>
       <Copyright />

@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,9 +10,11 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useConfirmAccount from "modules/logic/authorization/useConfirmAccount";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
+import { LoadingButton } from "@mui/lab";
 
 export default function ConfirmAccount() {
-  const { handleSubmit, register, onSubmit, control } = useConfirmAccount();
+  const { handleSubmit, register, onSubmit, control, isLoading } =
+    useConfirmAccount();
   return (
     <Container
       component="main"
@@ -60,14 +61,15 @@ export default function ConfirmAccount() {
             type="password"
             {...register("confirmPassword", { required: true })}
           />
-          <Button
+          <LoadingButton
+            loading={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Potwierdź konto
-          </Button>
+            <span>Potwiedź konto</span>
+          </LoadingButton>
         </Box>
       </Box>
       <Copyright />

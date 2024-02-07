@@ -11,6 +11,7 @@ interface IFormInput {
 
 export default function useUserProfileFormPassword() {
   const mutation = useEditPasswordMutation();
+  const isLoading = mutation.isLoading;
 
   let userSchema = yup.object().shape({
     password: yup
@@ -34,5 +35,5 @@ export default function useUserProfileFormPassword() {
     mutation.mutate(editedData);
   };
 
-  return { register, handleSubmit, control, onSubmit };
+  return { register, handleSubmit, control, onSubmit, isLoading };
 }

@@ -1,14 +1,12 @@
 import * as yup from "yup";
 import dayjs, { Dayjs } from "dayjs";
 import {
-  Button,
   Box,
   FormLabel,
   FormControl,
   RadioGroup,
   FormControlLabel,
   Radio,
-  CircularProgress,
   Grid,
   Checkbox,
 } from "@mui/material";
@@ -21,7 +19,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
 import { useState } from "react";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
-import { useGetCalendarEventsQuery } from "modules/logic/dashboard/queries";
+import { LoadingButton } from "@mui/lab";
 
 interface IFormInput {
   title: string;
@@ -43,6 +41,7 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
   const now = dayjs();
   now.locale("pl");
   const mutation = useCreateEventMutation();
+  const isLoading = mutation.isLoading;
 
   const [startTime, setStartTime] = useState<Dayjs | null>(now);
   const [endTime, setEndTime] = useState<Dayjs | null>(now.add(1, "hour"));
@@ -63,8 +62,6 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
   const handleIsAllDayChange = (props: boolean) => {
     setIsAllDay(props);
   };
-
-  const { isLoading } = useGetCalendarEventsQuery();
 
   let userSchema = yup.object().shape({
     title: yup
@@ -216,15 +213,15 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
         rows={4}
         {...register("note", { required: false })}
       />
-      <Button
-        disabled={isLoading}
+      <LoadingButton
+        loading={isLoading}
         type="submit"
         fullWidth
         variant="contained"
         className={classes["form__submit-btn"]}
       >
-        {isLoading ? <CircularProgress /> : "Stwórz"}
-      </Button>
+        <span>Stwórz</span>
+      </LoadingButton>
     </Box>
   );
 }

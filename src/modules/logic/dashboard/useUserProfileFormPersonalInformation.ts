@@ -11,6 +11,7 @@ interface IFormInput {
 
 export default function useUserProfileFormPersonalInformation() {
   const mutation = useEditPersonalInformationMutation();
+  const isLoading = mutation.isLoading;
 
   let userSchema = yup.object().shape({
     name: yup.string().required("Imię jest wymagane"),
@@ -25,5 +26,5 @@ export default function useUserProfileFormPersonalInformation() {
     mutation.mutate(editedData);
   };
 
-  return { register, handleSubmit, control, onSubmit };
+  return { register, handleSubmit, control, onSubmit, isLoading };
 }

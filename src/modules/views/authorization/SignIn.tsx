@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -13,6 +12,7 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useSignIn from "modules/logic/authorization/useSignIn";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 export default function SignIn() {
   const {
@@ -22,6 +22,7 @@ export default function SignIn() {
     control,
     goToSignUp,
     goToResetPassword,
+    isLoading,
   } = useSignIn();
 
   return (
@@ -70,14 +71,15 @@ export default function SignIn() {
             type="password"
             {...register("password", { required: true })}
           />
-          <Button
+          <LoadingButton
+            loading={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Zaloguj się
-          </Button>
+            <span>Zaloguj się</span>
+          </LoadingButton>
           <Grid container>
             <Grid item xs>
               <Link

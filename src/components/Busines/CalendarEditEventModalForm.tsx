@@ -8,7 +8,6 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  CircularProgress,
   Grid,
   Checkbox,
 } from "@mui/material";
@@ -21,7 +20,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEditEventMutation } from "modules/logic/dashboard/mutations";
 import { useState } from "react";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
-import { useGetCalendarEventsQuery } from "modules/logic/dashboard/queries";
+import { LoadingButton } from "@mui/lab";
 
 interface IFormInput {
   id: string;
@@ -53,10 +52,10 @@ export default function CalendarEditEventModalForm(
   props: ICalendarEditEventModalForm
 ) {
   const { eventData, deleteModalBtnOnOpen, mutationOnSuccess } = props;
-  const { isLoading } = useGetCalendarEventsQuery();
   const now = dayjs();
   now.locale("pl");
   const mutation = useEditEventMutation();
+  const editIsLoading = mutation.isLoading;
 
   if (mutation.isSuccess) {
     mutationOnSuccess();
@@ -246,7 +245,6 @@ export default function CalendarEditEventModalForm(
       />
       <Box className={classes["form__control-btn-container"]}>
         <Button
-          disabled={isLoading}
           type="button"
           fullWidth
           variant="contained"
@@ -254,16 +252,17 @@ export default function CalendarEditEventModalForm(
           className={classes["form__remove-btn"]}
           onClick={deleteModalBtnOnOpen}
         >
-          {isLoading ? <CircularProgress /> : "Usuń"}
+          {"Usuń"}
         </Button>
-        <Button
+        <LoadingButton
+          loading={editIsLoading}
           type="submit"
           fullWidth
           variant="contained"
           className={classes["form__submit-btn"]}
         >
-          {isLoading ? <CircularProgress /> : "Edytuj"}
-        </Button>
+          <span>Edytuj</span>
+        </LoadingButton>
       </Box>
     </Box>
   );

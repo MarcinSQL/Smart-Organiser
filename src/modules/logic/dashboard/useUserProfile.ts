@@ -20,6 +20,7 @@ export default function useUserProfile() {
   const [editAvatarOpen, setEditAvatarOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const mutation = useEditAvatarMutation();
+  const editAvatarIsLoading = mutation.isLoading;
   const deleteUserMutation = useDeleteUserProfileMutation();
   const [img, setImg] = useState(!!data ? data.img : "");
 
@@ -106,5 +107,6 @@ export default function useUserProfile() {
     avatarIsError,
     isLoading,
     avatarIsLoading,
+    editAvatarIsLoading,
   };
 }

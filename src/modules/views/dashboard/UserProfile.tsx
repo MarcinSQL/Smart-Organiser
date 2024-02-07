@@ -34,6 +34,7 @@ export default function UserProfile() {
     avatarIsError,
     isLoading,
     avatarIsLoading,
+    editAvatarIsLoading,
   } = useUserProfile();
   return (
     <Layout>
@@ -51,6 +52,7 @@ export default function UserProfile() {
               open={editAvatarOpen}
               onDialogOpen={handleEditAvatarOpen}
               userName={isError ? "ERROR" : data.name}
+              isLoading={editAvatarIsLoading}
             />
             <UserProfileInput
               title={`Imię i nazwisko: ${
