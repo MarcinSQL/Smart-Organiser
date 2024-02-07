@@ -1,7 +1,6 @@
 import * as yup from "yup";
 import dayjs, { Dayjs } from "dayjs";
 import {
-  Button,
   Box,
   FormLabel,
   FormControl,
@@ -20,7 +19,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
 import { useState } from "react";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
-import TextCircularProgress from "components/UI/TextCircularProgress";
+import { LoadingButton } from "@mui/lab";
 
 interface IFormInput {
   title: string;
@@ -214,15 +213,15 @@ export default function CalendarModalEvents(props: ICalendarModalEvents) {
         rows={4}
         {...register("note", { required: false })}
       />
-      <Button
-        disabled={isLoading}
+      <LoadingButton
+        loading={isLoading}
         type="submit"
         fullWidth
         variant="contained"
         className={classes["form__submit-btn"]}
       >
-        <TextCircularProgress isLoading={isLoading} text="Stwórz" />
-      </Button>
+        <span>Stwórz</span>
+      </LoadingButton>
     </Box>
   );
 }

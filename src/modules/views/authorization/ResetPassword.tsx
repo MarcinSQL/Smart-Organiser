@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -13,7 +12,7 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useResetPassword from "modules/logic/authorization/useResetPassword";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
-import TextCircularProgress from "components/UI/TextCircularProgress";
+import { LoadingButton } from "@mui/lab";
 
 export default function ResetPassword() {
   const {
@@ -65,15 +64,15 @@ export default function ResetPassword() {
             label="Email"
             {...register("email", { required: true })}
           />
-          <Button
-            disabled={isLoading}
+          <LoadingButton
+            loading={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            <TextCircularProgress isLoading={isLoading} text="Wyślij" />
-          </Button>
+            <span>Wyślij</span>
+          </LoadingButton>
           <Grid container gap={2}>
             <Grid item xs>
               <Link

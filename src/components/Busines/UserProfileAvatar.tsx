@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import Avatar1 from "react-avatar-edit";
 import classes from "modules/views/dashboard/classes/UserProfile.module.css";
+import { LoadingButton } from "@mui/lab";
 
 interface IUserProfileAvatar {
   img: string;
@@ -18,6 +19,7 @@ interface IUserProfileAvatar {
   onSave: any;
   onAvatarClose: () => void;
   userName: string;
+  isLoading: boolean;
 }
 
 export default function UserProfileAvatar(props: IUserProfileAvatar) {
@@ -30,6 +32,7 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
     onSave,
     onAvatarClose,
     userName,
+    isLoading,
   } = props;
   return (
     <Box className={classes["user-information__avatar"]}>
@@ -56,9 +59,14 @@ export default function UserProfileAvatar(props: IUserProfileAvatar) {
           />
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" fullWidth onClick={onSave}>
-            Zapisz nowy Awatar
-          </Button>
+          <LoadingButton
+            loading={isLoading}
+            variant="outlined"
+            fullWidth
+            onClick={onSave}
+          >
+            <span>Zapisz nowy Awatar</span>
+          </LoadingButton>
         </DialogActions>
       </Dialog>
     </Box>

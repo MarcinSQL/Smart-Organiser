@@ -20,7 +20,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEditEventMutation } from "modules/logic/dashboard/mutations";
 import { useState } from "react";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
-import TextCircularProgress from "components/UI/TextCircularProgress";
+import { LoadingButton } from "@mui/lab";
 
 interface IFormInput {
   id: string;
@@ -254,15 +254,15 @@ export default function CalendarEditEventModalForm(
         >
           {"Usuń"}
         </Button>
-        <Button
-          disabled={editIsLoading}
+        <LoadingButton
+          loading={editIsLoading}
           type="submit"
           fullWidth
           variant="contained"
           className={classes["form__submit-btn"]}
         >
-          <TextCircularProgress isLoading={editIsLoading} text="Edytuj" />
-        </Button>
+          <span>Edytuj</span>
+        </LoadingButton>
       </Box>
     </Box>
   );

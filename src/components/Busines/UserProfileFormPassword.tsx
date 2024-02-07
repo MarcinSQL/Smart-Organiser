@@ -1,4 +1,5 @@
-import { Button, Container, Popover } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Container, Popover } from "@mui/material";
 import TextInput from "components/UI/TextInput";
 import { TextFieldSize } from "components/UI/TextInput";
 import useUserProfileFormPassword from "modules/logic/dashboard/useUserProfileFormPassword";
@@ -6,7 +7,7 @@ import { IUserProfileForms } from "modules/types/dashboard/userProfile.types";
 
 export default function UserProfileFormPassword(props: IUserProfileForms) {
   const { popoverId, open, anchorEl, onClose } = props;
-  const { register, control, handleSubmit, onSubmit } =
+  const { register, control, handleSubmit, onSubmit, isLoading } =
     useUserProfileFormPassword();
   return (
     <Popover
@@ -40,14 +41,15 @@ export default function UserProfileFormPassword(props: IUserProfileForms) {
           label="Powtórz nowe hasło"
           {...register("confirmPassword", { required: true })}
         />
-        <Button
+        <LoadingButton
+          loading={isLoading}
           type="submit"
           variant="contained"
           fullWidth
           sx={{ mb: 2, mt: 2 }}
         >
-          Edytuj
-        </Button>
+          <span>Edytuj</span>
+        </LoadingButton>
       </Container>
     </Popover>
   );

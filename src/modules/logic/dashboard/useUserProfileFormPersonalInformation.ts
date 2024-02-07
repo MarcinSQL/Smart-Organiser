@@ -12,6 +12,7 @@ interface IFormInput {
 
 export default function useUserProfileFormPersonalInformation() {
   const mutation = useEditPersonalInformationMutation();
+  const isLoading = mutation.isLoading;
 
   let userSchema = yup.object().shape({
     img: yup.string(),
@@ -27,5 +28,5 @@ export default function useUserProfileFormPersonalInformation() {
     mutation.mutate(editedData);
   };
 
-  return { register, handleSubmit, control, onSubmit };
+  return { register, handleSubmit, control, onSubmit, isLoading };
 }

@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -8,12 +7,12 @@ import Container from "@mui/material/Container";
 
 import Copyright from "components/Copyright";
 import TextInput from "components/UI/TextInput";
-import { Avatar, CircularProgress } from "@mui/material";
+import { Avatar } from "@mui/material";
 import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import useSignIn from "modules/logic/authorization/useSignIn";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
-import TextCircularProgress from "components/UI/TextCircularProgress";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 export default function SignIn() {
   const {
@@ -23,7 +22,7 @@ export default function SignIn() {
     control,
     goToSignUp,
     goToResetPassword,
-    isLoading
+    isLoading,
   } = useSignIn();
 
   return (
@@ -72,15 +71,15 @@ export default function SignIn() {
             type="password"
             {...register("password", { required: true })}
           />
-          <Button
-            disabled={isLoading}
+          <LoadingButton
+            loading={isLoading}
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            <TextCircularProgress isLoading={isLoading} text="Zaloguj się" />
-          </Button>
+            <span>Zaloguj się</span>
+          </LoadingButton>
           <Grid container>
             <Grid item xs>
               <Link
