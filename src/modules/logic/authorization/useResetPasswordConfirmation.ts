@@ -21,7 +21,11 @@ export default function useResetPasswordConfirm() {
     password: yup
       .string()
       .min(6, "Wymagane min 6 znaków")
-      .required("Hasło jest wymagane"),
+      .required("Hasło jest wymagane")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.])/,
+          "Hasło musi zawierać dużą literę, cyfrę oraz znak specjalny"
+        ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password")], "Hasła muszą być identyczne")
