@@ -16,8 +16,12 @@ export default function useUserProfileFormPassword() {
   let userSchema = yup.object().shape({
     password: yup
       .string()
+      .required("Nowe hasło nie może być puste")
       .min(6, "Wymagane min 6 znaków")
-      .required("Nowe hasło nie może być puste"),
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.])/,
+        "Hasło musi zawierać dużą literę, cyfrę oraz znak specjalny"
+      ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password")], "Hasła muszą być identyczne")
