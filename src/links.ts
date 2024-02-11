@@ -1,7 +1,7 @@
 //sign-in link is temporary (Home page will be soon)
 export const SignInLink = "/";
 export const SignUpLink = "/registration";
-export const ResetPasswordConfirmationLink = "/reset-password-confirmation";
+export const ResetPasswordConfirmationLink = "/reset-password-confirmation/:userId";
 export const ConfirmAccountLink = "/account-confirmation/:userId";
 export const ResetPasswordLink = "/reset-password";
 export const ApprovedEmailLink = "/approved-email";
