@@ -20,8 +20,12 @@ export default function useConfirmAccount() {
   let userSchema = yup.object().shape({
     password: yup
       .string()
+      .required("Hasło jest wymagane")
       .min(6, "Wymagane min 6 znaków")
-      .required("Hasło jest wymagane"),
+      .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.])/,
+        "Hasło musi zawierać dużą literę, cyfrę oraz znak specjalny"
+      ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password")], "Hasła muszą być identyczne")

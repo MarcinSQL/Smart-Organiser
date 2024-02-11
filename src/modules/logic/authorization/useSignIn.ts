@@ -30,8 +30,12 @@ export default function useSignIn() {
       .required("Email jest wymagany"),
     password: yup
       .string()
+      .required("Hasło jest wymagane")
       .min(6, "Wymagane min 6 znaków")
-      .required("Hasło jest wymagane"),
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.])/,
+        "Hasło musi zawierać dużą literę, cyfrę oraz znak specjalny"
+      ),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
@@ -49,6 +53,6 @@ export default function useSignIn() {
     control,
     goToSignUp,
     goToResetPassword,
-    isLoading
+    isLoading,
   };
 }
