@@ -39,7 +39,7 @@ export default function useResetPasswordConfirm() {
   const onSubmit: SubmitHandler<IFormInput> = (confirmedPassword) => {
     const { password } = confirmedPassword;
     const passwordConfirmData = {
-      userId,
+      userId: userId!,
       token: userToken!,
       password,
     };

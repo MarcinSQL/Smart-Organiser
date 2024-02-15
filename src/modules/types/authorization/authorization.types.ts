@@ -24,7 +24,7 @@ export interface IResetPassword {
 }
 
 export interface IResetPasswordConfirm {
-  userId: string | undefined;
+  userId: string;
   token: string;
   password: string;
 }
