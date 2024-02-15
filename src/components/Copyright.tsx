@@ -11,7 +11,7 @@ export default function Copyright() {
       >
         {"Copyright © "}
         <Link color="inherit" href="#">
-          Smart Organiser
+          {process.env.REACT_APP_SITE_TITLE}
         </Link>{" "}
         {new Date().getFullYear()}
         {"."}
