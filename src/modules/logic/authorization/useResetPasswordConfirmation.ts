@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useResetPasswordConfirmMutation } from "./mutations";
 
 interface IFormInput {
@@ -13,7 +13,7 @@ interface IFormInput {
 export default function useResetPasswordConfirm() {
   const mutation = useResetPasswordConfirmMutation();
   const [userData] = useSearchParams();
-  const userId = userData.get("userId");
+  const { userId } = useParams();
   const userToken = userData.get("token");
   const isLoading = mutation.isLoading;
 
@@ -24,8 +24,8 @@ export default function useResetPasswordConfirm() {
       .required("Hasło jest wymagane")
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.])/,
-          "Hasło musi zawierać dużą literę, cyfrę oraz znak specjalny"
-        ),
+        "Hasło musi zawierać dużą literę, cyfrę oraz znak specjalny"
+      ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password")], "Hasła muszą być identyczne")
@@ -39,7 +39,7 @@ export default function useResetPasswordConfirm() {
   const onSubmit: SubmitHandler<IFormInput> = (confirmedPassword) => {
     const { password } = confirmedPassword;
     const passwordConfirmData = {
-      userId: userId!,
+      userId,
       token: userToken!,
       password,
     };
