@@ -13,6 +13,7 @@ import useSignIn from "modules/logic/authorization/useSignIn";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { grey } from "@mui/material/colors";
 
 export default function SignIn() {
   const {
@@ -51,7 +52,9 @@ export default function SignIn() {
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
+          sx={{
+            bgcolor: grey[800],
+             width: logoWidth, height: logoHeight, m: 4 }}
         />
         <Typography component="h1" variant="h5">
           Zaloguj się
