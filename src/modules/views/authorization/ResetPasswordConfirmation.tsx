@@ -11,6 +11,7 @@ import useResetPasswordConfirm from "modules/logic/authorization/useResetPasswor
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
 import { LoadingButton } from "@mui/lab";
+import { grey } from "@mui/material/colors";
 
 export default function ResetPasswordConfirmation() {
   const { handleSubmit, register, onSubmit, control, isLoading } =
@@ -41,7 +42,12 @@ export default function ResetPasswordConfirmation() {
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
+          sx={{
+            bgcolor: grey[900],
+            width: logoWidth,
+            height: logoHeight,
+            m: 4,
+          }}
         />
         <Typography component="h1" variant="h5">
           Utwórz nowe hasło

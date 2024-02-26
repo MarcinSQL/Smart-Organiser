@@ -53,7 +53,7 @@ export default function SignIn() {
           alt="Blackbox Studio logo"
           variant="rounded"
           sx={{
-            bgcolor: grey[800],
+            bgcolor: grey[900],
              width: logoWidth, height: logoHeight, m: 4 }}
         />
         <Typography component="h1" variant="h5">
