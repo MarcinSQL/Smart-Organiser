@@ -83,7 +83,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .layout__navigation {
-  z-index: 2;
+  z-index: 1100 !important;
   background-color: #fff;
   display: flex !important;
   position: fixed;
@@ -91,6 +91,7 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   width: 280px !important;
   height: 100vh;
+  padding: 0 1rem !important;
 }
 
 .layout__navigation__icon {
@@ -103,6 +104,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media only screen and (max-width: 1000px) {
+  .layout__navigation {
+    width: 250px !important;
+    position: static !important;
+    padding: 0 1rem !important;
+  }
+
   .layout__content {
     width: 100vw;
     padding: 2rem 0;
