@@ -9,6 +9,7 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
+import { grey } from "@mui/material/colors";
 
 export default function ApprovedEmail() {
   const navigate = useNavigate();
@@ -40,7 +41,12 @@ export default function ApprovedEmail() {
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
+          sx={{
+            bgcolor: grey[900],
+            width: logoWidth,
+            height: logoHeight,
+            m: 4,
+          }}
         />
         <Typography component="h1" variant="h5" textAlign={"center"}>
           Sprawdź swoją skrzynkę pocztową!

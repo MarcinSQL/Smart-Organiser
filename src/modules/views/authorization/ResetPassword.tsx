@@ -13,6 +13,7 @@ import useResetPassword from "modules/logic/authorization/useResetPassword";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
 import { LoadingButton } from "@mui/lab";
+import { grey } from "@mui/material/colors";
 
 export default function ResetPassword() {
   const {
@@ -51,7 +52,12 @@ export default function ResetPassword() {
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
+          sx={{
+            bgcolor: grey[900],
+            width: logoWidth,
+            height: logoHeight,
+            m: 4,
+          }}
         />
         <Typography component="h1" variant="h5">
           Zmiana hasła

@@ -9,6 +9,7 @@ import BlackboxStudioLogo from "assets/images/Blackbox_Studio_1.png";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
 import { logoHeight, logoWidth } from "components/utils/sizes";
+import { grey } from "@mui/material/colors";
 
 export default function ApprovedResetPassword() {
   const navigate = useNavigate();
@@ -40,7 +41,12 @@ export default function ApprovedResetPassword() {
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4}}
+          sx={{
+            bgcolor: grey[900],
+            width: logoWidth,
+            height: logoHeight,
+            m: 4,
+          }}
         />
         <Typography component="h1" variant="h5" textAlign={"center"}>
           Twoje hasło zostało pomyślnie zmienione

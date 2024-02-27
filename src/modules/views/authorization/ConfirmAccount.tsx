@@ -11,6 +11,7 @@ import useConfirmAccount from "modules/logic/authorization/useConfirmAccount";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
 import { LoadingButton } from "@mui/lab";
+import { grey } from "@mui/material/colors";
 
 export default function ConfirmAccount() {
   const { handleSubmit, register, onSubmit, control, isLoading } =
@@ -41,7 +42,12 @@ export default function ConfirmAccount() {
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
+          sx={{
+            bgcolor: grey[900],
+            width: logoWidth,
+            height: logoHeight,
+            m: 4,
+          }}
         />
         <Typography component="h1" variant="h5">
           Utwórz hasło do potwierdzenia konta

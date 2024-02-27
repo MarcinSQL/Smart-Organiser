@@ -13,6 +13,7 @@ import useSignUp from "modules/logic/authorization/useSignUp";
 import { logoHeight, logoWidth } from "components/utils/sizes";
 import { Toaster } from "react-hot-toast";
 import { LoadingButton } from "@mui/lab";
+import { grey } from "@mui/material/colors";
 
 export default function SignUp() {
   const { handleSubmit, register, onSubmit, control, goToSignIn, isLoading } =
@@ -44,7 +45,12 @@ export default function SignUp() {
           src={BlackboxStudioLogo}
           alt="Blackbox Studio logo"
           variant="rounded"
-          sx={{ width: logoWidth, height: logoHeight, m: 4 }}
+          sx={{
+            bgcolor: grey[900],
+            width: logoWidth,
+            height: logoHeight,
+            m: 4,
+          }}
         />
         <Typography component="h1" variant="h5">
           Zarejestruj się
