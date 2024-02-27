@@ -39,7 +39,7 @@ export default function Layout(props: ILayout) {
       setMobiNavOpen(open);
     };
 
-  const drawer = (
+  const mobileNavigation = (
     <Drawer
       anchor="left"
       open={mobiNavOpen}
@@ -52,9 +52,13 @@ export default function Layout(props: ILayout) {
   return (
     <Box className={classes.layout}>
       <CssBaseline />
-      <Toaster position={'bottom-right'} />
+      <Toaster position={"bottom-right"} />
       <LayoutHeader mobiNav={handleMobileNavigationOpen} />
-      {windowWidth <= windowBreakpoint ? drawer : <LayoutNavigation />}
+      {windowWidth <= windowBreakpoint ? (
+        mobileNavigation
+      ) : (
+        <LayoutNavigation />
+      )}
       <LayoutContent children={props.children} />
     </Box>
   );
