@@ -5,7 +5,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import plLocale from "@fullcalendar/core/locales/pl";
-import { Paper } from "@mui/material";
+import { Paper, Toolbar } from "@mui/material";
 import classes from "./classes/Calendar.module.css";
 import ModalEvents from "components/Pure/CalendarModalEvents";
 import useGetCalendarEvents from "modules/logic/dashboard/useGetCalendarEvents";
@@ -34,6 +34,7 @@ export default function Calendar() {
 
   return (
     <Layout>
+      <Toolbar />
       <Paper className={classes["calendar-container"]}>
         <FullCalendar
           locale={plLocale}
