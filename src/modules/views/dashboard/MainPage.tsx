@@ -1,4 +1,4 @@
-import { Paper, Toolbar } from "@mui/material";
+import { Paper } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import MainPageTooltip from "components/Pure/MainPageTooltip";
 import {
@@ -10,6 +10,7 @@ import {
   Tooltip,
   Cell,
 } from "recharts";
+import classes from "./classes/MainPage.module.css";
 
 export default function MainPage() {
   const chartSetting = {
@@ -52,8 +53,7 @@ export default function MainPage() {
   ];
   return (
     <Layout>
-      <Toolbar />
-      <Paper>
+      <Paper className={classes.container}>
         <BarChart
           {...chartSetting}
           data={data}

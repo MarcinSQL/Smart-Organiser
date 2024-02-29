@@ -34,7 +34,6 @@ export default function Calendar() {
 
   return (
     <Layout>
-      <Toolbar />
       <Paper className={classes["calendar-container"]}>
         <FullCalendar
           locale={plLocale}

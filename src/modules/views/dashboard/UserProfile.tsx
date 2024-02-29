@@ -38,7 +38,6 @@ export default function UserProfile() {
   } = useUserProfile();
   return (
     <Layout>
-      <Toolbar />
       {isLoading || avatarIsLoading ? null : (
         <Paper className={classes.container}>
           <UserProfileTitle onClick={handleModalOpen} />
