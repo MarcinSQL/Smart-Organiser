@@ -1,4 +1,4 @@
-import { Button, Paper } from "@mui/material";
+import { Button, Grid, Paper } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import classes from "./classes/MainPage.module.css";
 import ModalCosts from "components/Pure/MainPageModalCosts";
@@ -104,7 +104,7 @@ export default function MainPage() {
   return (
     <Layout>
       <Paper className={classes.container}>
-        <Button variant="contained" color="info" onClick={handleModalCostsOpen}>
+        <Button variant="contained" color="info" onClick={handleModalCostsOpen} className={classes["modal-btn"]}>
           Dodaj kwotę
         </Button>
         <DataGrid
@@ -117,20 +117,30 @@ export default function MainPage() {
           }}
           pageSizeOptions={[5, 10]}
         />
-        <MainPageCostsInfo />
-        <PieChart
-          series={[
-            {
-              data,
-              highlightScope: { faded: "global", highlighted: "item" },
-              faded: { innerRadius: 30, additionalRadius: -10, color: "gray" },
-              innerRadius: 20,
-              paddingAngle: 5,
-              cornerRadius: 5,
-            },
-          ]}
-          height={250}
-        />
+        <Grid container spacing={2} className={classes["info-container"]}>
+          <Grid item md={6} xs={12}>
+            <PieChart
+              series={[
+                {
+                  data,
+                  highlightScope: { faded: "global", highlighted: "item" },
+                  faded: {
+                    innerRadius: 30,
+                    additionalRadius: -10,
+                    color: "gray",
+                  },
+                  innerRadius: 20,
+                  paddingAngle: 5,
+                  cornerRadius: 5,
+                },
+              ]}
+              height={200}
+            />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <MainPageCostsInfo />
+          </Grid>
+        </Grid>
         <ModalCosts
           open={showModalCosts}
           onClose={handleModalCostsClose}

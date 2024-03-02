@@ -2,6 +2,15 @@
   padding: 1rem;
 }
 
+.modal-btn{
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.info-container{
+  margin-top: 0rem !important;
+}
+
 @media only screen and (max-width: 1000px) {
   .container {
     margin-top: 1rem;
