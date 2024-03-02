@@ -57,12 +57,6 @@ export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
     resolver: yupResolver(userSchema),
   });
 
-  const [type, setType] = useState("");
-
-  const handleTypeChange = (event: SelectChangeEvent) => {
-    setType(event.target.value as string);
-  };
-
   const onSubmit: SubmitHandler<IFormInput> = (costsData) => {
     console.log(costsData);
   };
@@ -99,15 +93,21 @@ export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
           )}
         /> */}
         <SelectInput
-          name="type"
           control={control}
           label="Kategorie"
           labelId="type-label"
           id="type"
+          {...register("type", { required: true })}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={"house"}>Dom</MenuItem>
+          <MenuItem value={"entertainment"}>Rozrywka</MenuItem>
+          <MenuItem value={"subscriptions"}>Subskrypcje</MenuItem>
+          <MenuItem value={"gym"}>Siłownia</MenuItem>
+          <MenuItem value={"transportation"}>Transport</MenuItem>
+          <MenuItem value={"healthcare"}>Opieka zdrowotna</MenuItem>
+          <MenuItem value={"insurance"}>Ubezpieczenie</MenuItem>
+          <MenuItem value={"pets"}>Zwierzęta</MenuItem>
+          <MenuItem value={"utilities"}>Nieokreślone</MenuItem>
         </SelectInput>
         <TextInput
           control={control}
