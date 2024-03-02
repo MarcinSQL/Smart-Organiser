@@ -1,16 +1,15 @@
 import { Button, Box, Modal, Typography } from "@mui/material";
 import classes from "./classes/Modal.module.css";
-import CalendarModalEvents from "components/Busines/CalendarModalEventsForm";
+import MainPageModalCostsForm from "components/Busines/MainPageModalCostsForm";
 
-interface IModalEvents {
+interface IModalCosts {
   open: boolean;
   onClose: () => void;
   title: string;
-  defaultStartDate: string;
 }
 
-export default function ModalEvents(props: IModalEvents) {
-  const { open, onClose, title, defaultStartDate } = props;
+export default function ModalCosts(props: IModalCosts) {
+  const { open, onClose, title } = props;
 
   return (
     <Modal open={open} onClose={onClose} aria-labelledby="child-modal-title">
@@ -25,10 +24,7 @@ export default function ModalEvents(props: IModalEvents) {
         <Typography component="h2" variant="h6">
           {title}
         </Typography>
-        <CalendarModalEvents
-          defaultStartDate={defaultStartDate}
-          mutationOnSuccess={onClose}
-        />
+        <MainPageModalCostsForm mutationOnSuccess={onClose} />
       </Box>
     </Modal>
   );

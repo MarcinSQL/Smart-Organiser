@@ -1,5 +1,5 @@
 import { Button, Box, Modal, Typography } from "@mui/material";
-import classes from "./classes/ModalEvents.module.css";
+import classes from "./classes/Modal.module.css";
 import CalendarEditEventModalForm from "components/Busines/CalendarEditEventModalForm";
 import { useGetCalendarEventsQuery } from "modules/logic/dashboard/queries";
 import { IRawEvent } from "modules/types/dashboard/calendar.types";

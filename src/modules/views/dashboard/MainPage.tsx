@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import MainPageTooltip from "components/Pure/MainPageTooltip";
 import {
@@ -11,12 +11,11 @@ import {
   Cell,
 } from "recharts";
 import classes from "./classes/MainPage.module.css";
+import ModalCosts from "components/Pure/MainPageModalCosts";
+import useMainPage from "modules/logic/dashboard/useMainPage";
 
 export default function MainPage() {
-  const chartSetting = {
-    width: 500,
-    height: 300,
-  };
+  // STATICDATA
   const data = [
     {
       title: "Keyboard",
@@ -51,11 +50,23 @@ export default function MainPage() {
       category: "home",
     },
   ];
+  const { showModalCosts, handleModalCostsClose, handleModalCostsOpen } =
+    useMainPage();
   return (
     <Layout>
       <Paper className={classes.container}>
-        <BarChart
-          {...chartSetting}
+        <Button variant="contained" color="info" onClick={handleModalCostsOpen}>
+          Dodaj kwotę
+        </Button>
+        <ModalCosts
+          open={showModalCosts}
+          onClose={handleModalCostsClose}
+          title={"Dodaj kwotę"}
+        />
+        {/* Code for later */}
+        {/* <BarChart
+          width={500}
+          height={300}
           data={data}
           margin={{
             top: 20,
@@ -79,7 +90,7 @@ export default function MainPage() {
               />
             ))}
           </Bar>
-        </BarChart>
+        </BarChart> */}
       </Paper>
     </Layout>
   );
