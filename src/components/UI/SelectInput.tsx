@@ -13,15 +13,7 @@ interface ISelectInput {
 }
 
 export default function SelectInput(props: ISelectInput) {
-  const {
-    control,
-    name,
-    label,
-    defaultValue,
-    type,
-    labelId,
-    id
-  } = props;
+  const { control, name, label, defaultValue, type, labelId, id } = props;
   return (
     <Controller
       name={name}
@@ -29,10 +21,7 @@ export default function SelectInput(props: ISelectInput) {
       control={control}
       render={({ field, fieldState }) => (
         <>
-          <InputLabel
-            id={labelId}
-            error={!!fieldState.error}
-          >
+          <InputLabel id={labelId} error={!!fieldState.error}>
             {fieldState.error ? fieldState.error.message : label}
           </InputLabel>
           <Select

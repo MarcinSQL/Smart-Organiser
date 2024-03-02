@@ -1,35 +1,20 @@
 import * as yup from "yup";
-import dayjs, { Dayjs } from "dayjs";
-import {
-  Box,
-  FormLabel,
-  FormControl,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Grid,
-  Checkbox,
-  InputLabel,
-  Select,
-  MenuItem,
-  SelectChangeEvent,
-} from "@mui/material";
+import dayjs from "dayjs";
+import { Box, FormControl, MenuItem } from "@mui/material";
 import TextInput from "components/UI/TextInput";
 import classes from "../Pure/classes/Modal.module.css";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
-import { useState } from "react";
-import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { LoadingButton } from "@mui/lab";
 import SelectInput from "components/UI/SelectInput";
 
 interface IFormInput {
-  //   amount: number;
+  amount: number;
   type: string;
   note?: string;
+  date: string;
 }
 
 interface ICalendarModalEvents {
@@ -48,9 +33,13 @@ export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
   }
 
   let userSchema = yup.object().shape({
-    // amount: yup.number().required("Kwota zakupów/zysków jest wymagana"),
+    amount: yup
+      .number()
+      .typeError("Kwota musi być liczbą")
+      .required("Kwota zakupów/zysków jest wymagana"),
     type: yup.string().required("Kategoria jest wymagana"),
     note: yup.string().trim(),
+    date: yup.string().default(now.format("YYYY-MM-DDTHH:mm:ss")),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
@@ -67,31 +56,13 @@ export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
       onSubmit={handleSubmit(onSubmit)}
       className={classes["form"]}
     >
-      <FormControl>
-        {/* <Controller
-          name={"type"}
-          defaultValue={""}
-          control={control}
-          render={({ field, fieldState }) => (
-            <>
-              <InputLabel htmlFor={"aaa"} id="type-label" error={!!fieldState.error}>
-                {fieldState.error ? fieldState.error.message : "Kategoria"}
-              </InputLabel>
-              <Select
-                labelId="type-label"
-                id="type-select"
-                value={type}
-                onChange={handleTypeChange}
-                label={fieldState.error ? fieldState.error.message : "Kategoria"}
-                error={!!fieldState.error}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </>
-          )}
-        /> */}
+      <TextInput
+        control={control}
+        label="Kwota"
+        type="number"
+        {...register("amount", { required: true })}
+      />
+      <FormControl className={classes["form__select-container"]}>
         <SelectInput
           control={control}
           label="Kategorie"
@@ -109,15 +80,15 @@ export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
           <MenuItem value={"pets"}>Zwierzęta</MenuItem>
           <MenuItem value={"utilities"}>Nieokreślone</MenuItem>
         </SelectInput>
-        <TextInput
-          control={control}
-          label="Notatka (opcjonalnie)"
-          type="text"
-          multiline
-          rows={4}
-          {...register("note", { required: false })}
-        />
       </FormControl>
+      <TextInput
+        control={control}
+        label="Notatka (opcjonalnie)"
+        type="text"
+        multiline
+        rows={4}
+        {...register("note", { required: false })}
+      />
       <LoadingButton
         loading={isLoading}
         type="submit"

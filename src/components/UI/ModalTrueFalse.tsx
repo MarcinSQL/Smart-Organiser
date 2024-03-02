@@ -1,5 +1,5 @@
 import { Button, Container, Box, Modal, Typography } from "@mui/material";
-import classes from "./classes/Modal.module.css";
+import classes from "./classes/ModalTrueFalse.module.css";
 
 interface IModalTrueFalse {
   open: boolean;
