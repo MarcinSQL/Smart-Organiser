@@ -1,4 +1,4 @@
-import { Paper, Box, Toolbar } from "@mui/material";
+import { Paper, Box } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import useUserProfile from "modules/logic/dashboard/useUserProfile";
 

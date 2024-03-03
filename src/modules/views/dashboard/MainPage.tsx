@@ -1,4 +1,4 @@
-import { Button, Grid, Paper } from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import classes from "./classes/MainPage.module.css";
 import ModalCosts from "components/Pure/MainPageModalCosts";
@@ -6,6 +6,7 @@ import useMainPage from "modules/logic/dashboard/useMainPage";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { PieChart } from "@mui/x-charts";
 import MainPageCostsInfo from "components/Pure/MainPageCostsInfo";
+import MainPageCostsNavigation from "components/Pure/MainPageCostsNavigation";
 
 export default function MainPage() {
   // STATICDATA
@@ -99,14 +100,21 @@ export default function MainPage() {
       flex: 1,
     },
   ];
-  const { showModalCosts, handleModalCostsClose, handleModalCostsOpen } =
-    useMainPage();
+  const {
+    showModalCosts,
+    handleModalCostsClose,
+    handleModalCostsOpen,
+    handleMonthNext,
+    handleMonthPrev,
+  } = useMainPage();
   return (
     <Layout>
       <Paper className={classes.container}>
-        <Button variant="contained" color="info" onClick={handleModalCostsOpen} className={classes["modal-btn"]}>
-          Dodaj kwotę
-        </Button>
+        <MainPageCostsNavigation
+          modalOpen={handleModalCostsOpen}
+          monthNext={handleMonthNext}
+          monthPrev={handleMonthPrev}
+        />
         <DataGrid
           rows={rows}
           columns={columns}

@@ -3,6 +3,10 @@ import { useState } from "react";
 export default function useMainPage() {
   const [showModalCosts, setShowModalCosts] = useState(false);
 
+  const handleMonthPrev = () => {};
+
+  const handleMonthNext = () => {};
+
   const handleModalCostsOpen = () => {
     setShowModalCosts(true);
   };
@@ -11,5 +15,11 @@ export default function useMainPage() {
     setShowModalCosts(false);
   };
 
-  return { showModalCosts, handleModalCostsClose, handleModalCostsOpen };
+  return {
+    showModalCosts,
+    handleModalCostsClose,
+    handleModalCostsOpen,
+    handleMonthNext,
+    handleMonthPrev,
+  };
 }
