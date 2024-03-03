@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import classes from "./classes/MainPageCostsInfo.module.css";
 
 export default function MainPageCostsInfo() {
