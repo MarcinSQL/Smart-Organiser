@@ -20,6 +20,11 @@
   right: 0;
 }
 
+.form__select-container {
+  margin-top: 0.5rem !important;
+  width: 100% !important;
+}
+
 .form__radio-container {
   margin-top: 0.5rem !important;
   padding: 0 1rem;
@@ -35,7 +40,7 @@
   width: 50% !important;
 }
 
-.form__control-btn-container{
+.form__control-btn-container {
   display: flex;
   gap: 1rem;
 }

@@ -1,4 +1,4 @@
-import { Paper, Box, Toolbar } from "@mui/material";
+import { Paper, Box } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import useUserProfile from "modules/logic/dashboard/useUserProfile";
 
@@ -38,7 +38,6 @@ export default function UserProfile() {
   } = useUserProfile();
   return (
     <Layout>
-      <Toolbar />
       {isLoading || avatarIsLoading ? null : (
         <Paper className={classes.container}>
           <UserProfileTitle onClick={handleModalOpen} />

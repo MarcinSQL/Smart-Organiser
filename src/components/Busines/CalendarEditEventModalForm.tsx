@@ -12,7 +12,7 @@ import {
   Checkbox,
 } from "@mui/material";
 import TextInput from "components/UI/TextInput";
-import classes from "../Pure/classes/ModalEvents.module.css";
+import classes from "../Pure/classes/Modal.module.css";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";

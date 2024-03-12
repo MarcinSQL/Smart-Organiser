@@ -1,9 +1,13 @@
-.calendar-container {
+.container {
   padding: 1rem;
 }
 
+.info-container {
+  margin-top: 0rem !important;
+}
+
 @media only screen and (max-width: 1000px) {
-  .calendar-container {
+  .container {
     margin-top: 1rem;
   }
 }

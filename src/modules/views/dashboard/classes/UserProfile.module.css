@@ -42,6 +42,7 @@
 
 @media only screen and (max-width: 1000px) {
   .container {
+    margin-top: 1rem;
     padding: 1rem;
     display: block;
   }
