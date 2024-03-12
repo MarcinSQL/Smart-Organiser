@@ -1,6 +1,7 @@
-import { Button, Box, Modal, Typography } from "@mui/material";
+import { Button, Box, Modal, Typography, Grid, Icon } from "@mui/material";
 import classes from "./classes/Modal.module.css";
 import MainPageModalCostsForm from "components/Busines/MainPageModalCostsForm";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 interface IModalCosts {
   open: boolean;

@@ -14,10 +14,39 @@
   padding-top: 2rem;
 }
 
+.modal--choose {
+  padding: 0 !important;
+  max-height: 500px;
+}
+
 .modal__close-btn {
   position: absolute !important;
   top: 0;
   right: 0;
+  z-index: 100;
+}
+
+.modal__choose-btn {
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__choose-btn svg {
+  transition: all 0.3s ease-in-out;
+  font-size: 4rem;
+}
+
+.modal__choose-btn p {
+  transition: all 0.3s ease-in-out;
+}
+
+.modal__choose-btn:hover svg,
+.modal__choose-btn:hover p {
+  transform: scale(1.2);
 }
 
 .form__select-container {

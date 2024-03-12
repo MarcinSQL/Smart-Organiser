@@ -7,6 +7,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { PieChart } from "@mui/x-charts";
 import MainPageCostsInfo from "components/Pure/MainPageCostsInfo";
 import MainPageCostsNavigation from "components/Pure/MainPageCostsNavigation";
+import ModalChoose from "components/Pure/MainPageModalChoose";
 
 export default function MainPage() {
   // STATICDATA
@@ -101,17 +102,23 @@ export default function MainPage() {
     },
   ];
   const {
-    showModalCosts,
-    handleModalCostsClose,
-    handleModalCostsOpen,
+    showModalChoose,
+    handleModalChooseClose,
+    handleModalChooseOpen,
     handleMonthNext,
     handleMonthPrev,
+    showModalExpreses,
+    showModalRevenues,
+    handleModalExpresesClose,
+    handleModalExpresesOpen,
+    handleModalRevenuesClose,
+    handleModalRevenuesOpen,
   } = useMainPage();
   return (
     <Layout>
       <Paper className={classes.container}>
         <MainPageCostsNavigation
-          modalOpen={handleModalCostsOpen}
+          modalOpen={handleModalChooseOpen}
           monthNext={handleMonthNext}
           monthPrev={handleMonthPrev}
         />
@@ -149,10 +156,16 @@ export default function MainPage() {
             <MainPageCostsInfo />
           </Grid>
         </Grid>
+        <ModalChoose
+          open={showModalChoose}
+          onClose={handleModalChooseClose}
+          openRevenues={handleModalRevenuesOpen}
+          openExpreses={handleModalExpresesOpen}
+        />
         <ModalCosts
-          open={showModalCosts}
-          onClose={handleModalCostsClose}
-          title={"Dodaj kwotę"}
+          open={showModalRevenues}
+          onClose={handleModalRevenuesClose}
+          title="aaa"
         />
       </Paper>
     </Layout>
