@@ -25,6 +25,11 @@ import { CalendarEvents, ProfileAvatar, ProfileData } from "utils/query-keys";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
+import {
+  dashboardCreateExpenses,
+  dashboardCreateRevenues,
+} from "api/mainPage.service";
+import { IMainPageCosts } from "modules/types/dashboard/mainPage.types";
 
 export function useEditAvatarMutation() {
   const queryClient = useQueryClient();
@@ -160,6 +165,48 @@ export function useDeleteUserProfileMutation() {
       onSuccess: () => {
         toast.success("Pomyślnie usunięto konto użytkownika");
         navigate(SignInLink);
+      },
+      onError: (response: any) => {
+        const errorMessage = response.response.data.errorCode;
+        if (errorMessage === "MESSAGE_NOT_SENT")
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
+      },
+    }
+  );
+}
+
+export function useCreateRevenuesMutation() {
+  const queryClient = useQueryClient();
+  return useMutation<unknown, unknown, IMainPageCosts>(
+    (data) => {
+      return dashboardCreateRevenues(data);
+    },
+    {
+      onSuccess: () => {
+        toast.success("Pomyślnie dodano przychód");
+        queryClient.refetchQueries();
+      },
+      onError: (response: any) => {
+        const errorMessage = response.response.data.errorCode;
+        if (errorMessage === "MESSAGE_NOT_SENT")
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
+      },
+    }
+  );
+}
+
+export function useCreateExpensesMutation() {
+  const queryClient = useQueryClient();
+  return useMutation<unknown, unknown, IMainPageCosts>(
+    (data) => {
+      return dashboardCreateExpenses(data);
+    },
+    {
+      onSuccess: () => {
+        toast.success("Pomyślnie dodano wydatek");
+        queryClient.refetchQueries();
       },
       onError: (response: any) => {
         const errorMessage = response.response.data.errorCode;

@@ -1,9 +1,9 @@
 import { Button, Box, Modal, Typography } from "@mui/material";
 import classes from "./classes/Modal.module.css";
 import { IModalCosts } from "modules/types/dashboard/mainPage.types";
-import MainPageModalExpresesForm from "components/Busines/MainPageModalExpresesForm";
+import MainPageModalExpensesForm from "components/Busines/MainPageModalExpensesForm";
 
-export default function ModalExpreses(props: IModalCosts) {
+export default function ModalExpenses(props: IModalCosts) {
   const { open, onClose, title } = props;
 
   return (
@@ -19,7 +19,7 @@ export default function ModalExpreses(props: IModalCosts) {
         <Typography component="h2" variant="h6">
           {title}
         </Typography>
-        <MainPageModalExpresesForm mutationOnSuccess={onClose} />
+        <MainPageModalExpensesForm mutationOnSuccess={onClose} />
       </Box>
     </Modal>
   );

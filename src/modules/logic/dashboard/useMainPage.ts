@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function useMainPage() {
   const [showModalChoose, setShowModalChoose] = useState(false);
 
-  const [showModalExpreses, setShowModalExpreses] = useState(false);
+  const [showModalExpenses, setShowModalExpenses] = useState(false);
   const [showModalRevenues, setShowModalRevenues] = useState(false);
 
   const handleMonthPrev = () => {};
@@ -18,9 +18,9 @@ export default function useMainPage() {
     setShowModalChoose(false);
   };
 
-  const handleModalExpresesOpen = () => {
+  const handleModalExpensesOpen = () => {
     setShowModalChoose(false);
-    setShowModalExpreses(true);
+    setShowModalExpenses(true);
   };
 
   const handleModalRevenuesOpen = () => {
@@ -28,8 +28,8 @@ export default function useMainPage() {
     setShowModalRevenues(true);
   };
 
-  const handleModalExpresesClose = () => {
-    setShowModalExpreses(false);
+  const handleModalExpensesClose = () => {
+    setShowModalExpenses(false);
   };
 
   const handleModalRevenuesClose = () => {
@@ -42,10 +42,10 @@ export default function useMainPage() {
     handleModalChooseOpen,
     handleMonthNext,
     handleMonthPrev,
-    showModalExpreses,
+    showModalExpenses,
     showModalRevenues,
-    handleModalExpresesClose,
-    handleModalExpresesOpen,
+    handleModalExpensesClose,
+    handleModalExpensesOpen,
     handleModalRevenuesClose,
     handleModalRevenuesOpen,
   };

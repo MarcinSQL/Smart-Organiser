@@ -8,7 +8,7 @@ import { PieChart } from "@mui/x-charts";
 import MainPageCostsInfo from "components/Pure/MainPageCostsInfo";
 import MainPageCostsNavigation from "components/Pure/MainPageCostsNavigation";
 import ModalChoose from "components/Pure/MainPageModalChoose";
-import ModalExpreses from "components/Pure/MainPageModalExpreses";
+import ModalExpenses from "components/Pure/MainPageModalExpenses";
 
 export default function MainPage() {
   // STATICDATA
@@ -108,10 +108,10 @@ export default function MainPage() {
     handleModalChooseOpen,
     handleMonthNext,
     handleMonthPrev,
-    showModalExpreses,
+    showModalExpenses,
     showModalRevenues,
-    handleModalExpresesClose,
-    handleModalExpresesOpen,
+    handleModalExpensesClose,
+    handleModalExpensesOpen,
     handleModalRevenuesClose,
     handleModalRevenuesOpen,
   } = useMainPage();
@@ -161,16 +161,16 @@ export default function MainPage() {
           open={showModalChoose}
           onClose={handleModalChooseClose}
           openRevenues={handleModalRevenuesOpen}
-          openExpreses={handleModalExpresesOpen}
+          openExpreses={handleModalExpensesOpen}
         />
         <ModalRevenues
           open={showModalRevenues}
           onClose={handleModalRevenuesClose}
           title="Dodaj kwotę"
         />
-        <ModalExpreses
-          open={showModalExpreses}
-          onClose={handleModalExpresesClose}
+        <ModalExpenses
+          open={showModalExpenses}
+          onClose={handleModalExpensesClose}
           title="Dodaj kwotę"
         />
       </Paper>

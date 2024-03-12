@@ -6,10 +6,10 @@ import classes from "../Pure/classes/Modal.module.css";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
+import { useCreateRevenuesMutation } from "modules/logic/dashboard/mutations";
 import { LoadingButton } from "@mui/lab";
 import SelectInput from "components/UI/SelectInput";
-import { IMainPageModalCosts } from "modules/types/dashboard/mainPage.types";
+import { IMainPageFormCosts } from "modules/types/dashboard/mainPage.types";
 
 interface IFormInput {
   amount: number;
@@ -18,11 +18,11 @@ interface IFormInput {
   date: string;
 }
 
-export default function MainPageModalRevenuesForm(props: IMainPageModalCosts) {
+export default function MainPageModalRevenuesForm(props: IMainPageFormCosts) {
   const { mutationOnSuccess } = props;
   const now = dayjs();
   now.locale("pl");
-  const mutation = useCreateEventMutation();
+  const mutation = useCreateRevenuesMutation();
   const isLoading = mutation.isLoading;
 
   if (mutation.isSuccess) {
@@ -44,7 +44,7 @@ export default function MainPageModalRevenuesForm(props: IMainPageModalCosts) {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (costsData) => {
-    console.log(costsData);
+    mutation.mutate(costsData);
   };
 
   return (
