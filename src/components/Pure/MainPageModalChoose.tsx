@@ -2,8 +2,6 @@ import { Button, Box, Modal, Typography, Grid } from "@mui/material";
 import classes from "./classes/Modal.module.css";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
-import { useState } from "react";
-import ModalCosts from "./MainPageModalCosts";
 
 interface IModalChoose {
   open: boolean;

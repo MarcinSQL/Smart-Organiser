@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import dayjs from "dayjs";
-import { Box, FormControl, Grid, MenuItem, Typography } from "@mui/material";
+import { Box, FormControl, MenuItem } from "@mui/material";
 import TextInput from "components/UI/TextInput";
 import classes from "../Pure/classes/Modal.module.css";
 
@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
 import { LoadingButton } from "@mui/lab";
 import SelectInput from "components/UI/SelectInput";
+import { IMainPageModalCosts } from "modules/types/dashboard/mainPage.types";
 
 interface IFormInput {
   amount: number;
@@ -17,11 +18,7 @@ interface IFormInput {
   date: string;
 }
 
-interface ICalendarModalEvents {
-  mutationOnSuccess: () => void;
-}
-
-export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
+export default function MainPageModalExpresesForm(props: IMainPageModalCosts) {
   const { mutationOnSuccess } = props;
   const now = dayjs();
   now.locale("pl");
@@ -96,7 +93,7 @@ export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
         variant="contained"
         className={classes["form__submit-btn"]}
       >
-        <span>Stwórz</span>
+        <span>Dodaj</span>
       </LoadingButton>
     </Box>
   );

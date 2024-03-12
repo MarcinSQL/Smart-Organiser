@@ -1,15 +1,9 @@
-import { Button, Box, Modal, Typography, Grid, Icon } from "@mui/material";
+import { Button, Box, Modal, Typography } from "@mui/material";
 import classes from "./classes/Modal.module.css";
-import MainPageModalCostsForm from "components/Busines/MainPageModalCostsForm";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import MainPageModalRevenuesForm from "components/Busines/MainPageModalRevenuesForm";
+import { IModalCosts } from "modules/types/dashboard/mainPage.types";
 
-interface IModalCosts {
-  open: boolean;
-  onClose: () => void;
-  title: string;
-}
-
-export default function ModalCosts(props: IModalCosts) {
+export default function ModalRevenues(props: IModalCosts) {
   const { open, onClose, title } = props;
 
   return (
@@ -25,7 +19,7 @@ export default function ModalCosts(props: IModalCosts) {
         <Typography component="h2" variant="h6">
           {title}
         </Typography>
-        <MainPageModalCostsForm mutationOnSuccess={onClose} />
+        <MainPageModalRevenuesForm mutationOnSuccess={onClose} />
       </Box>
     </Modal>
   );

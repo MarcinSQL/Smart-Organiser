@@ -1,13 +1,14 @@
 import { Grid, Paper } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import classes from "./classes/MainPage.module.css";
-import ModalCosts from "components/Pure/MainPageModalCosts";
+import ModalRevenues from "components/Pure/MainPageModalRevenues";
 import useMainPage from "modules/logic/dashboard/useMainPage";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { PieChart } from "@mui/x-charts";
 import MainPageCostsInfo from "components/Pure/MainPageCostsInfo";
 import MainPageCostsNavigation from "components/Pure/MainPageCostsNavigation";
 import ModalChoose from "components/Pure/MainPageModalChoose";
+import ModalExpreses from "components/Pure/MainPageModalExpreses";
 
 export default function MainPage() {
   // STATICDATA
@@ -162,10 +163,15 @@ export default function MainPage() {
           openRevenues={handleModalRevenuesOpen}
           openExpreses={handleModalExpresesOpen}
         />
-        <ModalCosts
+        <ModalRevenues
           open={showModalRevenues}
           onClose={handleModalRevenuesClose}
-          title="aaa"
+          title="Dodaj kwotę"
+        />
+        <ModalExpreses
+          open={showModalExpreses}
+          onClose={handleModalExpresesClose}
+          title="Dodaj kwotę"
         />
       </Paper>
     </Layout>
