@@ -6,9 +6,10 @@ import classes from "../Pure/classes/Modal.module.css";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useCreateEventMutation } from "modules/logic/dashboard/mutations";
 import { LoadingButton } from "@mui/lab";
 import SelectInput from "components/UI/SelectInput";
+import { IMainPageFormCosts } from "modules/types/dashboard/mainPage.types";
+import { useCreateExpensesMutation } from "modules/logic/dashboard/mutations";
 
 interface IFormInput {
   amount: number;
@@ -17,15 +18,11 @@ interface IFormInput {
   date: string;
 }
 
-interface ICalendarModalEvents {
-  mutationOnSuccess: () => void;
-}
-
-export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
+export default function MainPageModalExpensesForm(props: IMainPageFormCosts) {
   const { mutationOnSuccess } = props;
   const now = dayjs();
   now.locale("pl");
-  const mutation = useCreateEventMutation();
+  const mutation = useCreateExpensesMutation();
   const isLoading = mutation.isLoading;
 
   if (mutation.isSuccess) {
@@ -47,7 +44,7 @@ export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = (costsData) => {
-    console.log(costsData);
+    mutation.mutate(costsData);
   };
 
   return (
@@ -96,7 +93,7 @@ export default function MainPageModalCostsForm(props: ICalendarModalEvents) {
         variant="contained"
         className={classes["form__submit-btn"]}
       >
-        <span>Stwórz</span>
+        <span>Dodaj</span>
       </LoadingButton>
     </Box>
   );

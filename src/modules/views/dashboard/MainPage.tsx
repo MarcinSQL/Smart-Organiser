@@ -1,12 +1,14 @@
 import { Grid, Paper } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import classes from "./classes/MainPage.module.css";
-import ModalCosts from "components/Pure/MainPageModalCosts";
+import ModalRevenues from "components/Pure/MainPageModalRevenues";
 import useMainPage from "modules/logic/dashboard/useMainPage";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { PieChart } from "@mui/x-charts";
 import MainPageCostsInfo from "components/Pure/MainPageCostsInfo";
 import MainPageCostsNavigation from "components/Pure/MainPageCostsNavigation";
+import ModalChoose from "components/Pure/MainPageModalChoose";
+import ModalExpenses from "components/Pure/MainPageModalExpenses";
 
 export default function MainPage() {
   // STATICDATA
@@ -101,17 +103,23 @@ export default function MainPage() {
     },
   ];
   const {
-    showModalCosts,
-    handleModalCostsClose,
-    handleModalCostsOpen,
+    showModalChoose,
+    handleModalChooseClose,
+    handleModalChooseOpen,
     handleMonthNext,
     handleMonthPrev,
+    showModalExpenses,
+    showModalRevenues,
+    handleModalExpensesClose,
+    handleModalExpensesOpen,
+    handleModalRevenuesClose,
+    handleModalRevenuesOpen,
   } = useMainPage();
   return (
     <Layout>
       <Paper className={classes.container}>
         <MainPageCostsNavigation
-          modalOpen={handleModalCostsOpen}
+          modalOpen={handleModalChooseOpen}
           monthNext={handleMonthNext}
           monthPrev={handleMonthPrev}
         />
@@ -149,10 +157,21 @@ export default function MainPage() {
             <MainPageCostsInfo />
           </Grid>
         </Grid>
-        <ModalCosts
-          open={showModalCosts}
-          onClose={handleModalCostsClose}
-          title={"Dodaj kwotę"}
+        <ModalChoose
+          open={showModalChoose}
+          onClose={handleModalChooseClose}
+          openRevenues={handleModalRevenuesOpen}
+          openExpreses={handleModalExpensesOpen}
+        />
+        <ModalRevenues
+          open={showModalRevenues}
+          onClose={handleModalRevenuesClose}
+          title="Dodaj kwotę"
+        />
+        <ModalExpenses
+          open={showModalExpenses}
+          onClose={handleModalExpensesClose}
+          title="Dodaj kwotę"
         />
       </Paper>
     </Layout>

@@ -1,25 +1,52 @@
 import { useState } from "react";
 
 export default function useMainPage() {
-  const [showModalCosts, setShowModalCosts] = useState(false);
+  const [showModalChoose, setShowModalChoose] = useState(false);
+
+  const [showModalExpenses, setShowModalExpenses] = useState(false);
+  const [showModalRevenues, setShowModalRevenues] = useState(false);
 
   const handleMonthPrev = () => {};
 
   const handleMonthNext = () => {};
 
-  const handleModalCostsOpen = () => {
-    setShowModalCosts(true);
+  const handleModalChooseOpen = () => {
+    setShowModalChoose(true);
   };
 
-  const handleModalCostsClose = () => {
-    setShowModalCosts(false);
+  const handleModalChooseClose = () => {
+    setShowModalChoose(false);
+  };
+
+  const handleModalExpensesOpen = () => {
+    setShowModalChoose(false);
+    setShowModalExpenses(true);
+  };
+
+  const handleModalRevenuesOpen = () => {
+    setShowModalChoose(false);
+    setShowModalRevenues(true);
+  };
+
+  const handleModalExpensesClose = () => {
+    setShowModalExpenses(false);
+  };
+
+  const handleModalRevenuesClose = () => {
+    setShowModalRevenues(false);
   };
 
   return {
-    showModalCosts,
-    handleModalCostsClose,
-    handleModalCostsOpen,
+    showModalChoose,
+    handleModalChooseClose,
+    handleModalChooseOpen,
     handleMonthNext,
     handleMonthPrev,
+    showModalExpenses,
+    showModalRevenues,
+    handleModalExpensesClose,
+    handleModalExpensesOpen,
+    handleModalRevenuesClose,
+    handleModalRevenuesOpen,
   };
 }
