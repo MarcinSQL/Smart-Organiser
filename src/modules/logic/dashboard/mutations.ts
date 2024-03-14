@@ -21,7 +21,12 @@ import {
   IEditPersonalInformation,
 } from "modules/types/dashboard/userProfile.types";
 import { useMutation, useQueryClient } from "react-query";
-import { CalendarEvents, ProfileAvatar, ProfileData } from "utils/query-keys";
+import {
+  CalendarEvents,
+  Costs,
+  ProfileAvatar,
+  ProfileData,
+} from "utils/query-keys";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
@@ -185,7 +190,7 @@ export function useCreateRevenuesMutation() {
     {
       onSuccess: () => {
         toast.success("Pomyślnie dodano przychód");
-        queryClient.refetchQueries();
+        queryClient.refetchQueries(Costs);
       },
       onError: (response: any) => {
         const errorMessage = response.response.data.errorCode;
@@ -206,7 +211,7 @@ export function useCreateExpensesMutation() {
     {
       onSuccess: () => {
         toast.success("Pomyślnie dodano wydatek");
-        queryClient.refetchQueries();
+        queryClient.refetchQueries(Costs);
       },
       onError: (response: any) => {
         const errorMessage = response.response.data.errorCode;

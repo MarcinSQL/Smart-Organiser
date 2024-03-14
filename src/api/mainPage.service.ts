@@ -14,3 +14,9 @@ export const dashboardCreateExpenses = (expense: IMainPageCosts) => {
     return Promise.resolve(response);
   });
 };
+
+export const dashboardCosts = () => {
+  return service.get(`${baseURL}costs/`).then((response) => {
+    return Promise.resolve(response.data);
+  });
+};
