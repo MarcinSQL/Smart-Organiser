@@ -14,3 +14,17 @@ export interface IMainPageCosts {
   note?: string;
   date: string;
 }
+
+export interface IMainPageGetCost {
+  id: string;
+}
+
+export interface IMainPageCost {
+  id: string;
+  title: string;
+  amount: number;
+  description: string;
+  type: string;
+  date: string;
+  category: string;
+}

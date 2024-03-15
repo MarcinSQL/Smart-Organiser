@@ -1,13 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useGetCostMutation } from "./mutations";
 
 export default function useMainPage() {
+  const mutation = useGetCostMutation();
   const [showModalChoose, setShowModalChoose] = useState(false);
 
   const [showModalExpenses, setShowModalExpenses] = useState(false);
   const [showModalRevenues, setShowModalRevenues] = useState(false);
 
-  const [editCostModalOpen, setEditCostModalOpen] = useState(false);
-  const [selectedCellData, setSelectedCellData] = useState(null);
+  const [selectedCellData, setSelectedCellData] = useState({});
+  const [showEditModalCost, setShowEditModalCost] = useState(false);
+
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      if (mutation.data !== undefined || mutation.data !== null) {
+        //  WHEN ENDPOINTS WILL BE CREATED
+        // setSelectedCellData(mutation.data);
+
+        setSelectedCellData({
+          id: "0",
+          title: "Keyboard",
+          amount: 222,
+          description: "Typical keyboard",
+          type: "expenses",
+          date: "10-02-2024",
+          category: "entertainment",
+        });
+        setShowEditModalCost(true);
+      }
+    }
+  }, [mutation.isSuccess]);
 
   const handleMonthPrev = () => {};
 
@@ -39,11 +61,12 @@ export default function useMainPage() {
     setShowModalRevenues(false);
   };
 
-  const handleEditCostBtnClick = (rowData : object) => {
-    
-    setEditCostModalOpen(true);
-    console.log(rowData);
-    
+  const handleEditModalCostClose = () => {
+    setShowEditModalCost(false);
+  };
+
+  const handleEditCostBtnClick = (rowData: any) => {
+    mutation.mutate(rowData.id);
   };
 
   return {
@@ -59,6 +82,8 @@ export default function useMainPage() {
     handleModalRevenuesClose,
     handleModalRevenuesOpen,
     handleEditCostBtnClick,
-
+    showEditModalCost,
+    selectedCellData,
+    handleEditModalCostClose,
   };
 }

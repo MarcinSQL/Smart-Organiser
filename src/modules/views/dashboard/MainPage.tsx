@@ -14,7 +14,7 @@ export default function MainPage() {
   // STATICDATA
   const rows = [
     {
-      id: 0,
+      id: "0",
       title: "Keyboard",
       amount: -222,
       description: "Typical keyboard",
@@ -23,7 +23,7 @@ export default function MainPage() {
       category: "entertainment",
     },
     {
-      id: 1,
+      id: "1",
       title: "Mouse",
       amount: -125,
       description: "Typical mouse",
@@ -32,7 +32,7 @@ export default function MainPage() {
       category: "entertainment",
     },
     {
-      id: 2,
+      id: "2",
       title: "Work",
       amount: 2111,
       description: "Typical work",
@@ -41,7 +41,7 @@ export default function MainPage() {
       category: "job",
     },
     {
-      id: 3,
+      id: "3",
       title: "Food",
       amount: -915,
       description: "Typical food description",
@@ -115,6 +115,8 @@ export default function MainPage() {
     handleModalRevenuesClose,
     handleModalRevenuesOpen,
     handleEditCostBtnClick,
+    selectedCellData,
+    showEditModalCost,
   } = useMainPage();
   return (
     <Layout>

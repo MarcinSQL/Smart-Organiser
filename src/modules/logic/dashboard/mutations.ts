@@ -33,8 +33,12 @@ import { SignInLink } from "links";
 import {
   dashboardCreateExpenses,
   dashboardCreateRevenues,
+  dashboardGetCost,
 } from "api/mainPage.service";
-import { IMainPageCosts } from "modules/types/dashboard/mainPage.types";
+import {
+  IMainPageCosts,
+  IMainPageGetCost,
+} from "modules/types/dashboard/mainPage.types";
 
 export function useEditAvatarMutation() {
   const queryClient = useQueryClient();
@@ -212,6 +216,26 @@ export function useCreateExpensesMutation() {
       onSuccess: () => {
         toast.success("Pomyślnie dodano wydatek");
         queryClient.refetchQueries(Costs);
+      },
+      onError: (response: any) => {
+        const errorMessage = response.response.data.errorCode;
+        if (errorMessage === "MESSAGE_NOT_SENT")
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
+      },
+    }
+  );
+}
+
+export function useGetCostMutation() {
+  return useMutation<unknown, unknown, IMainPageGetCost>(
+    (data) => {
+      toast.loading("Ładowanie...");
+      return dashboardGetCost(data);
+    },
+    {
+      onSuccess: () => {
+        toast.remove();
       },
       onError: (response: any) => {
         const errorMessage = response.response.data.errorCode;

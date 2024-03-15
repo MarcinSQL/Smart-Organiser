@@ -17,6 +17,7 @@
 .modal--choose {
   padding: 0 !important;
   max-height: 500px;
+  min-width: 350px;
 }
 
 .modal__close-btn {

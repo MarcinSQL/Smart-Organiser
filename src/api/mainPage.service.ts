@@ -1,4 +1,7 @@
-import { IMainPageCosts } from "modules/types/dashboard/mainPage.types";
+import {
+  IMainPageCosts,
+  IMainPageGetCost,
+} from "modules/types/dashboard/mainPage.types";
 import service from "utils/axios";
 
 const baseURL = "/main-page/";
@@ -19,4 +22,14 @@ export const dashboardCosts = () => {
   return service.get(`${baseURL}costs/`).then((response) => {
     return Promise.resolve(response.data);
   });
+};
+
+export const dashboardGetCost = (id: IMainPageGetCost) => {
+  return service
+    .get(`${baseURL}costs/`, {
+      data: { id },
+    })
+    .then((response) => {
+      return Promise.resolve(response.data);
+    });
 };
