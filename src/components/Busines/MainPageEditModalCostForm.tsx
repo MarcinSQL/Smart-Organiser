@@ -44,7 +44,8 @@ export default function MainPageEditModalCostForm(
   const onSubmit: SubmitHandler<IFormInput> = (editedData) => {
     let newCostData = {
       ...costData,
-      editedData,
+      amount: editedData.amount,
+      date: editedData.date,
     };
     mutation.mutate(newCostData);
   };
