@@ -9,6 +9,7 @@ import MainPageCostsInfo from "components/Pure/MainPageCostsInfo";
 import MainPageCostsNavigation from "components/Pure/MainPageCostsNavigation";
 import ModalChoose from "components/Pure/MainPageModalChoose";
 import ModalExpenses from "components/Pure/MainPageModalExpenses";
+import ModalEditCost from "components/Pure/MainPageModalEditCost";
 
 export default function MainPage() {
   // STATICDATA
@@ -117,6 +118,7 @@ export default function MainPage() {
     handleEditCostBtnClick,
     selectedCellData,
     showEditModalCost,
+    handleEditModalCostClose,
   } = useMainPage();
   return (
     <Layout>
@@ -188,6 +190,12 @@ export default function MainPage() {
           open={showModalExpenses}
           onClose={handleModalExpensesClose}
           title="Dodaj kwotę"
+        />
+        <ModalEditCost
+          open={showEditModalCost}
+          onClose={handleEditModalCostClose}
+          title="Edytuj kwotę"
+          costData={selectedCellData}
         />
       </Paper>
     </Layout>

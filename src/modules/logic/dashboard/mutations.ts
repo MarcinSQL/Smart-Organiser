@@ -33,10 +33,12 @@ import { SignInLink } from "links";
 import {
   dashboardCreateExpenses,
   dashboardCreateRevenues,
+  dashboardEditCost,
   dashboardGetCost,
 } from "api/mainPage.service";
 import {
   IMainPageCosts,
+  IMainPageEditCost,
   IMainPageGetCost,
 } from "modules/types/dashboard/mainPage.types";
 
@@ -236,6 +238,27 @@ export function useGetCostMutation() {
     {
       onSuccess: () => {
         toast.remove();
+      },
+      onError: (response: any) => {
+        const errorMessage = response.response.data.errorCode;
+        if (errorMessage === "MESSAGE_NOT_SENT")
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
+      },
+    }
+  );
+}
+
+export function useEditCostMutation() {
+  const queryClient = useQueryClient();
+  return useMutation<unknown, unknown, IMainPageEditCost>(
+    (data) => {
+      return dashboardEditCost(data);
+    },
+    {
+      onSuccess: () => {
+        toast.success("Pomyślnie zmodyfikowano wydatek");
+        queryClient.refetchQueries(Costs);
       },
       onError: (response: any) => {
         const errorMessage = response.response.data.errorCode;

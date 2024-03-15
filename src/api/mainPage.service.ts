@@ -1,5 +1,6 @@
 import {
   IMainPageCosts,
+  IMainPageEditCost,
   IMainPageGetCost,
 } from "modules/types/dashboard/mainPage.types";
 import service from "utils/axios";
@@ -32,4 +33,10 @@ export const dashboardGetCost = (id: IMainPageGetCost) => {
     .then((response) => {
       return Promise.resolve(response.data);
     });
+};
+
+export const dashboardEditCost = (editedCost: IMainPageEditCost) => {
+  return service.put(`${baseURL}cost/`, editedCost).then((response) => {
+    return Promise.resolve(response);
+  });
 };

@@ -8,7 +8,15 @@ export default function useMainPage() {
   const [showModalExpenses, setShowModalExpenses] = useState(false);
   const [showModalRevenues, setShowModalRevenues] = useState(false);
 
-  const [selectedCellData, setSelectedCellData] = useState({});
+  const [selectedCellData, setSelectedCellData] = useState({
+    id: "",
+    title: "",
+    amount: 0,
+    description: "",
+    type: "",
+    date: "",
+    category: "",
+  });
   const [showEditModalCost, setShowEditModalCost] = useState(false);
 
   useEffect(() => {
