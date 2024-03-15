@@ -6,6 +6,9 @@ export default function useMainPage() {
   const [showModalExpenses, setShowModalExpenses] = useState(false);
   const [showModalRevenues, setShowModalRevenues] = useState(false);
 
+  const [editCostModalOpen, setEditCostModalOpen] = useState(false);
+  const [selectedCellData, setSelectedCellData] = useState(null);
+
   const handleMonthPrev = () => {};
 
   const handleMonthNext = () => {};
@@ -36,6 +39,13 @@ export default function useMainPage() {
     setShowModalRevenues(false);
   };
 
+  const handleEditCostBtnClick = (rowData : object) => {
+    
+    setEditCostModalOpen(true);
+    console.log(rowData);
+    
+  };
+
   return {
     showModalChoose,
     handleModalChooseClose,
@@ -48,5 +58,7 @@ export default function useMainPage() {
     handleModalExpensesOpen,
     handleModalRevenuesClose,
     handleModalRevenuesOpen,
+    handleEditCostBtnClick,
+
   };
 }

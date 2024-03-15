@@ -1,4 +1,4 @@
-import { Grid, Paper } from "@mui/material";
+import { Button, Grid, Paper } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import classes from "./classes/MainPage.module.css";
 import ModalRevenues from "components/Pure/MainPageModalRevenues";
@@ -114,6 +114,7 @@ export default function MainPage() {
     handleModalExpensesOpen,
     handleModalRevenuesClose,
     handleModalRevenuesOpen,
+    handleEditCostBtnClick,
   } = useMainPage();
   return (
     <Layout>
@@ -125,7 +126,20 @@ export default function MainPage() {
         />
         <DataGrid
           rows={rows}
-          columns={columns}
+          columns={[
+            ...columns,
+            {
+              field: "editCost",
+              headerName: "",
+              sortable: false,
+              width: 120,
+              renderCell: (params) => (
+                <Button onClick={() => handleEditCostBtnClick(params.row)}>
+                  Edytuj
+                </Button>
+              ),
+            },
+          ]}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 5 },
