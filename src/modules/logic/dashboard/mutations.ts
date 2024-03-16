@@ -31,8 +31,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
 import {
-  dashboardCreateExpenses,
-  dashboardCreateRevenues,
+  dashboardCreateCost,
   dashboardEditCost,
   dashboardGetCost,
 } from "api/mainPage.service";
@@ -187,36 +186,15 @@ export function useDeleteUserProfileMutation() {
   );
 }
 
-export function useCreateRevenuesMutation() {
+export function useCreateCostMutation() {
   const queryClient = useQueryClient();
   return useMutation<unknown, unknown, IMainPageCosts>(
     (data) => {
-      return dashboardCreateRevenues(data);
+      return dashboardCreateCost(data);
     },
     {
       onSuccess: () => {
         toast.success("Pomyślnie dodano przychód");
-        queryClient.refetchQueries(Costs);
-      },
-      onError: (response: any) => {
-        const errorMessage = response.response.data.errorCode;
-        if (errorMessage === "MESSAGE_NOT_SENT")
-          toast.error("Żądanie nie zostało wysłane.");
-        else toast.error("Błąd nie został rozpoznany.");
-      },
-    }
-  );
-}
-
-export function useCreateExpensesMutation() {
-  const queryClient = useQueryClient();
-  return useMutation<unknown, unknown, IMainPageCosts>(
-    (data) => {
-      return dashboardCreateExpenses(data);
-    },
-    {
-      onSuccess: () => {
-        toast.success("Pomyślnie dodano wydatek");
         queryClient.refetchQueries(Costs);
       },
       onError: (response: any) => {

@@ -49,6 +49,7 @@ export interface IMainPageCosts {
   type: string;
   note?: string;
   date: string;
+  category: string;
 }
 
 export interface IMainPageGetCost {

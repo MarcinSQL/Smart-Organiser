@@ -6,7 +6,7 @@ import classes from "../Pure/classes/Modal.module.css";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useCreateRevenuesMutation } from "modules/logic/dashboard/mutations";
+import { useCreateCostMutation } from "modules/logic/dashboard/mutations";
 import { LoadingButton } from "@mui/lab";
 import SelectInput from "components/UI/SelectInput";
 import { IMainPageFormCosts } from "modules/types/dashboard/mainPage.types";
@@ -16,13 +16,14 @@ interface IFormInput {
   type: string;
   note?: string;
   date: string;
+  category: string;
 }
 
 export default function MainPageModalRevenuesForm(props: IMainPageFormCosts) {
   const { mutationOnSuccess } = props;
   const now = dayjs();
   now.locale("pl");
-  const mutation = useCreateRevenuesMutation();
+  const mutation = useCreateCostMutation();
   const isLoading = mutation.isLoading;
 
   if (mutation.isSuccess) {
@@ -37,6 +38,7 @@ export default function MainPageModalRevenuesForm(props: IMainPageFormCosts) {
     type: yup.string().required("Kategoria jest wymagana"),
     note: yup.string().trim(),
     date: yup.string().default(now.format("YYYY-MM-DDTHH:mm:ss")),
+    category: yup.string().default("revenues"),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
