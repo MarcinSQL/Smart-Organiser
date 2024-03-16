@@ -1,15 +1,14 @@
 import { Button, Grid, Paper } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import classes from "./classes/MainPage.module.css";
-import ModalRevenues from "components/Pure/MainPageModalRevenues";
 import useMainPage from "modules/logic/dashboard/useMainPage";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { PieChart } from "@mui/x-charts";
 import MainPageCostsInfo from "components/Pure/MainPageCostsInfo";
 import MainPageCostsNavigation from "components/Pure/MainPageCostsNavigation";
 import ModalChoose from "components/Pure/MainPageModalChoose";
-import ModalExpenses from "components/Pure/MainPageModalExpenses";
 import ModalEditCost from "components/Pure/MainPageModalEditCost";
+import ModalCost from "components/Pure/MainPageModalCost";
 
 export default function MainPage() {
   // STATICDATA
@@ -109,16 +108,14 @@ export default function MainPage() {
     handleModalChooseOpen,
     handleMonthNext,
     handleMonthPrev,
-    showModalExpenses,
-    showModalRevenues,
-    handleModalExpensesClose,
-    handleModalExpensesOpen,
-    handleModalRevenuesClose,
-    handleModalRevenuesOpen,
     handleEditCostBtnClick,
     selectedCellData,
     showEditModalCost,
     handleEditModalCostClose,
+    handleModalCostOpen,
+    handleModalCostClose,
+    choosedType,
+    showModalCost,
   } = useMainPage();
   return (
     <Layout>
@@ -178,18 +175,13 @@ export default function MainPage() {
         <ModalChoose
           open={showModalChoose}
           onClose={handleModalChooseClose}
-          openRevenues={handleModalRevenuesOpen}
-          openExpreses={handleModalExpensesOpen}
+          choosedType={handleModalCostOpen}
         />
-        <ModalRevenues
-          open={showModalRevenues}
-          onClose={handleModalRevenuesClose}
+        <ModalCost
+          open={showModalCost}
+          onClose={handleModalCostClose}
           title="Dodaj kwotę"
-        />
-        <ModalExpenses
-          open={showModalExpenses}
-          onClose={handleModalExpensesClose}
-          title="Dodaj kwotę"
+          choosedType={choosedType}
         />
         <ModalEditCost
           open={showEditModalCost}

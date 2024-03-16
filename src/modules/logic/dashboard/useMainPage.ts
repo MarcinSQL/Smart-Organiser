@@ -5,8 +5,8 @@ export default function useMainPage() {
   const mutation = useGetCostMutation();
   const [showModalChoose, setShowModalChoose] = useState(false);
 
-  const [showModalExpenses, setShowModalExpenses] = useState(false);
-  const [showModalRevenues, setShowModalRevenues] = useState(false);
+  const [showModalCost, setShowModalCost] = useState(false);
+  const [choosedType, setChoosedType] = useState("");
 
   const [selectedCellData, setSelectedCellData] = useState({
     id: "",
@@ -51,22 +51,14 @@ export default function useMainPage() {
     setShowModalChoose(false);
   };
 
-  const handleModalExpensesOpen = () => {
+  const handleModalCostOpen = (type: string) => {
+    setChoosedType(type);
     setShowModalChoose(false);
-    setShowModalExpenses(true);
+    setShowModalCost(true);
   };
 
-  const handleModalRevenuesOpen = () => {
-    setShowModalChoose(false);
-    setShowModalRevenues(true);
-  };
-
-  const handleModalExpensesClose = () => {
-    setShowModalExpenses(false);
-  };
-
-  const handleModalRevenuesClose = () => {
-    setShowModalRevenues(false);
+  const handleModalCostClose = () => {
+    setShowModalCost(false);
   };
 
   const handleEditModalCostClose = () => {
@@ -83,15 +75,13 @@ export default function useMainPage() {
     handleModalChooseOpen,
     handleMonthNext,
     handleMonthPrev,
-    showModalExpenses,
-    showModalRevenues,
-    handleModalExpensesClose,
-    handleModalExpensesOpen,
-    handleModalRevenuesClose,
-    handleModalRevenuesOpen,
     handleEditCostBtnClick,
     showEditModalCost,
     selectedCellData,
     handleEditModalCostClose,
+    choosedType,
+    handleModalCostOpen,
+    handleModalCostClose,
+    showModalCost,
   };
 }
