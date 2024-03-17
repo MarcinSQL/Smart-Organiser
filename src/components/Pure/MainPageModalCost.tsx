@@ -1,10 +1,11 @@
 import { Button, Box, Modal, Typography } from "@mui/material";
 import classes from "./classes/Modal.module.css";
-import { IModalCosts } from "modules/types/dashboard/mainPage.types";
+import { IModalCostTypeChoose } from "modules/types/dashboard/mainPage.types";
 import MainPageModalExpensesForm from "components/Busines/MainPageModalExpensesForm";
+import MainPageModalRevenuesForm from "components/Busines/MainPageModalRevenuesForm";
 
-export default function ModalExpenses(props: IModalCosts) {
-  const { open, onClose, title } = props;
+export default function ModalCost(props: IModalCostTypeChoose) {
+  const { open, onClose, title, choosedType } = props;
 
   return (
     <Modal open={open} onClose={onClose} aria-labelledby="child-modal-title">
@@ -19,7 +20,11 @@ export default function ModalExpenses(props: IModalCosts) {
         <Typography component="h2" variant="h6">
           {title}
         </Typography>
-        <MainPageModalExpensesForm mutationOnSuccess={onClose} />
+        {choosedType === "expenses" ? (
+          <MainPageModalExpensesForm mutationOnSuccess={onClose} />
+        ) : (
+          <MainPageModalRevenuesForm mutationOnSuccess={onClose} />
+        )}
       </Box>
     </Modal>
   );

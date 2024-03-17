@@ -19,6 +19,14 @@ export interface IModalCosts {
   open: boolean;
   onClose: () => void;
   title: string;
+  choosedType: (type: string) => void;
+}
+
+export interface IModalCostTypeChoose {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  choosedType: string;
 }
 
 export interface IModalEditCost {
@@ -41,6 +49,7 @@ export interface IMainPageCosts {
   type: string;
   note?: string;
   date: string;
+  category: string;
 }
 
 export interface IMainPageGetCost {

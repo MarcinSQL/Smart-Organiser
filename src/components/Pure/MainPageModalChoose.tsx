@@ -6,12 +6,19 @@ import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 interface IModalChoose {
   open: boolean;
   onClose: () => void;
-  openRevenues: () => void;
-  openExpreses: () => void;
+  choosedType: (type: string) => void;
 }
 
 export default function ModalChoose(props: IModalChoose) {
-  const { open, onClose, openExpreses, openRevenues } = props;
+  const { open, onClose, choosedType } = props;
+
+  const handleRevenuesFormOpen = () => {
+    choosedType("revenues");
+  };
+
+  const handleExpensesFormOpen = () => {
+    choosedType("expenses");
+  };
 
   return (
     <Modal open={open} onClose={onClose} aria-labelledby="child-modal-title">
@@ -27,7 +34,7 @@ export default function ModalChoose(props: IModalChoose) {
           <Grid item xs={6} className={classes["modal__choose-btn-container"]}>
             <Button
               className={classes["modal__choose-btn"]}
-              onClick={openRevenues}
+              onClick={handleRevenuesFormOpen}
             >
               <TrendingUpIcon />
               <Typography component={"p"}>Przychody</Typography>
@@ -36,7 +43,7 @@ export default function ModalChoose(props: IModalChoose) {
           <Grid item xs={6}>
             <Button
               className={classes["modal__choose-btn"]}
-              onClick={openExpreses}
+              onClick={handleExpensesFormOpen}
             >
               <TrendingDownIcon />
               <Typography component={"p"}>Wydatki</Typography>
