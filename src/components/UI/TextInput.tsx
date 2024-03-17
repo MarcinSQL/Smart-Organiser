@@ -6,7 +6,7 @@ interface ITextInput {
   name: string;
   label: string;
   type: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   disabled?: boolean;
   size?: TextFieldSize;
   multiline?: boolean;

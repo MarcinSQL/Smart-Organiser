@@ -1,4 +1,4 @@
-import { Grid, Paper } from "@mui/material";
+import { Button, Grid, Paper } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import classes from "./classes/MainPage.module.css";
 import ModalRevenues from "components/Pure/MainPageModalRevenues";
@@ -9,12 +9,13 @@ import MainPageCostsInfo from "components/Pure/MainPageCostsInfo";
 import MainPageCostsNavigation from "components/Pure/MainPageCostsNavigation";
 import ModalChoose from "components/Pure/MainPageModalChoose";
 import ModalExpenses from "components/Pure/MainPageModalExpenses";
+import ModalEditCost from "components/Pure/MainPageModalEditCost";
 
 export default function MainPage() {
   // STATICDATA
   const rows = [
     {
-      id: 0,
+      id: "0",
       title: "Keyboard",
       amount: -222,
       description: "Typical keyboard",
@@ -23,7 +24,7 @@ export default function MainPage() {
       category: "entertainment",
     },
     {
-      id: 1,
+      id: "1",
       title: "Mouse",
       amount: -125,
       description: "Typical mouse",
@@ -32,7 +33,7 @@ export default function MainPage() {
       category: "entertainment",
     },
     {
-      id: 2,
+      id: "2",
       title: "Work",
       amount: 2111,
       description: "Typical work",
@@ -41,7 +42,7 @@ export default function MainPage() {
       category: "job",
     },
     {
-      id: 3,
+      id: "3",
       title: "Food",
       amount: -915,
       description: "Typical food description",
@@ -114,6 +115,10 @@ export default function MainPage() {
     handleModalExpensesOpen,
     handleModalRevenuesClose,
     handleModalRevenuesOpen,
+    handleEditCostBtnClick,
+    selectedCellData,
+    showEditModalCost,
+    handleEditModalCostClose,
   } = useMainPage();
   return (
     <Layout>
@@ -125,7 +130,20 @@ export default function MainPage() {
         />
         <DataGrid
           rows={rows}
-          columns={columns}
+          columns={[
+            ...columns,
+            {
+              field: "editCost",
+              headerName: "",
+              sortable: false,
+              width: 120,
+              renderCell: (params) => (
+                <Button onClick={() => handleEditCostBtnClick(params.row)}>
+                  Edytuj
+                </Button>
+              ),
+            },
+          ]}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 5 },
@@ -172,6 +190,12 @@ export default function MainPage() {
           open={showModalExpenses}
           onClose={handleModalExpensesClose}
           title="Dodaj kwotę"
+        />
+        <ModalEditCost
+          open={showEditModalCost}
+          onClose={handleEditModalCostClose}
+          title="Edytuj kwotę"
+          costData={selectedCellData}
         />
       </Paper>
     </Layout>
