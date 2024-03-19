@@ -16,7 +16,7 @@ export default function MainPage() {
     {
       id: "0",
       title: "Keyboard",
-      amount: -222,
+      amount: 222,
       description: "Typical keyboard",
       type: "expenses",
       date: "10-02-2024",
@@ -25,7 +25,7 @@ export default function MainPage() {
     {
       id: "1",
       title: "Mouse",
-      amount: -125,
+      amount: 125,
       description: "Typical mouse",
       type: "expenses",
       date: "10-02-2024",
@@ -43,7 +43,7 @@ export default function MainPage() {
     {
       id: "3",
       title: "Food",
-      amount: -915,
+      amount: 915,
       description: "Typical food description",
       type: "expenses",
       date: "15-02-2024",
