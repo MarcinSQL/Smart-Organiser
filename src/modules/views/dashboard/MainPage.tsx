@@ -3,12 +3,12 @@ import Layout from "components/Layout/Layout";
 import classes from "./classes/MainPage.module.css";
 import useMainPage from "modules/logic/dashboard/useMainPage";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { PieChart } from "@mui/x-charts";
 import MainPageCostsInfo from "components/Pure/MainPageCostsInfo";
 import MainPageCostsNavigation from "components/Pure/MainPageCostsNavigation";
 import ModalChoose from "components/Pure/MainPageModalChoose";
 import ModalEditCost from "components/Pure/MainPageModalEditCost";
 import ModalCost from "components/Pure/MainPageModalCost";
+import MainPagePieChart from "components/Pure/MainPagePieChart";
 
 export default function MainPage() {
   // STATICDATA
@@ -51,47 +51,7 @@ export default function MainPage() {
     },
   ];
 
-  const data = [
-    {
-      id: 0,
-      label: "Keyboard",
-      value: 222,
-      description: "Typical keyboard",
-      type: "expenses",
-      date: "10-02-2024",
-      category: "entertainment",
-    },
-    {
-      id: 1,
-      label: "Mouse",
-      value: 125,
-      description: "Typical mouse",
-      type: "expenses",
-      date: "10-02-2024",
-      category: "entertainment",
-    },
-    {
-      id: 2,
-      label: "Work",
-      value: 2111,
-      description: "Typical work",
-      type: "revenue",
-      date: "12-02-2024",
-      category: "job",
-    },
-    {
-      id: 3,
-      label: "Food",
-      value: 915,
-      description: "Typical food description",
-      type: "expenses",
-      date: "15-02-2024",
-      category: "home",
-    },
-  ];
-
   const columns: GridColDef[] = [
-    { field: "title", headerName: "Tytuł", minWidth: 100, flex: 1 },
     { field: "category", headerName: "Kategoria", minWidth: 100, flex: 1 },
     { field: "description", headerName: "Opis", minWidth: 100, flex: 1 },
     {
@@ -117,6 +77,7 @@ export default function MainPage() {
     choosedType,
     showModalCost,
   } = useMainPage();
+
   return (
     <Layout>
       <Paper className={classes.container}>
@@ -150,23 +111,7 @@ export default function MainPage() {
         />
         <Grid container spacing={2} className={classes["info-container"]}>
           <Grid item md={6} xs={12}>
-            <PieChart
-              series={[
-                {
-                  data,
-                  highlightScope: { faded: "global", highlighted: "item" },
-                  faded: {
-                    innerRadius: 30,
-                    additionalRadius: -10,
-                    color: "gray",
-                  },
-                  innerRadius: 20,
-                  paddingAngle: 5,
-                  cornerRadius: 5,
-                },
-              ]}
-              height={200}
-            />
+            <MainPagePieChart />
           </Grid>
           <Grid item md={6} xs={12}>
             <MainPageCostsInfo />
