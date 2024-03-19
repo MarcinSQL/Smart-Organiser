@@ -63,7 +63,7 @@ export interface IMainPageEditCost {
   category: string;
 }
 
-export interface IRawCost{
+export interface IRawCost {
   id: string;
   amount: number;
   description: string;
@@ -72,10 +72,14 @@ export interface IRawCost{
   category: string;
 }
 
-export interface IPieChartCost{
-  id: string,
-  label: string,
-  value: number,
-  description: string,
-  date: string,
+export interface IPieChartCost {
+  id: string;
+  label: string;
+  value: number;
+  description: string;
+  date: string;
+}
+
+export interface IMainPageCostsTable {
+  editBtnClick: (element: object) => void;
 }
