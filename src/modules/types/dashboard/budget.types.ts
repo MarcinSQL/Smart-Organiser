@@ -18,7 +18,6 @@ export interface IBudgetEditCostForm {
   mutationOnSuccess: () => void;
   costData: {
     id: string;
-    title: string;
     amount: number;
     description: string;
     type: string;
@@ -47,7 +46,6 @@ export interface IModalEditCost {
   title: string;
   costData: {
     id: string;
-    title: string;
     amount: number;
     description: string;
     type: string;
@@ -70,10 +68,30 @@ export interface IBudgetGetCost {
 
 export interface IBudgetEditCost {
   id: string;
-  title: string;
   amount: number;
   description: string;
   type: string;
   date: string;
   category: string;
+}
+
+export interface IRawCost {
+  id: string;
+  amount: number;
+  description: string;
+  type: string;
+  date: string;
+  category: string;
+}
+
+export interface IPieChartCost {
+  id: string;
+  label: string;
+  value: number;
+  description: string;
+  date: string;
+}
+
+export interface IMainPageCostsTable {
+  editBtnClick: (element: object) => void;
 }
