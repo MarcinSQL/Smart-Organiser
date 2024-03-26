@@ -1,8 +1,20 @@
-export interface IMainPageFormCosts {
+export interface IBudgetCostsNavigation {
+  modalOpen: () => void;
+  monthPrev: () => void;
+  monthNext: () => void;
+}
+
+export interface IModalChoose {
+  open: boolean;
+  onClose: () => void;
+  choosedType: (type: string) => void;
+}
+
+export interface IBudgetFormCosts {
   mutationOnSuccess: () => void;
 }
 
-export interface IMainPageEditCostForm {
+export interface IBudgetEditCostForm {
   mutationOnSuccess: () => void;
   costData: {
     id: string;
@@ -42,7 +54,7 @@ export interface IModalEditCost {
   };
 }
 
-export interface IMainPageCosts {
+export interface IBudgetCosts {
   amount: number;
   type: string;
   note?: string;
@@ -50,11 +62,11 @@ export interface IMainPageCosts {
   category: string;
 }
 
-export interface IMainPageGetCost {
+export interface IBudgetGetCost {
   id: string;
 }
 
-export interface IMainPageEditCost {
+export interface IBudgetEditCost {
   id: string;
   amount: number;
   description: string;
@@ -80,6 +92,6 @@ export interface IPieChartCost {
   date: string;
 }
 
-export interface IMainPageCostsTable {
+export interface IBudgetCostsTable {
   editBtnClick: (element: object) => void;
 }

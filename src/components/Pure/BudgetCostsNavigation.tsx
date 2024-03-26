@@ -1,17 +1,10 @@
 import { Button, Grid, IconButton, Typography } from "@mui/material";
-import classes from "./classes/MainPageCostsNavigation.module.css";
+import classes from "./classes/BudgetCostsNavigation.module.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import { IBudgetCostsNavigation } from "modules/types/dashboard/budget.types";
 
-interface IMainPageCostsNavigation {
-  modalOpen: () => void;
-  monthPrev: () => void;
-  monthNext: () => void;
-}
-
-export default function MainPageCostsNavigation(
-  props: IMainPageCostsNavigation
-) {
+export default function BudgetCostsNavigation(props: IBudgetCostsNavigation) {
   const { modalOpen, monthNext, monthPrev } = props;
   return (
     <Grid
@@ -32,7 +25,7 @@ export default function MainPageCostsNavigation(
         <Typography
           component="h1"
           variant="h2"
-          className={classes["main-page-title"]}
+          className={classes["budget-title"]}
         >
           Luty 2024
         </Typography>

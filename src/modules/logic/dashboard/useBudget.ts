@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useGetCostMutation } from "./mutations";
 
-export default function useMainPage() {
+export default function useBudget() {
   const mutation = useGetCostMutation();
   const [showModalChoose, setShowModalChoose] = useState(false);
 

@@ -13,6 +13,7 @@ import {
   SignUpInfoLink,
   UserProfileLink,
   CalendarLink,
+  BudgetLink,
   MainPageLink,
 } from "./links";
 import ResetPassword from "./modules/views/authorization/ResetPassword";
@@ -24,6 +25,7 @@ import ApprovedAccount from "modules/views/authorization/ApprovedAccount";
 import SignUpInfo from "modules/views/authorization/SignUpInfo";
 import UserProfile from "modules/views/dashboard/UserProfile";
 import Calendar from "modules/views/dashboard/Calendar";
+import Budget from "modules/views/dashboard/Budget";
 import MainPage from "modules/views/dashboard/MainPage";
 
 export default function router() {
@@ -67,6 +69,10 @@ export default function router() {
     {
       path: MainPageLink,
       element: <MainPage />,
+    },
+    {
+      path: BudgetLink,
+      element: <Budget />,
     },
     {
       path: CalendarLink,

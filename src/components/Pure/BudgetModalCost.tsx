@@ -1,8 +1,8 @@
 import { Button, Box, Modal, Typography } from "@mui/material";
 import classes from "./classes/Modal.module.css";
-import { IModalCostTypeChoose } from "modules/types/dashboard/mainPage.types";
-import MainPageModalExpensesForm from "components/Busines/MainPageModalExpensesForm";
-import MainPageModalRevenuesForm from "components/Busines/MainPageModalRevenuesForm";
+import { IModalCostTypeChoose } from "modules/types/dashboard/budget.types";
+import BudgetModalExpensesForm from "components/Busines/BudgetModalExpensesForm";
+import BudgetModalRevenuesForm from "components/Busines/BudgetModalRevenuesForm";
 
 export default function ModalCost(props: IModalCostTypeChoose) {
   const { open, onClose, title, choosedType } = props;
@@ -21,9 +21,9 @@ export default function ModalCost(props: IModalCostTypeChoose) {
           {title}
         </Typography>
         {choosedType === "expenses" ? (
-          <MainPageModalExpensesForm mutationOnSuccess={onClose} />
+          <BudgetModalExpensesForm mutationOnSuccess={onClose} />
         ) : (
-          <MainPageModalRevenuesForm mutationOnSuccess={onClose} />
+          <BudgetModalRevenuesForm mutationOnSuccess={onClose} />
         )}
       </Box>
     </Modal>

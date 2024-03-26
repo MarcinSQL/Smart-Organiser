@@ -1,9 +1,9 @@
 import { Container, Grid, Typography } from "@mui/material";
-import classes from "./classes/MainPageCostsInfo.module.css";
+import classes from "./classes/BudgetCostsInfo.module.css";
 import { useGetCostsQuery } from "modules/logic/dashboard/queries";
-import { IRawCost } from "modules/types/dashboard/mainPage.types";
+import { IRawCost } from "modules/types/dashboard/budget.types";
 
-export default function MainPageCostsInfo() {
+export default function BudgetCostsInfo() {
   const { data } = useGetCostsQuery();
 
   let totalRevenues = 0;

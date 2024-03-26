@@ -6,10 +6,10 @@ import classes from "../Pure/classes/Modal.module.css";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useCreateCostMutation } from "modules/logic/dashboard/mutations";
 import { LoadingButton } from "@mui/lab";
 import SelectInput from "components/UI/SelectInput";
-import { IMainPageFormCosts } from "modules/types/dashboard/mainPage.types";
-import { useCreateCostMutation } from "modules/logic/dashboard/mutations";
+import { IBudgetFormCosts } from "modules/types/dashboard/budget.types";
 
 interface IFormInput {
   amount: number;
@@ -19,7 +19,7 @@ interface IFormInput {
   category: string;
 }
 
-export default function MainPageModalExpensesForm(props: IMainPageFormCosts) {
+export default function BudgetModalRevenuesForm(props: IBudgetFormCosts) {
   const { mutationOnSuccess } = props;
   const now = dayjs();
   now.locale("pl");
@@ -38,7 +38,7 @@ export default function MainPageModalExpensesForm(props: IMainPageFormCosts) {
     type: yup.string().required("Kategoria jest wymagana"),
     note: yup.string().trim(),
     date: yup.string().default(now.format("YYYY-MM-DDTHH:mm:ss")),
-    category: yup.string().default("expenses"),
+    category: yup.string().default("revenues"),
   });
 
   const { register, handleSubmit, control } = useForm<IFormInput>({
@@ -69,14 +69,8 @@ export default function MainPageModalExpensesForm(props: IMainPageFormCosts) {
           id="type"
           {...register("type", { required: true })}
         >
-          <MenuItem value={"house"}>Dom</MenuItem>
-          <MenuItem value={"entertainment"}>Rozrywka</MenuItem>
-          <MenuItem value={"subscriptions"}>Subskrypcje</MenuItem>
-          <MenuItem value={"gym"}>Siłownia</MenuItem>
-          <MenuItem value={"transportation"}>Transport</MenuItem>
-          <MenuItem value={"healthcare"}>Opieka zdrowotna</MenuItem>
-          <MenuItem value={"insurance"}>Ubezpieczenie</MenuItem>
-          <MenuItem value={"pets"}>Zwierzęta</MenuItem>
+          <MenuItem value={"job"}>Praca stała</MenuItem>
+          <MenuItem value={"additional-job"}>Praca dodatkowa</MenuItem>
           <MenuItem value={"utilities"}>Nieokreślone</MenuItem>
         </SelectInput>
       </FormControl>

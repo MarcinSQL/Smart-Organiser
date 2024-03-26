@@ -2,12 +2,7 @@ import { Button, Box, Modal, Typography, Grid } from "@mui/material";
 import classes from "./classes/Modal.module.css";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
-
-interface IModalChoose {
-  open: boolean;
-  onClose: () => void;
-  choosedType: (type: string) => void;
-}
+import { IModalChoose } from "modules/types/dashboard/budget.types";
 
 export default function ModalChoose(props: IModalChoose) {
   const { open, onClose, choosedType } = props;
