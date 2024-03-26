@@ -9,6 +9,7 @@ export const ApprovedResetPasswordLink = "/approved-reset-password";
 export const ApprovedAccountLink = "/approved-account";
 export const SignUpInfoLink = "/registration-info";
 
+export const MainPageLink = "/main-page";
 export const BudgetLink = "/budget";
 export const UserProfileLink = "/user-profile";
 export const CalendarLink = "/calendar";
