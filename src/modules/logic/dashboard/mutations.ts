@@ -36,9 +36,9 @@ import {
   dashboardGetCost,
 } from "api/budget.service";
 import {
-  IMainPageCosts,
-  IMainPageEditCost,
-  IMainPageGetCost,
+  IBudgetCosts,
+  IBudgetEditCost,
+  IBudgetGetCost,
 } from "modules/types/dashboard/budget.types";
 
 export function useEditAvatarMutation() {
@@ -188,7 +188,7 @@ export function useDeleteUserProfileMutation() {
 
 export function useCreateCostMutation() {
   const queryClient = useQueryClient();
-  return useMutation<unknown, unknown, IMainPageCosts>(
+  return useMutation<unknown, unknown, IBudgetCosts>(
     (data) => {
       return dashboardCreateCost(data);
     },
@@ -208,7 +208,7 @@ export function useCreateCostMutation() {
 }
 
 export function useGetCostMutation() {
-  return useMutation<unknown, unknown, IMainPageGetCost>(
+  return useMutation<unknown, unknown, IBudgetGetCost>(
     (data) => {
       toast.loading("Ładowanie...");
       return dashboardGetCost(data);
@@ -229,7 +229,7 @@ export function useGetCostMutation() {
 
 export function useEditCostMutation() {
   const queryClient = useQueryClient();
-  return useMutation<unknown, unknown, IMainPageEditCost>(
+  return useMutation<unknown, unknown, IBudgetEditCost>(
     (data) => {
       return dashboardEditCost(data);
     },

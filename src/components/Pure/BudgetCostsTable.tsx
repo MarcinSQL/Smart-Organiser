@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useGetCostsQuery } from "modules/logic/dashboard/queries";
-import { IMainPageCostsTable } from "modules/types/dashboard/mainPage.types";
+import { IBudgetCostsTable } from "modules/types/dashboard/budget.types";
 
-export default function MainPageCostsTable(props: IMainPageCostsTable) {
+export default function BudgetCostsTable(props: IBudgetCostsTable) {
   const { editBtnClick } = props;
   // ENDPOINTS MUST BE CREATED
   //   const { data } = useGetCostsQuery();

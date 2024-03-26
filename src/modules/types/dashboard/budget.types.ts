@@ -92,6 +92,6 @@ export interface IPieChartCost {
   date: string;
 }
 
-export interface IMainPageCostsTable {
+export interface IBudgetCostsTable {
   editBtnClick: (element: object) => void;
 }
