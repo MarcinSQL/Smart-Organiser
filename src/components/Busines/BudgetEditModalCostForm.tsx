@@ -7,7 +7,7 @@ import classes from "../Pure/classes/Modal.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
-import { IMainPageEditCostForm } from "modules/types/dashboard/mainPage.types";
+import { IBudgetEditCostForm } from "modules/types/dashboard/budget.types";
 import { useEditCostMutation } from "modules/logic/dashboard/mutations";
 
 interface IFormInput {
@@ -15,9 +15,7 @@ interface IFormInput {
   date: string;
 }
 
-export default function MainPageEditModalCostForm(
-  props: IMainPageEditCostForm
-) {
+export default function BudgetEditModalCostForm(props: IBudgetEditCostForm) {
   const { mutationOnSuccess, costData } = props;
   const now = dayjs();
   now.locale("pl");

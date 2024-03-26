@@ -34,12 +34,12 @@ import {
   dashboardCreateCost,
   dashboardEditCost,
   dashboardGetCost,
-} from "api/mainPage.service";
+} from "api/budget.service";
 import {
   IMainPageCosts,
   IMainPageEditCost,
   IMainPageGetCost,
-} from "modules/types/dashboard/mainPage.types";
+} from "modules/types/dashboard/budget.types";
 
 export function useEditAvatarMutation() {
   const queryClient = useQueryClient();

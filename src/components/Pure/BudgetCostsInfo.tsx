@@ -1,7 +1,7 @@
 import { Container, Grid, Typography } from "@mui/material";
-import classes from "./classes/MainPageCostsInfo.module.css";
+import classes from "./classes/BudgetCostsInfo.module.css";
 
-export default function MainPageCostsInfo() {
+export default function BudgetCostsInfo() {
   return (
     <Container className={classes.container}>
       <Grid container columnSpacing={2}>

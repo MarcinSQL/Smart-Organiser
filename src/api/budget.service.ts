@@ -1,13 +1,13 @@
 import {
-  IMainPageCosts,
-  IMainPageEditCost,
-  IMainPageGetCost,
-} from "modules/types/dashboard/mainPage.types";
+  IBudgetCosts,
+  IBudgetEditCost,
+  IBudgetGetCost,
+} from "modules/types/dashboard/budget.types";
 import service from "utils/axios";
 
-const baseURL = "/main-page/";
+const baseURL = "/budget/";
 
-export const dashboardCreateCost = (costData: IMainPageCosts) => {
+export const dashboardCreateCost = (costData: IBudgetCosts) => {
   return service.post(`${baseURL}cost/`, costData).then((response) => {
     return Promise.resolve(response);
   });
@@ -19,7 +19,7 @@ export const dashboardCosts = () => {
   });
 };
 
-export const dashboardGetCost = (id: IMainPageGetCost) => {
+export const dashboardGetCost = (id: IBudgetGetCost) => {
   return service
     .get(`${baseURL}costs/`, {
       data: { id },
@@ -29,7 +29,7 @@ export const dashboardGetCost = (id: IMainPageGetCost) => {
     });
 };
 
-export const dashboardEditCost = (editedCost: IMainPageEditCost) => {
+export const dashboardEditCost = (editedCost: IBudgetEditCost) => {
   return service.put(`${baseURL}cost/`, editedCost).then((response) => {
     return Promise.resolve(response);
   });

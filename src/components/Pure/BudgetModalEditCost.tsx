@@ -1,7 +1,7 @@
 import { Button, Box, Modal, Typography } from "@mui/material";
 import classes from "./classes/Modal.module.css";
-import { IModalEditCost } from "modules/types/dashboard/mainPage.types";
-import MainPageEditModalCostForm from "components/Busines/MainPageEditModalCostForm";
+import { IModalEditCost } from "modules/types/dashboard/budget.types";
+import BudgetEditModalCostForm from "components/Busines/BudgetEditModalCostForm";
 
 export default function ModalEditCost(props: IModalEditCost) {
   const { open, onClose, title, costData } = props;
@@ -19,7 +19,7 @@ export default function ModalEditCost(props: IModalEditCost) {
         <Typography component="h2" variant="h6">
           {title}
         </Typography>
-        <MainPageEditModalCostForm
+        <BudgetEditModalCostForm
           mutationOnSuccess={onClose}
           costData={costData}
         />
