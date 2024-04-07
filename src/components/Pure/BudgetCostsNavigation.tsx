@@ -10,7 +10,7 @@ export default function BudgetCostsNavigation(props: IBudgetCostsNavigation) {
 
   let displayedDate = date.format("YYYY");
 
-  let monthNumber = parseInt(date.format("MM")) - 1;
+  const monthNumber = parseInt(date.format("MM")) - 1;
   displayedDate = monthsPL[monthNumber] + " " + displayedDate;
 
   return (
