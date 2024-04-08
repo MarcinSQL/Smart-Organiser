@@ -3,9 +3,16 @@ import classes from "./classes/BudgetCostsNavigation.module.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { IBudgetCostsNavigation } from "modules/types/dashboard/budget.types";
+import { monthsPL } from "components/utils/months";
 
 export default function BudgetCostsNavigation(props: IBudgetCostsNavigation) {
-  const { modalOpen, monthNext, monthPrev } = props;
+  const { modalOpen, monthNext, monthPrev, date } = props;
+
+  let displayedDate = date.format("YYYY");
+
+  const monthNumber = parseInt(date.format("MM")) - 1;
+  displayedDate = monthsPL[monthNumber] + " " + displayedDate;
+
   return (
     <Grid
       container
@@ -27,7 +34,7 @@ export default function BudgetCostsNavigation(props: IBudgetCostsNavigation) {
           variant="h2"
           className={classes["budget-title"]}
         >
-          Luty 2024
+          {displayedDate}
         </Typography>
       </Grid>
       <Grid item xs={4} md={2} textAlign={"right"}>

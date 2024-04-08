@@ -1,7 +1,10 @@
+import { Dayjs } from "dayjs";
+
 export interface IBudgetCostsNavigation {
   modalOpen: () => void;
   monthPrev: () => void;
   monthNext: () => void;
+  date: Dayjs;
 }
 
 export interface IModalChoose {

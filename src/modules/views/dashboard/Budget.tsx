@@ -12,44 +12,6 @@ import ModalCost from "components/Pure/BudgetModalCost";
 
 export default function Budget() {
   // STATICDATA
-  const rows = [
-    {
-      id: "0",
-      title: "Keyboard",
-      amount: -222,
-      description: "Typical keyboard",
-      type: "expenses",
-      date: "10-02-2024",
-      category: "entertainment",
-    },
-    {
-      id: "1",
-      title: "Mouse",
-      amount: -125,
-      description: "Typical mouse",
-      type: "expenses",
-      date: "10-02-2024",
-      category: "entertainment",
-    },
-    {
-      id: "2",
-      title: "Work",
-      amount: 2111,
-      description: "Typical work",
-      type: "revenue",
-      date: "12-02-2024",
-      category: "job",
-    },
-    {
-      id: "3",
-      title: "Food",
-      amount: -915,
-      description: "Typical food description",
-      type: "expenses",
-      date: "15-02-2024",
-      category: "home",
-    },
-  ];
 
   const data = [
     {
@@ -116,17 +78,20 @@ export default function Budget() {
     handleModalCostClose,
     choosedType,
     showModalCost,
+    displayedDate,
+    rowsList
   } = useBudget();
   return (
     <Layout>
       <Paper className={classes.container}>
         <BudgetCostsNavigation
+          date={displayedDate}
           modalOpen={handleModalChooseOpen}
           monthNext={handleMonthNext}
           monthPrev={handleMonthPrev}
         />
         <DataGrid
-          rows={rows}
+          rows={rowsList}
           columns={[
             ...columns,
             {
