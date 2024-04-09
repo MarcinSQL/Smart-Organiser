@@ -97,4 +97,5 @@ export interface IPieChartCost {
 
 export interface IBudgetCostsTable {
   editBtnClick: (element: object) => void;
+  displayedDate: Dayjs;
 }

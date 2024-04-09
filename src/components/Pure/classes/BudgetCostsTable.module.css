@@ -1,0 +1,7 @@
+.table__no-rows-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.75rem !important;
+}

@@ -1,14 +1,15 @@
-import { Button, Grid, Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import Layout from "components/Layout/Layout";
 import classes from "./classes/Budget.module.css";
 import useBudget from "modules/logic/dashboard/useBudget";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { GridColDef } from "@mui/x-data-grid";
 import { PieChart } from "@mui/x-charts";
 import BudgetCostsInfo from "components/Pure/BudgetCostsInfo";
 import BudgetCostsNavigation from "components/Pure/BudgetCostsNavigation";
 import ModalChoose from "components/Pure/BudgetModalChoose";
 import ModalEditCost from "components/Pure/BudgetModalEditCost";
 import ModalCost from "components/Pure/BudgetModalCost";
+import BudgetCostsTable from "components/Pure/BudgetCostsTable";
 
 export default function Budget() {
   // STATICDATA
@@ -79,7 +80,6 @@ export default function Budget() {
     choosedType,
     showModalCost,
     displayedDate,
-    rowsList
   } = useBudget();
   return (
     <Layout>
@@ -90,28 +90,9 @@ export default function Budget() {
           monthNext={handleMonthNext}
           monthPrev={handleMonthPrev}
         />
-        <DataGrid
-          rows={rowsList}
-          columns={[
-            ...columns,
-            {
-              field: "editCost",
-              headerName: "",
-              sortable: false,
-              width: 120,
-              renderCell: (params) => (
-                <Button onClick={() => handleEditCostBtnClick(params.row)}>
-                  Edytuj
-                </Button>
-              ),
-            },
-          ]}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
+        <BudgetCostsTable
+          editBtnClick={handleEditCostBtnClick}
+          displayedDate={displayedDate}
         />
         <Grid container spacing={2} className={classes["info-container"]}>
           <Grid item md={6} xs={12}>
