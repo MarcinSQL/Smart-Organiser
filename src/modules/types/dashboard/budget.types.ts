@@ -100,7 +100,7 @@ export interface IPieChartCost {
 }
 
 export interface IBudgetCostsTable {
-  editBtnClick: (id: number) => void;
+  editBtnClick: (rowData: { id: string }) => void;
   displayedDate: Dayjs;
-  deleteBtnClick: (id: number) => void;
+  deleteBtnClick: (rowData: { id: string }) => void;
 }

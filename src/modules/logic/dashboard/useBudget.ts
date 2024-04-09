@@ -77,11 +77,11 @@ export default function useBudget() {
     setShowEditModalCost(false);
   };
 
-  const handleEditCostBtnClick = (rowData: any) => {
-    mutation.mutate(rowData.id);
+  const handleEditCostBtnClick = (rowData: { id: string }) => {
+    mutation.mutate({ id: rowData.id });
   };
 
-  const handleDeleteCostBtnClick = (rowData: any) => {
+  const handleDeleteCostBtnClick = (rowData: { id: string }) => {
     setCostId(rowData.id);
     setDeleteModalOpen(true);
   };
