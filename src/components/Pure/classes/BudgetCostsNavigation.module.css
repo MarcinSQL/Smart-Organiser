@@ -14,7 +14,7 @@
 }
 
 .modal-btn__content--mobile {
-  display: none;
+  display: none !important;
 }
 
 .budget-title {
@@ -33,9 +33,9 @@
     padding: 0.4rem;
   }
   .modal-btn__content--mobile {
-    display: block;
+    display: block !important;
   }
   .modal-btn__content--desktop {
-    display: none;
+    display: none !important;
   }
 }
