@@ -8,7 +8,7 @@ import {
 const baseURL = "/calendar/";
 
 export const dashboardDeleteCalendarEvent = (eventId: IDeleteEvent) => {
-  let { id } = eventId;
+  const { id } = eventId;
   return service
     .delete(`${baseURL}event/`, {
       data: { id },

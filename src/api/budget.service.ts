@@ -36,8 +36,8 @@ export const dashboardEditCost = (editedCost: IBudgetEditCost) => {
   });
 };
 
-export const dashboardDeleteCost = (eventId: IDeleteCost) => {
-  let { id } = eventId;
+export const dashboardDeleteCost = (costId: IDeleteCost) => {
+  const { id } = costId;
   return service
     .delete(`${baseURL}cost/`, {
       data: { id },
