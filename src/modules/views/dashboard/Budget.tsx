@@ -10,6 +10,7 @@ import ModalChoose from "components/Pure/BudgetModalChoose";
 import ModalEditCost from "components/Pure/BudgetModalEditCost";
 import ModalCost from "components/Pure/BudgetModalCost";
 import BudgetCostsTable from "components/Pure/BudgetCostsTable";
+import ModalTrueFalse from "components/UI/ModalTrueFalse";
 
 export default function Budget() {
   // STATICDATA
@@ -80,6 +81,10 @@ export default function Budget() {
     choosedType,
     showModalCost,
     displayedDate,
+    handleDeleteCostBtnClick,
+    deleteModalOpen,
+    handleDeleteModalOnClick,
+    handleDeleteModalClose,
   } = useBudget();
   return (
     <Layout>
@@ -93,6 +98,7 @@ export default function Budget() {
         <BudgetCostsTable
           editBtnClick={handleEditCostBtnClick}
           displayedDate={displayedDate}
+          deleteBtnClick={handleDeleteCostBtnClick}
         />
         <Grid container spacing={2} className={classes["info-container"]}>
           <Grid item md={6} xs={12}>
@@ -134,6 +140,12 @@ export default function Budget() {
           onClose={handleEditModalCostClose}
           title="Edytuj kwotę"
           costData={selectedCellData}
+        />
+        <ModalTrueFalse
+          title="Czy napewno chcesz usunąć kwotę?"
+          onClose={handleDeleteModalClose}
+          onClick={handleDeleteModalOnClick}
+          open={deleteModalOpen}
         />
       </Paper>
     </Layout>

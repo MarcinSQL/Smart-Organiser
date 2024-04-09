@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useGetCostsQuery } from "modules/logic/dashboard/queries";
 import {
@@ -8,7 +8,7 @@ import {
 import classes from "./classes/BudgetCostsTable.module.css";
 
 export default function BudgetCostsTable(props: IBudgetCostsTable) {
-  const { editBtnClick, displayedDate } = props;
+  const { editBtnClick, displayedDate, deleteBtnClick } = props;
   // ENDPOINTS MUST BE CREATED
   //   const { data } = useGetCostsQuery();
 
@@ -100,12 +100,18 @@ export default function BudgetCostsTable(props: IBudgetCostsTable) {
       columns={[
         ...columns,
         {
-          field: "editCost",
+          field: "actions",
           headerName: "",
+          type: "actions",
           sortable: false,
-          width: 120,
+          width: 200,
           renderCell: (params) => (
-            <Button onClick={() => editBtnClick(params.row)}>Edytuj</Button>
+            <Box className={classes["table__row-actions-container"]}>
+              <Button onClick={() => editBtnClick(params.row)}>Edytuj</Button>
+              <Button color="error" onClick={() => deleteBtnClick(params.row)}>
+                Usuń
+              </Button>
+            </Box>
           ),
         },
       ]}

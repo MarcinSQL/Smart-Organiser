@@ -2,6 +2,7 @@ import {
   IBudgetCosts,
   IBudgetEditCost,
   IBudgetGetCost,
+  IDeleteCost,
 } from "modules/types/dashboard/budget.types";
 import service from "utils/axios";
 
@@ -33,4 +34,15 @@ export const dashboardEditCost = (editedCost: IBudgetEditCost) => {
   return service.put(`${baseURL}cost/`, editedCost).then((response) => {
     return Promise.resolve(response);
   });
+};
+
+export const dashboardDeleteCost = (eventId: IDeleteCost) => {
+  let { id } = eventId;
+  return service
+    .delete(`${baseURL}cost/`, {
+      data: { id },
+    })
+    .then((response) => {
+      return Promise.resolve(response);
+    });
 };

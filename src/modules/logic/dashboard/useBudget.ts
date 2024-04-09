@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-import { useGetCostMutation } from "./mutations";
+import { useDeleteCostMutation, useGetCostMutation } from "./mutations";
 import dayjs from "dayjs";
-import { useGetCostsQuery } from "./queries";
-import { IBudgetCosts } from "modules/types/dashboard/budget.types";
 
 export default function useBudget() {
   const [displayedDate, setDisplayedDate] = useState(dayjs());
   displayedDate.locale("pl");
 
   const mutation = useGetCostMutation();
+  const deleteMutation = useDeleteCostMutation();
 
   const [showModalChoose, setShowModalChoose] = useState(false);
 
   const [showModalCost, setShowModalCost] = useState(false);
   const [choosedType, setChoosedType] = useState("");
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [costId, setCostId] = useState("");
 
   const [selectedCellData, setSelectedCellData] = useState({
     id: "",
@@ -80,6 +81,20 @@ export default function useBudget() {
     mutation.mutate(rowData.id);
   };
 
+  const handleDeleteCostBtnClick = (rowData: any) => {
+    setCostId(rowData.id);
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteModalClose = () => {
+    setDeleteModalOpen(false);
+  };
+
+  const handleDeleteModalOnClick = () => {
+    deleteMutation.mutate({ id: costId });
+    setDeleteModalOpen(false);
+  };
+
   return {
     showModalChoose,
     handleModalChooseClose,
@@ -95,5 +110,9 @@ export default function useBudget() {
     handleModalCostClose,
     showModalCost,
     displayedDate,
+    handleDeleteCostBtnClick,
+    deleteModalOpen,
+    handleDeleteModalClose,
+    handleDeleteModalOnClick,
   };
 }
