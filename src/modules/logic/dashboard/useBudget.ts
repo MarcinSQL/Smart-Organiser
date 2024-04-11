@@ -1,97 +1,20 @@
 import { useEffect, useState } from "react";
-import { useGetCostMutation } from "./mutations";
+import { useDeleteCostMutation, useGetCostMutation } from "./mutations";
 import dayjs from "dayjs";
-import { useGetCostsQuery } from "./queries";
-import { IBudgetCosts } from "modules/types/dashboard/budget.types";
 
 export default function useBudget() {
   const [displayedDate, setDisplayedDate] = useState(dayjs());
   displayedDate.locale("pl");
 
   const mutation = useGetCostMutation();
-
-  // WHEN ENDPOINTS WILL BE CREATED
-  //const { data } = useGetCostsQuery();
-
-  const TEMPdata = [
-    {
-      id: "0",
-      title: "kcnxjvnxivx",
-      amount: 222,
-      description: "Typical keyboard",
-      type: "expenses",
-      date: "2024-03-12T12:53:36",
-      category: "entertainment",
-    },
-    {
-      id: "1",
-      title: "jgfjgdj",
-      amount: 53,
-      description: "Thgfd hdhg",
-      type: "expenses",
-      date: "2024-03-12T12:53:36",
-      category: "entertainment",
-    },
-    {
-      id: "2",
-      title: "dasdada",
-      amount: 42,
-      description: " hg hdf hg hf",
-      type: "expenses",
-      date: "2024-03-12T12:53:36",
-      category: "entertainment",
-    },
-
-    {
-      id: "3",
-      title: "Keyboard",
-      amount: 222,
-      description: "Typical keyboard",
-      type: "expenses",
-      date: "2024-04-12T12:53:36",
-      category: "entertainment",
-    },
-    {
-      id: "4",
-      title: "Mouse",
-      amount: 222,
-      description: "Typical keyboard",
-      type: "expenses",
-      date: "2024-05-12T12:53:36",
-      category: "entertainment",
-    },
-    {
-      id: "5",
-      title: "Asdasda",
-      amount: 222,
-      description: "Typical keyboard",
-      type: "expenses",
-      date: "2024-06-12T12:53:36",
-      category: "entertainment",
-    },
-    {
-      id: "6",
-      title: "DDDDDDDDDDDDDD",
-      amount: 222,
-      description: "Typical keyboard",
-      type: "expenses",
-      date: "2024-07-12T12:53:36",
-      category: "entertainment",
-    },
-  ];
-
-  const rowsList: IBudgetCosts[] = [];
-
-  TEMPdata?.forEach((element: IBudgetCosts) => {
-    if (element.date.slice(5, 7) == displayedDate.format("MM")) {
-      rowsList.push(element);
-    }
-  });
+  const deleteMutation = useDeleteCostMutation();
 
   const [showModalChoose, setShowModalChoose] = useState(false);
 
   const [showModalCost, setShowModalCost] = useState(false);
   const [choosedType, setChoosedType] = useState("");
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [costId, setCostId] = useState("");
 
   const [selectedCellData, setSelectedCellData] = useState({
     id: "",
@@ -154,8 +77,22 @@ export default function useBudget() {
     setShowEditModalCost(false);
   };
 
-  const handleEditCostBtnClick = (rowData: any) => {
-    mutation.mutate(rowData.id);
+  const handleEditCostBtnClick = (rowData: { id: string }) => {
+    mutation.mutate({ id: rowData.id });
+  };
+
+  const handleDeleteCostBtnClick = (rowData: { id: string }) => {
+    setCostId(rowData.id);
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteModalClose = () => {
+    setDeleteModalOpen(false);
+  };
+
+  const handleDeleteModalOnClick = () => {
+    deleteMutation.mutate({ id: costId });
+    setDeleteModalOpen(false);
   };
 
   return {
@@ -172,7 +109,10 @@ export default function useBudget() {
     handleModalCostOpen,
     handleModalCostClose,
     showModalCost,
-    rowsList,
     displayedDate,
+    handleDeleteCostBtnClick,
+    deleteModalOpen,
+    handleDeleteModalClose,
+    handleDeleteModalOnClick,
   };
 }

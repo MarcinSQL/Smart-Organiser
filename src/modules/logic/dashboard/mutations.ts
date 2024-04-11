@@ -32,6 +32,7 @@ import { useNavigate } from "react-router-dom";
 import { SignInLink } from "links";
 import {
   dashboardCreateCost,
+  dashboardDeleteCost,
   dashboardEditCost,
   dashboardGetCost,
 } from "api/budget.service";
@@ -39,6 +40,7 @@ import {
   IBudgetCosts,
   IBudgetEditCost,
   IBudgetGetCost,
+  IDeleteCost,
 } from "modules/types/dashboard/budget.types";
 
 export function useEditAvatarMutation() {
@@ -236,6 +238,27 @@ export function useEditCostMutation() {
     {
       onSuccess: () => {
         toast.success("Pomyślnie zmodyfikowano wydatek");
+        queryClient.refetchQueries(Costs);
+      },
+      onError: (response: any) => {
+        const errorMessage = response.response.data.errorCode;
+        if (errorMessage === "MESSAGE_NOT_SENT")
+          toast.error("Żądanie nie zostało wysłane.");
+        else toast.error("Błąd nie został rozpoznany.");
+      },
+    }
+  );
+}
+
+export function useDeleteCostMutation() {
+  const queryClient = useQueryClient();
+  return useMutation<unknown, unknown, IDeleteCost>(
+    (data) => {
+      return dashboardDeleteCost(data);
+    },
+    {
+      onSuccess: () => {
+        toast.success("Pomyślnie usunięto kwotę");
         queryClient.refetchQueries(Costs);
       },
       onError: (response: any) => {

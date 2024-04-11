@@ -1,10 +1,14 @@
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useGetCostsQuery } from "modules/logic/dashboard/queries";
-import { IBudgetCostsTable } from "modules/types/dashboard/budget.types";
+import {
+  IBudgetCosts,
+  IBudgetCostsTable,
+} from "modules/types/dashboard/budget.types";
+import classes from "./classes/BudgetCostsTable.module.css";
 
 export default function BudgetCostsTable(props: IBudgetCostsTable) {
-  const { editBtnClick } = props;
+  const { editBtnClick, displayedDate, deleteBtnClick } = props;
   // ENDPOINTS MUST BE CREATED
   //   const { data } = useGetCostsQuery();
 
@@ -12,41 +16,70 @@ export default function BudgetCostsTable(props: IBudgetCostsTable) {
   const data = [
     {
       id: "0",
-      title: "Keyboard",
       amount: 222,
-      description: "Typical keyboard",
+      description: "aaaaaaaaaaaa",
       type: "expenses",
-      date: "10-02-2024",
+      date: "2024-03-12T12:53:36",
       category: "entertainment",
     },
     {
       id: "1",
-      title: "Mouse",
-      amount: 125,
-      description: "Typical mouse",
+      amount: 53,
+      description: "ddddddddddd",
       type: "expenses",
-      date: "10-02-2024",
+      date: "2024-03-12T12:53:36",
       category: "entertainment",
     },
     {
       id: "2",
-      title: "Work",
-      amount: 2111,
-      description: "Typical work",
-      type: "revenue",
-      date: "12-02-2024",
-      category: "job",
+      amount: 42,
+      description: " hg hdf hg hf",
+      type: "expenses",
+      date: "2024-03-12T12:53:36",
+      category: "entertainment",
     },
+
     {
       id: "3",
-      title: "Food",
-      amount: 915,
-      description: "Typical food description",
+      amount: 222,
+      description: "fvsfsdfsd",
       type: "expenses",
-      date: "15-02-2024",
-      category: "home",
+      date: "2024-04-12T12:53:36",
+      category: "entertainment",
+    },
+    {
+      id: "4",
+      amount: 222,
+      description: "nnghnhg",
+      type: "expenses",
+      date: "2024-05-12T12:53:36",
+      category: "entertainment",
+    },
+    {
+      id: "5",
+      amount: 222,
+      description: "aaaaa",
+      type: "expenses",
+      date: "2024-06-12T12:53:36",
+      category: "entertainment",
+    },
+    {
+      id: "6",
+      amount: 222,
+      description: "dsada",
+      type: "expenses",
+      date: "2024-07-12T12:53:36",
+      category: "entertainment",
     },
   ];
+
+  const rowsList: IBudgetCosts[] = [];
+
+  data?.forEach((element: IBudgetCosts) => {
+    if (element.date.slice(5, 7) == displayedDate.format("MM")) {
+      rowsList.push(element);
+    }
+  });
 
   const columns: GridColDef[] = [
     { field: "category", headerName: "Kategoria", minWidth: 100, flex: 1 },
@@ -62,16 +95,23 @@ export default function BudgetCostsTable(props: IBudgetCostsTable) {
 
   return (
     <DataGrid
-      rows={data}
+      autoHeight
+      rows={rowsList}
       columns={[
         ...columns,
         {
-          field: "editCost",
+          field: "actions",
           headerName: "",
+          type: "actions",
           sortable: false,
-          width: 120,
+          width: 200,
           renderCell: (params) => (
-            <Button onClick={() => editBtnClick(params.row)}>Edytuj</Button>
+            <Box className={classes["table__row-actions-container"]}>
+              <Button onClick={() => editBtnClick(params.row)}>Edytuj</Button>
+              <Button color="error" onClick={() => deleteBtnClick(params.row)}>
+                Usuń
+              </Button>
+            </Box>
           ),
         },
       ]}
@@ -81,6 +121,17 @@ export default function BudgetCostsTable(props: IBudgetCostsTable) {
         },
       }}
       pageSizeOptions={[5, 10]}
+      slots={{
+        noRowsOverlay: () => (
+          <Typography
+            component="h1"
+            variant="h2"
+            className={classes["table__no-rows-text"]}
+          >
+            Brak danych
+          </Typography>
+        ),
+      }}
     />
   );
 }

@@ -4,6 +4,7 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { IBudgetCostsNavigation } from "modules/types/dashboard/budget.types";
 import { monthsPL } from "components/utils/months";
+import AddIcon from "@mui/icons-material/AddRounded";
 
 export default function BudgetCostsNavigation(props: IBudgetCostsNavigation) {
   const { modalOpen, monthNext, monthPrev, date } = props;
@@ -20,7 +21,7 @@ export default function BudgetCostsNavigation(props: IBudgetCostsNavigation) {
       justifyContent={"space-between"}
       className={classes.container}
     >
-      <Grid item xs={2} md={2} className={classes["prev-next-btns"]}>
+      <Grid item xs={3} md={2} className={classes["prev-next-btns"]}>
         <IconButton onClick={monthPrev}>
           <NavigateBeforeIcon />
         </IconButton>
@@ -37,14 +38,17 @@ export default function BudgetCostsNavigation(props: IBudgetCostsNavigation) {
           {displayedDate}
         </Typography>
       </Grid>
-      <Grid item xs={4} md={2} textAlign={"right"}>
+      <Grid item xs={3} md={2} textAlign={"right"}>
         <Button
           variant="contained"
           color="info"
           onClick={modalOpen}
           className={classes["modal-btn"]}
         >
-          Dodaj kwotę
+          <span className={classes["modal-btn__content--desktop"]}>
+            Dodaj kwotę
+          </span>
+          <AddIcon className={classes["modal-btn__content--mobile"]} />
         </Button>
       </Grid>
     </Grid>
