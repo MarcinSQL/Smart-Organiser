@@ -1,0 +1,9 @@
+.container {
+  padding: 1rem;
+}
+
+.table__heading {
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin: 1rem;
+}

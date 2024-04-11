@@ -62,7 +62,7 @@ export default function MainPageNewestEvents(props: IMainPageNewestEvents) {
     { field: "note", headerName: "Notatka", minWidth: 100, flex: 2 },
   ];
   return (
-    <Container>
+    <Container className={classes["container"]}>
       <Typography
         component="h1"
         variant="h2"
