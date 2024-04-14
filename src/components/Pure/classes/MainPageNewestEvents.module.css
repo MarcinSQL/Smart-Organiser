@@ -1,9 +1,6 @@
-.container {
-  padding: 1rem;
-}
-
 .table__heading {
-  font-size: 1.75rem;
-  font-weight: 500;
-  margin: 1rem;
+  font-size: 1.75rem !important;
+  font-weight: 500 !important;
+  margin: 1rem !important;
+  margin-top: 0rem !important;
 }

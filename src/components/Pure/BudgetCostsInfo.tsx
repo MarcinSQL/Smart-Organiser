@@ -1,22 +1,34 @@
 import { Container, Grid, Typography } from "@mui/material";
 import classes from "./classes/BudgetCostsInfo.module.css";
 import { useGetCostsQuery } from "modules/logic/dashboard/queries";
-import { IRawCost } from "modules/types/dashboard/budget.types";
+import {
+  IBudgetCostInfo,
+  IBudgetCosts,
+} from "modules/types/dashboard/budget.types";
 
-export default function BudgetCostsInfo() {
+export default function BudgetCostsInfo(props: IBudgetCostInfo) {
   const { data } = useGetCostsQuery();
+  const { givenDate } = props;
 
   let totalRevenues = 0;
   let totalExpenses = 0;
 
-  // ENDPOINTS MUST BE CREATED
-  // data?.forEach((element: IRawCost) => {
-  //   if(element.type === "revenues"){
-  //     totalRevenues += element.amount;
-  //   } else {
-  //     totalExpenses += element.amount;
+  const costsList: IBudgetCosts[] = [];
+
+  // WHEN ENDPOINTS WILL BE CREATED
+  // data?.forEach((element: IBudgetCosts) => {
+  //   if (element.date.slice(5, 7) == givenDate.format("MM")) {
+  //     costsList.push(element);
   //   }
   // });
+
+  costsList?.forEach((element: IBudgetCosts) => {
+    if (element.type === "revenues") {
+      totalRevenues += element.amount;
+    } else {
+      totalExpenses += element.amount;
+    }
+  });
 
   let summary = totalRevenues - totalExpenses;
 
