@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDeleteEventMutation } from "./mutations";
+import dayjs from "dayjs";
 
 export default function useMainPage() {
   const [showEditEventModal, setShowEditEventModal] = useState(false);
@@ -7,6 +8,9 @@ export default function useMainPage() {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const mutation = useDeleteEventMutation();
+
+  const currentDate = dayjs();
+  currentDate.locale("pl");
 
   useEffect(() => {
     setDeleteModalOpen(false);
@@ -47,5 +51,6 @@ export default function useMainPage() {
     handleDeleteModalOpen,
     handleDeleteModalClose,
     handleDeleteModalOnClick,
+    currentDate
   };
 }

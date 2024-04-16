@@ -52,7 +52,7 @@ export default function Budget() {
             <BudgetPieChart />
           </Grid>
           <Grid item md={6} xs={12}>
-            <BudgetCostsInfo />
+            <BudgetCostsInfo givenDate={displayedDate} />
           </Grid>
         </Grid>
         <ModalChoose

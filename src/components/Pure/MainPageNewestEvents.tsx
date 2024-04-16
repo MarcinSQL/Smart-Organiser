@@ -1,4 +1,4 @@
-import { Button, Container, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import classes from "./classes/MainPageNewestEvents.module.css";
 import { useGetCalendarEventsQuery } from "modules/logic/dashboard/queries";
@@ -62,7 +62,7 @@ export default function MainPageNewestEvents(props: IMainPageNewestEvents) {
     { field: "note", headerName: "Notatka", minWidth: 100, flex: 2 },
   ];
   return (
-    <Container className={classes["container"]}>
+    <Box>
       <Typography
         component="h1"
         variant="h2"
@@ -103,6 +103,6 @@ export default function MainPageNewestEvents(props: IMainPageNewestEvents) {
           ),
         }}
       />
-    </Container>
+    </Box>
   );
 }

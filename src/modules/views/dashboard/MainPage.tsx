@@ -1,9 +1,12 @@
-import { Paper } from "@mui/material";
+import { Container, Paper, Typography } from "@mui/material";
 import Layout from "components/Layout/Layout";
+import BudgetCostsInfo from "components/Pure/BudgetCostsInfo";
 import ModalEditEvent from "components/Pure/CalendarModalEditEvent";
 import MainPageNewestEvents from "components/Pure/MainPageNewestEvents";
 import ModalTrueFalse from "components/UI/ModalTrueFalse";
 import useMainPage from "modules/logic/dashboard/useMainPage";
+import classes from "./classes/MainPage.module.css";
+import MainPageBudgetInfo from "components/Pure/MainPageBudgetInfo";
 
 export default function MainPage() {
   const {
@@ -16,14 +19,18 @@ export default function MainPage() {
     deleteModalOpen,
     handleDeleteModalClose,
     handleDeleteModalOnClick,
+    currentDate,
   } = useMainPage();
   return (
     <Layout>
       <Paper>
-        <MainPageNewestEvents
-          selectedEventId={handleGetEventId}
-          showEditModal={handleShowEditModal}
-        />
+        <Container className={classes["container"]}>
+          <MainPageNewestEvents
+            selectedEventId={handleGetEventId}
+            showEditModal={handleShowEditModal}
+          />
+          <MainPageBudgetInfo currentDate={currentDate} />
+        </Container>
         <ModalEditEvent
           open={showEditEventModal}
           onClose={handleEditEventModalClose}

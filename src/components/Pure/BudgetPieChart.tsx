@@ -1,6 +1,9 @@
 import { PieChart } from "@mui/x-charts";
 import { useGetCostsQuery } from "modules/logic/dashboard/queries";
-import { IPieChartCost, IRawCost } from "modules/types/dashboard/budget.types";
+import {
+  IPieChartCost,
+  IBudgetCosts,
+} from "modules/types/dashboard/budget.types";
 
 export default function BudgetPieChart() {
   const data = [
@@ -46,7 +49,7 @@ export default function BudgetPieChart() {
   //   const { data: rawData } = useGetCostsQuery();
 
   //   const data: IPieChartCost[] = [];
-  //   rawData?.forEach((element: IRawCost) => {
+  //   rawData?.forEach((element: IBudgetCosts) => {
   //     const cost: IPieChartCost = {
   //       id: element.id,
   //       label: element.category,

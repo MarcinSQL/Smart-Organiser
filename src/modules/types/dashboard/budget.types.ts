@@ -82,15 +82,6 @@ export interface IBudgetEditCost {
   category: string;
 }
 
-export interface IRawCost {
-  id: string;
-  amount: number;
-  description: string;
-  type: string;
-  date: string;
-  category: string;
-}
-
 export interface IPieChartCost {
   id: string;
   label: string;
@@ -103,4 +94,8 @@ export interface IBudgetCostsTable {
   editBtnClick: (rowData: { id: string }) => void;
   displayedDate: Dayjs;
   deleteBtnClick: (rowData: { id: string }) => void;
+}
+
+export interface IBudgetCostInfo {
+  givenDate: Dayjs;
 }
